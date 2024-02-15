@@ -9,9 +9,9 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Rigidbody2D rb; // Collision / hitbox for projectile
 
     [Header("Attributes")]
-    [SerializeField] private float bulletSpeed = 5f; // Projectile Speed
+    [SerializeField] private float bulletSpeed = 10f; // Projectile Speed
     [SerializeField] private int bulletDamage = 1; // The damage the projectile will do
-    [SerializeField] private float lifeSpan = 10f; // How long the bullet can be alive
+    [SerializeField] private float lifeSpan = 8f; // How long the bullet can be alive
 
     private Transform target; // The projectiles target
 
@@ -24,15 +24,12 @@ public class Bullet : MonoBehaviour
     {
         other.gameObject.GetComponent<Health>().TakeDamage(bulletDamage);
         Destroy(gameObject);
+        Debug.Log("Target Hit"); // Check to see bullets are colliding
     } 
 
     private void CheckBulletTimeout() // If the bullet has existed for too long it has likely missed
     {
-        lifeSpan -= Time.deltaTime;
-        if (lifeSpan <= 0f)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject, lifeSpan);
     }
 
     //Is executed based on a Fixed Timestep (by default 50 times per second)

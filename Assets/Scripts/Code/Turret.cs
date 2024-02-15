@@ -33,6 +33,7 @@ public class Turret : MonoBehaviour
         if (hits.Length > 0) //Checks to see if any hits were made
         {
             target = hits[0].transform;
+            Debug.Log("Target Found"); //Check to see if enemies are being found
         }
     }
 
