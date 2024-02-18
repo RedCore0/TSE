@@ -70,7 +70,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        //Debug.Log("[ + ] Enemy"); //Log message to prove the rest of the code is working
+        Debug.Log("[ + ] Enemy"); //Log message to prove the rest of the code is working
         GameObject prefabToSpawn = enemyPrefabs[0]; //Sets the type of enemy to spawn from the available prefabs
         Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); //Spawns the enemy at the startPoint (Quaternion.identity i think controls rotation of enemy)
     }
