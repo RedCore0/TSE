@@ -46,6 +46,7 @@ public class BaseEnemy : MonoBehaviour
 
             if (pathIndex == LevelManager.main.path.Length) // Checks to see if the enemy has reached the end of the path.
             {
+                //start attacking from here instead of dying
                 EnemySpawner.onEnemyDestroy.Invoke(); // Tells the EnemySpawner that the enemy has been destroyed.
                 Destroy(gameObject); // Destroys the gameObject for the enemy.
                 return;
