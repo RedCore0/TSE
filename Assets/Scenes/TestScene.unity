@@ -12899,7 +12899,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 6096530932571837085, guid: f58dced06e4500247924ad793ad3f3fc, type: 3}
-  baseEnemies: 50
+  baseEnemies: 20
   enemiesPerSecond: 5
   timeBetweenWaves: 5
   difficultyScalingFactor: 1
@@ -12927,7 +12927,7 @@ MonoBehaviour:
   - {fileID: 1442684445}
   - {fileID: 278385599}
   currency: 0
-  structureHealth: 50
+  structureHealth: 150
 --- !u!4 &1784376147
 Transform:
   m_ObjectHideFlags: 0
