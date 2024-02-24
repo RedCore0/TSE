@@ -6,7 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 public class BaseEnemy : MonoBehaviour
 {
     private Rigidbody2D rb; // The enemy's collision hitbox.
-    private bool isDestroyed; // Resolves an issue where multiple bullets could collide at once and both would cause the onEnemyDestroy to be called.
+    private bool isDestroyed = false; // Resolves an issue where multiple bullets could collide at once and both would cause the onEnemyDestroy to be called.
     private Transform targetLocation;
     private int pathIndex = 0;
     // Enemies follow a sequence of points. The index allows traversal of the array of points.
@@ -46,6 +46,7 @@ public class BaseEnemy : MonoBehaviour
 
             if (pathIndex == LevelManager.main.path.Length) // Checks to see if the enemy has reached the end of the path.
             {
+                //start attacking from here instead of dying
                 EnemySpawner.onEnemyDestroy.Invoke(); // Tells the EnemySpawner that the enemy has been destroyed.
                 Destroy(gameObject); // Destroys the gameObject for the enemy.
                 return;

@@ -14,6 +14,7 @@ public class BaseProjectile : MonoBehaviour
     private int myPierce; // How many enemies the projectile can pass through and damage in its lifespan.
     private float deathTime; // The time the projectile will 'die' at - Time.time + myLife.
     private Vector2 direction; // The direction the projectile travels in.
+    private LayerMask enemyMask; // The layer that the enemies are in.
 
     private void Start()
     {
@@ -48,11 +49,12 @@ public class BaseProjectile : MonoBehaviour
 
         deathTime = Time.time + myLife; // Set the death time to current time + the projectile life span.
         direction = (myTarget.position - transform.position).normalized; // Set the projectile's direction to the enemy.
+        enemyMask = myTarget.gameObject.layer; //Set the target layer containing enemies
     }
 
     private void OnTriggerEnter2D(Collider2D other) // When the projectile collides with another object,
     {
-        if (other.gameObject.layer == myTarget.gameObject.layer) // if the object is on the target (enemy) layer,
+        if (other.gameObject.layer == enemyMask) // if the object is on the target (enemy) layer,
         {
             other.gameObject.GetComponent<BaseEnemy>().TakeDamage(myDamage); // the object (enemy) should take damage,
             myPierce -= 1; // the remaining pierce should decrease by one,
