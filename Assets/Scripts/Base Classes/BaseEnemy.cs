@@ -7,6 +7,8 @@ public class BaseEnemy : MonoBehaviour
 {
     private Rigidbody2D rb; // The enemy's collision hitbox.
     private bool isDestroyed; // Resolves an issue where multiple bullets could collide at once and both would cause the onEnemyDestroy to be called.
+    private float distanceTravelled; // Tracks how far the enemy is along the track - allows for 'first'/'last' targetting.
+    
     private Transform targetLocation;
     private int pathIndex = 0;
     private bool attacking = false;
@@ -39,6 +41,8 @@ public class BaseEnemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>(); // Gets the enemy's attached rigidbody component.
         targetLocation = LevelManager.main.path[pathIndex]; // Set the initial index to 0.
+        isDestroyed = false;
+        distanceTravelled = 0;
     }
 
     private void Update()
@@ -76,12 +80,33 @@ public class BaseEnemy : MonoBehaviour
         {
             Vector2 direction = (targetLocation.position - transform.position).normalized; // Get the direction of the next target.
             rb.velocity = direction * enemySpeed; // Moves towards the target.
+            distanceTravelled += enemySpeed; // Adds to the enemy's distance travelled.
         }
     }
 
     public bool IsAerial() // Returns whether the enemy is aerial or not.
     {
         return isAerial;
+    }
+
+    public float GetDistance() // Returns the enemy's distance travelled.
+    {
+        return distanceTravelled;
+    }
+
+    public int GetHealth() // Returns the enemy's current health.
+    {
+        return enemyHealth;
+    }
+
+    public int GetDefense() // Returns the enemy's defense.
+    {
+        return enemyDefense;
+    }
+
+    public float GetSpeed() // Returns the enemy's speed.
+    {
+        return enemySpeed;
     }
 
     public void TakeDamage(int incomingDamage) // Controls the enemy taking damage on hits.
