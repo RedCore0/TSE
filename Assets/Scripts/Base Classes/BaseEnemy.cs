@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -51,26 +53,34 @@ public class BaseEnemy : MonoBehaviour
         {
             if (!attacking) { pathIndex++; } // Increments the path index by one.
 
-
-                if (pathIndex == LevelManager.main.path.Length) // Checks to see if the enemy has reached the end of the path.
+            if (pathIndex == LevelManager.main.path.Length) // Checks to see if the enemy has reached the end of the path.
             {
-                StartCoroutine(attack());   // enemy starts attacking
+                if (!attacking)     // prevents coroutine from starting multiple times
+                {
+                    rb.velocity = Vector2.zero; // enemy stops moving
+                    StartCoroutine(attack());   // enemy starts attacking
+                    attacking = true;                
+                }                                                 
 
                 if (attackLimit <= 0)
                 {
                     StopCoroutine(attack());    // enemy is dead, so can no longer attack 
                     EnemySpawner.onEnemyDestroy.Invoke(); // Tells the EnemySpawner that the enemy has been destroyed.
                     Destroy(gameObject); // Destroys the gameObject for the enemy.
+                    Debug.Log("Died from exhaustion");
                 }
                 return;
+            }
 
-            }
-            else
-            {
-                if (pathIndex > LevelManager.main.path.Length-1) { pathIndex = LevelManager.main.path.Length - 1; }
-                targetLocation = LevelManager.main.path[pathIndex]; // Sets the target location.
-                StopCoroutine(attack());    // if structure is destroyed, enemies are no longer at the end and hence stop attacking
-            }
+        else
+        {
+            // for if the structure is destroyed, its not longer at the end and so can continue moving
+            if (attacking) { attacking = false; Debug.Log("Structure gone"); }   
+            if (pathIndex > LevelManager.main.path.Length-1) { pathIndex = LevelManager.main.path.Length - 1; }
+
+            targetLocation = LevelManager.main.path[pathIndex]; // Sets the target location.
+            StopCoroutine(attack());    // if structure is destroyed, enemies are no longer at the end and hence stop attacking
+        }
         }
     }
 
@@ -129,13 +139,15 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    public IEnumerator attack()
-    {
-        //play animation
-        Debug.Log("Attacking");
-        attacking = true;
-        LevelManager.main.BroadcastMessage(string.Format("structureDamage({0})", enemyDamage));     // structure takes damage
-        attackLimit--;  // reduces remaining attacks
-        yield return new WaitForSeconds(attackCooldown);    // waits for cooldown to finish
-    }
+        public IEnumerator attack()
+        {
+            while (attackLimit > 0)
+            {
+                //play animation
+                attackLimit--;  // reduces remaining attacks
+                Debug.Log("Attacking, remaining attacks: " + attackLimit);
+                LevelManager.main.StructureDamage(enemyDamage);     // structure takes damage       
+                yield return new WaitForSeconds(attackCooldown);    // waits for cooldown to finish
+            }
+        }
 }

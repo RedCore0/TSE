@@ -53,7 +53,7 @@ public class LevelManager : MonoBehaviour
         
     }
 
-    void structureDamage(int damage)
+    public void StructureDamage(int damage)
     {
         structureHealth -= damage;  // reduce structure health
 
