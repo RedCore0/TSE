@@ -9,6 +9,7 @@ public class BaseEnemy : MonoBehaviour
     private bool isDestroyed; // Resolves an issue where multiple bullets could collide at once and both would cause the onEnemyDestroy to be called.
     private Transform targetLocation;
     private int pathIndex = 0;
+    private bool attacking = false;
     // Enemies follow a sequence of points. The index allows traversal of the array of points.
 
     // [Header("References")]
@@ -18,14 +19,16 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField] private int enemyHealth; // How much health the enemy has, the damage it can take before it dies.
     [SerializeField] private int enemyDefense; // The enemy's defense - this value is subtracted from all incoming damage.
 
-    [SerializeField] private int enemyAttack; // The enemy's attack - the damage it deals to the 'objective' the player defends.
+    [SerializeField] private int enemyDamage; // The enemy's attack - the damage it deals to the 'objective' the player defends.
     [SerializeField] private float attackCooldown; // The delay between each of the enemy's attacks to the objective.
     [SerializeField] private int attackLimit; // The limit to the enemy's attacks - how many times it can attack in its lifespan.
 
     [SerializeField] private float enemySpeed; // How fast the enemy moves along the track. Makes it harder for towers to hit it.
     [SerializeField] private bool isAerial; // Whether or not the enemy is 'aerial' (flying). Influences which towers can target it.
 
+    [Tooltip("How much it 'costs' for the ai to use")]
     [SerializeField] private int enemyCost; // How much the enemy 'costs' for the AI to spawn it. Stronger enemies have higher values.
+    [Tooltip("Currency rewarded to player for defeating it")]
     [SerializeField] private int killReward; // How much currency the player is rewarded for killing the enemy.
 
     [Space(20)]
@@ -42,25 +45,38 @@ public class BaseEnemy : MonoBehaviour
     {
         if (Vector2.Distance(targetLocation.position, transform.position) <= 0.1f) // Checks to see if the enemy is at the point.
         {
-            pathIndex++; // Increments the path index by one.
+            if (!attacking) { pathIndex++; } // Increments the path index by one.
 
-            if (pathIndex == LevelManager.main.path.Length) // Checks to see if the enemy has reached the end of the path.
+
+                if (pathIndex == LevelManager.main.path.Length) // Checks to see if the enemy has reached the end of the path.
             {
-                EnemySpawner.onEnemyDestroy.Invoke(); // Tells the EnemySpawner that the enemy has been destroyed.
-                Destroy(gameObject); // Destroys the gameObject for the enemy.
+                StartCoroutine(attack());   // enemy starts attacking
+
+                if (attackLimit <= 0)
+                {
+                    StopCoroutine(attack());    // enemy is dead, so can no longer attack 
+                    EnemySpawner.onEnemyDestroy.Invoke(); // Tells the EnemySpawner that the enemy has been destroyed.
+                    Destroy(gameObject); // Destroys the gameObject for the enemy.
+                }
                 return;
+
             }
             else
             {
+                if (pathIndex > LevelManager.main.path.Length-1) { pathIndex = LevelManager.main.path.Length - 1; }
                 targetLocation = LevelManager.main.path[pathIndex]; // Sets the target location.
+                StopCoroutine(attack());    // if structure is destroyed, enemies are no longer at the end and hence stop attacking
             }
         }
     }
 
     private void FixedUpdate()
     {
-        Vector2 direction = (targetLocation.position - transform.position).normalized; // Get the direction of the next target.
-        rb.velocity = direction * enemySpeed; // Moves towards the target.
+        if (!attacking)
+        {
+            Vector2 direction = (targetLocation.position - transform.position).normalized; // Get the direction of the next target.
+            rb.velocity = direction * enemySpeed; // Moves towards the target.
+        }
     }
 
     public bool IsAerial() // Returns whether the enemy is aerial or not.
@@ -86,5 +102,15 @@ public class BaseEnemy : MonoBehaviour
             isDestroyed = true; // Sets isDestroyedd to true to resolve a certain conflict.
             Destroy(gameObject); // Destroys the gameObject for the enemy.
         }
+    }
+
+    public IEnumerator attack()
+    {
+        //play animation
+        Debug.Log("Attacking");
+        attacking = true;
+        LevelManager.main.BroadcastMessage(string.Format("structureDamage({0})", enemyDamage));     // structure takes damage
+        attackLimit--;  // reduces remaining attacks
+        yield return new WaitForSeconds(attackCooldown);    // waits for cooldown to finish
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class LevelManager : MonoBehaviour
     public Transform[] path; // An array of points that the enemy will follow
 
     public int currency; // Currency value that will be used to purchase towers / upgrades
+
+    public int structureHealth;     // Health of the structure, could vary between level/difficulty
 
     
     public void IncreaseCurrency(int ammount)
@@ -48,5 +51,17 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void structureDamage(int damage)
+    {
+        structureHealth -= damage;  // reduce structure health
+
+        if (structureHealth <= 0 )  // temporary destroy 'animation'
+        {
+            Transform finalNode = path[path.Length - 1];
+            finalNode.GetChild(0).gameObject.SetActive(false);  // structure is destroyed
+            finalNode.position += Vector3.right * 5;            // and enemies can now proceed through
+        }
     }
 }
