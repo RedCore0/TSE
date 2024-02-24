@@ -43,6 +43,7 @@ public class BaseTower : MonoBehaviour
     private void Start() // Called when the object is instantiated.
     {
         targettingMode = "FIRST"; // Set targetting mode to the initial mode. (FIRST is the default)
+        prioritiseAerial = aerialTargetting; // By default, towers with aerial targetting will prioritise aerial units.
         nextAttack = Time.time + attackDelay; // Sets next attack time. (the current time + the delay between attacks)
     }
 
@@ -50,15 +51,13 @@ public class BaseTower : MonoBehaviour
     {
         targetsInRange = FindTargets(); // Gets the targets (enemies) in the tower's range.
         targettedEnemy = SelectTarget(); // Selects a single target to fire at based on tower priorities.
-        if (targettedEnemy != null) // If an enemy to target has been found,
+
+        if (targettedEnemy != null && Time.time >= nextAttack) // If an enemy to target has been found, and the next attack is due,
         {
-            targetLocation = targettedEnemy.transform; // get the selected target's location.
-            AimAtTarget(targetLocation); // and aim at the target's location.
-            if (Time.time >= nextAttack) // If the next attack is due,
-            {
-                DoAttack(targetLocation); // the tower should attack the target,
-                nextAttack = Time.time + attackDelay; // and the cooldown should reset.
-            }
+            targetLocation = targettedEnemy.transform; // then get the selected target's position,
+            AimAtTarget(targetLocation); // aim the tower at the target,
+            DoAttack(targetLocation); // attack in that direction,
+            nextAttack = Time.time + attackDelay; // and reset the attack cooldown.
         }
     }
 
@@ -108,18 +107,67 @@ public class BaseTower : MonoBehaviour
             return target; // return target as null.
         }
 
+        target = validTargets[0];
         switch (targettingMode)
         {
             case "FIRST": // Will find the target furthest ahead on the track.
-                target = validTargets[0]; // FIX: Placeholder for now, actual implementation needed.
+                foreach (GameObject checkTarget in validTargets)
+                {
+                    BaseEnemy currentTarget = target.GetComponent<BaseEnemy>();
+                    BaseEnemy possibleTarget = checkTarget.GetComponent<BaseEnemy>();
+                    if (possibleTarget.GetDistance() > currentTarget.GetDistance())
+                    {
+                        target = checkTarget;
+                    }
+                }
                 break;
+
             case "LAST": // Will find the target furthest back on the track.
+                foreach (GameObject checkTarget in validTargets)
+                {
+                    BaseEnemy currentTarget = target.GetComponent<BaseEnemy>();
+                    BaseEnemy possibleTarget = checkTarget.GetComponent<BaseEnemy>();
+                    if (possibleTarget.GetDistance() < currentTarget.GetDistance())
+                    {
+                        target = checkTarget;
+                    }
+                }
                 break;
-            case "HIGH HP": // Will find the target with the highest health.
+
+            case "HIGH HP": // Will find the target with the highest (current) health.
+                foreach (GameObject checkTarget in validTargets)
+                {
+                    BaseEnemy currentTarget = target.GetComponent<BaseEnemy>();
+                    BaseEnemy possibleTarget = checkTarget.GetComponent<BaseEnemy>();
+                    if (possibleTarget.GetHealth() > currentTarget.GetHealth())
+                    {
+                        target = checkTarget;
+                    }
+                }
                 break;
+
             case "HIGH DEF": // Will find the target with the highest defense.
+                foreach (GameObject checkTarget in validTargets)
+                {
+                    BaseEnemy currentTarget = target.GetComponent<BaseEnemy>();
+                    BaseEnemy possibleTarget = checkTarget.GetComponent<BaseEnemy>();
+                    if (possibleTarget.GetDefense() > currentTarget.GetDefense())
+                    {
+                        target = checkTarget;
+                    }
+                }
                 break;
+
             case "FASTEST": // Will find the target with the highest speed.
+                foreach (GameObject checkTarget in validTargets)
+                {
+                    BaseEnemy currentTarget = target.GetComponent<BaseEnemy>();
+                    BaseEnemy possibleTarget = checkTarget.GetComponent<BaseEnemy>();
+                    if (possibleTarget.GetSpeed() > currentTarget.GetSpeed())
+                    {
+                        target = checkTarget;
+                    }
+                }
                 break;
         }
 
@@ -137,7 +185,7 @@ public class BaseTower : MonoBehaviour
     {
         GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         BaseProjectile projectileScript = projectileObj.GetComponent<BaseProjectile>();
-        projectileScript.SetAttributes(target, attackDamage, aerialTargetting, projectileLife, projectileSpeed, projectilePierce);
+        projectileScript.SetUp(target, attackDamage, aerialTargetting, projectileLife, projectileSpeed, projectilePierce);
     } // TO-DO : Modify later to account for multiple projectiles, spread, etc.
 
     private bool CheckTargetIsInRange(Transform target)  // Ensures the tower doesn't attack a target that has left its range.
