@@ -15,8 +15,8 @@ public class BaseTower : MonoBehaviour
     private float nextAttack; // The next time the tower can attack.
 
     [Header("References")]
-    [SerializeField] private LayerMask enemyMask; // The mask enemies are on - where the tower targets. - side idea, we could have non-enemies in here to distract towers?
-    [SerializeField] private GameObject projectilePrefab; // The projectile the tower will shoot with every attack. Empty means it is a melee/support/special tower.
+    [SerializeField] private LayerMask enemyMask; // The mask enemies are on - where the tower targets.
+    [SerializeField] private GameObject projectilePrefab; // The projectile the tower will shoot with every attack.
 
 
     [Header("Stats")]
@@ -30,6 +30,9 @@ public class BaseTower : MonoBehaviour
     [SerializeField] private int projectilePierce; // How many enemies the projectile can pass through and damage in its lifespan.
     [SerializeField] private int projectileCount; // How many projectiles are shot per attack from the tower.
 
+    [Header("Info")]
+    public string towerName; // The tower's name.
+    public int towerCost; // The tower's cost to build.
     [Space(20)]
     [TextArea]
     public string towerDescription; // The tower's description.
@@ -77,7 +80,7 @@ public class BaseTower : MonoBehaviour
             }
         }
 
-        return targets;
+        return targets; // Return the list of targets in range.
     }
 
     private GameObject SelectTarget() // Select a target from the targets in the tower's range.
@@ -171,7 +174,7 @@ public class BaseTower : MonoBehaviour
                 break;
         }
 
-        return target;
+        return target; // Return the selected target.
     }
 
     private void AimAtTarget(Transform target) // Aims at a given target based on its transform.

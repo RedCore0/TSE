@@ -6,21 +6,19 @@ public class BuildManager : MonoBehaviour
 {
 
     public static BuildManager main;
+    private int selectedTower = 0; // The index of the tower currently selected by the player.
 
     [Header("References")]
-    [SerializeField] private Tower[] towers; // Array of all available tower types
-
-    private int selectedTower = 0;
-
+    [SerializeField] private GameObject[] availableTowers; // Array of all tower types available to the player.
 
     private void Awake()
     {
         main = this;
     }
 
-    public Tower GetSelectedTower()
+    public BaseTower GetSelectedTower()
     {
-        return towers[selectedTower];
+        return availableTowers[selectedTower].GetComponent<BaseTower>();
     }
 
     public void SetSelectedTower(int _selectedTower)

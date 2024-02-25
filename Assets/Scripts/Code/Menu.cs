@@ -11,18 +11,18 @@ public class Menu : MonoBehaviour
 
     private bool isMenuOpen = true;
 
-    public void ToggleMenu() // Setting the menu to either be open or closed
+    public void ToggleMenu() // Setting the menu to either be open or closed.
     {
         isMenuOpen = !isMenuOpen; 
-        anim.SetBool("MenuOpen", isMenuOpen); // Changing the boolean value in the animator
+        anim.SetBool("MenuOpen", isMenuOpen); // Changing the boolean value in the animator.
     }
 
     private void OnGUI ()
     {
-        currencyUI.text = LevelManager.main.currency.ToString();
+        currencyUI.text = LevelManager.main.GetCurrency().ToString();
     }
 
-    public void setSelected()
+    public void SetSelected()
     {
         
     }

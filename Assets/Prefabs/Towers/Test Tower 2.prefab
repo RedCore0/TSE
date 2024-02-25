@@ -104,9 +104,11 @@ MonoBehaviour:
   attackRange: 10
   attackDelay: 0.1
   attackDamage: 3
-  aerialTargetting: 0
+  aerialTargetting: 1
   projectileLife: 5
   projectileSpeed: 15
   projectilePierce: 5
   projectileCount: 1
+  towerName: Test Tower #2
+  towerCost: 100
   towerDescription: A tower which exists for testing purposes.

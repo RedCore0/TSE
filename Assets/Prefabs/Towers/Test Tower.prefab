@@ -109,4 +109,6 @@ MonoBehaviour:
   projectileSpeed: 10
   projectilePierce: 2
   projectileCount: 1
+  towerName: Test Tower #1
+  towerCost: 50
   towerDescription: A tower which exists for testing purposes.
