@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
+
 
 public class Plot : MonoBehaviour
 {
@@ -15,6 +17,11 @@ public class Plot : MonoBehaviour
 
     private void OnMouseEnter() //Once cursor enters the plot change it's color
     {
+        if(EventSystem.current.IsPointerOverGameObject()) // Prevents the player "selecting" a tile through the menu ui 
+        {
+            return;
+        }
+
         sr.color = hoverColor; // Make the plots color the selected plot color
     }
 
@@ -25,25 +32,36 @@ public class Plot : MonoBehaviour
 
     private void OnMouseDown()
     {
-        //Debug.Log("Plot Selected: "+ name); // Checking code works
+
+        if(EventSystem.current.IsPointerOverGameObject()) // Stop the player being able to place a tower through the menu UI
+        {
+            return;
+        }
+
         if (tower != null) // Check to see if the plot is empty
         {
             return; // If it isn't empty do nothing for now
         }
+
         // The plot is empty
-        GameObject towerToBuild = BuildManager.main.GetSelectedTower(); // Select the tower that is going to be built (eventually multiple types)
-        tower = Instantiate(towerToBuild, transform.position, Quaternion.identity); // Build the selected tower
+
+        Tower towerToBuild = BuildManager.main.GetSelectedTower(); // Select the tower that is going to be built (eventually multiple types)
+
+        if (towerToBuild.cost > LevelManager.main.currency) // Check to see if the player can afford the tower
+        {
+            Debug.Log("You can not afford this."); // This would likely be some UI event / pop up
+            return;
+        }
+
+        // The player can afford the tower
+
+        LevelManager.main.SpendCurrency(towerToBuild.cost); // Take the currency for the tower
+        tower = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity); // Build the selected tower
     }
 
     // Start is called before the first frame update
     void Start()
     {   
         startColor = sr.color; // Ensures the plot starts with the correct color
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
