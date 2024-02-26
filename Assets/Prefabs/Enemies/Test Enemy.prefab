@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 5
   enemyDefense: 0
-  enemyAttack: 1
+  attackDamage: 1
   attackCooldown: 1
   attackLimit: 5
   enemySpeed: 3

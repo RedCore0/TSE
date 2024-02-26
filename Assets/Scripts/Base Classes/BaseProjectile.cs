@@ -6,15 +6,16 @@ using static UnityEngine.GraphicsBuffer;
 public class BaseProjectile : MonoBehaviour
 {
     private Rigidbody2D rb; // The projectile's collision hitbox.
+    private float deathTime; // The time the projectile will 'die' at - set to Time.time + myLife.
+    private Vector2 direction; // The direction the projectile travels in.
+    private LayerMask enemyMask; // The mask that enemies are on - what the projectile can target.
+
     private Transform myTarget; // The projectile's target location.
     private int myDamage; // The incoming damage this projectile will deal to an enemy.
     private bool amIAerial; // Whether or not the projectile is aerial - if it can hit aerial enemies.
     private float myLife; // How long the projectile's lifespan is. Influences range.
     private float mySpeed; // How fast the projectile moves. Influences range and accuracy.
     private int myPierce; // How many seperate enemies the projectile can pass through and damage in its lifespan.
-    private float deathTime; // The time the projectile will 'die' at - set to Time.time + myLife.
-    private Vector2 direction; // The direction the projectile travels in.
-    private LayerMask enemyMask; // The mask that enemies are on - what the projectile can target.
 
     private void Start()
     {
