@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class EnemySpawner : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject[] enemyPrefabs;  // Stores the enemy types which can be spawned.
+    [SerializeField] public GameObject[] enemyPrefabs;  // Stores the enemy types which can be spawned.
 
     [Header("Attributes")]
     [SerializeField] private int baseEnemies; // Controls the amount of enemies in a given wave.
@@ -23,6 +24,8 @@ public class EnemySpawner : MonoBehaviour
     private int enemiesLeftToSpawn; // How many enemies are yet to spawn this wave.
     private bool isSpawning = false; // Determines if the enemies should currently be spawning.
 
+    public bool enemyTesting = false; // Changes spawning method for testing.
+    
     public void Start()
     {
         enemiesLeftToSpawn = baseEnemies; // Sets the size of the first wave to the default wave size.
@@ -43,6 +46,21 @@ public class EnemySpawner : MonoBehaviour
 
         timeSinceLastSpawn += Time.deltaTime; // Increments the timeSinceLastSpawn variable by deltaTime to act as a clock.
 
+        
+        // The method below is only here for me to test new enemies, it will be either deleted or obsolete in the final product.
+        // It will overwrite the normal spawning procedure to instead spawn one single enemy at a time and respawn it when it dies.
+        // Element 0 in the array will be the enemy that is spawned.if (enemyTesting)
+        if (enemyTesting)
+        {
+            if (enemiesAlive < 1)
+            {
+                SpawnEnemyDev(); // spawn an enemy.
+                enemiesAlive++; // Adds 1 to the enemies alive as one has just spawned.
+            }
+
+            return;
+        }
+        
         if (timeSinceLastSpawn >= (1f / enemiesPerSecond) && enemiesLeftToSpawn > 0) // Checks to see if another enemy should spawn.
         {
             SpawnEnemy(); // Spawns the enemy.
@@ -66,6 +84,13 @@ public class EnemySpawner : MonoBehaviour
     }
 
     private void SpawnEnemy() // Spawns an enemy.
+    {
+        int toSpawn = UnityEngine.Random.Range(0, enemyPrefabs.Length); // Randomly selects an enemy to spawn until the ai does this in future/a better temporary method is designed.
+        GameObject prefabToSpawn = enemyPrefabs[toSpawn]; // Selects the type of enemy to spawn from the available enemy prefabs.
+        Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawns the enemy at the level's start point.
+    }
+    
+    private void SpawnEnemyDev() // Temporary spawn method for testing new creatures.
     {
         GameObject prefabToSpawn = enemyPrefabs[0]; // Selects the type of enemy to spawn from the available enemy prefabs.
         Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawns the enemy at the level's start point.

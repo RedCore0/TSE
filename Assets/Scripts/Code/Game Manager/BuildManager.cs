@@ -10,7 +10,7 @@ public class BuildManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private GameObject[] availableTowers; // Array of all tower types available to the player.
-
+    
     private void Awake()
     {
         main = this;
