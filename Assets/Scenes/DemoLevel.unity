@@ -15953,11 +15953,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 6096530932571837085, guid: f58dced06e4500247924ad793ad3f3fc, type: 3}
-  baseEnemies: 50
-  enemiesPerSecond: 5
+  - {fileID: 6096530932571837085, guid: a8b08dc384acda043bcd0538fcfc771f, type: 3}
+  - {fileID: 6096530932571837085, guid: 158949f0bbe14094abc812ed9cff2d96, type: 3}
+  baseEnemies: 20
+  enemiesPerSecond: 2
   timeBetweenWaves: 5
   difficultyScalingFactor: 1
+  enemyTesting: 1
 --- !u!114 &1784376146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15971,18 +15973,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPoint: {fileID: 2078474782}
-  path:
-  - {fileID: 806603071}
-  - {fileID: 1642731332}
-  - {fileID: 1072051107}
-  - {fileID: 97111640}
-  - {fileID: 1023261355}
-  - {fileID: 307855741}
-  - {fileID: 416565285}
-  - {fileID: 1442684445}
-  - {fileID: 278385599}
-  startingCurrency: 1000000
-  structureHealth: 200
+  path: []
+  startingCurrency: 100
+  structureHealth: 150
 --- !u!4 &1784376147
 Transform:
   m_ObjectHideFlags: 0
@@ -16010,9 +16003,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ffdfee0acc2cfa4f9b0dcc3069007f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableTowers:
-  - {fileID: 2982197973016021227, guid: e9d461abfb00e0b42a6acf26ee42bcfd, type: 3}
-  - {fileID: 2982197973016021227, guid: 890ed189504651049af7d716785cd92f, type: 3}
 --- !u!4 &1787406193 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5327388257497988143, guid: 894b9a6059955ed448e1cb89272e41d7, type: 3}
