@@ -6,7 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 public class BaseEnemy : MonoBehaviour
 {
     private Rigidbody2D rb; // The enemy's collision hitbox.
-    private bool isDestroyed; // Resolves an issue where multiple bullets could collide at once and both would cause the onEnemyDestroy to be called.
+    private bool isDestroyed = false; // Resolves an issue where multiple bullets could collide at once and both would cause the onEnemyDestroy to be called.
     private bool isAttacking; // Whether or not the enemy has started attacking the objective.
     private float distanceTravelled; // Tracks how far the enemy is along the track - allows for 'first'/'last' targeting.
     private float nextAttack; // The next time the enemy can attack.
@@ -18,7 +18,7 @@ public class BaseEnemy : MonoBehaviour
     // [Header("References")]
     // but we don't need any yet.
 
-    [Header("Stats")]
+    [Header("Attributes")]
     public int enemyHealth; // How much health the enemy has, the damage it can take before it dies.
     public int enemyDefense; // The enemy's defense - this value is subtracted from all incoming damage.
 
@@ -31,6 +31,10 @@ public class BaseEnemy : MonoBehaviour
 
     public int enemyCost; // How much the enemy 'costs' for the AI to spawn it. Stronger enemies have higher values.
     public int killReward; // How much currency the player is rewarded for killing the enemy.
+
+    [Header("Statistics")]
+    public int damageDealt; // How much damage the enemy has done
+    public float timeAlive; // How much time the enemy was alive
 
     [Header("Info")]
     public string enemyName; // The enemy's name.
@@ -51,11 +55,14 @@ public class BaseEnemy : MonoBehaviour
 
     private void Update()
     {
+        timeAlive += Time.deltaTime; // Increment the time alive by the change in time 
+
         if (isAttacking) // If the enemy is attacking,
         {
             if (Time.time >= nextAttack) // and the next attack is due,
             {
                 DoAttack(); // do an attack,
+                damageDealt += attackDamage; // Increment the damageDealt by the enemy damage (might need adjusting if player has a defence stat)
                 nextAttack = Time.time + attackCooldown; // and reset the cooldown.
             }
             return; // Return as we are no longer moving.
