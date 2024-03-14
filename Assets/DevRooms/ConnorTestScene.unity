@@ -15933,6 +15933,7 @@ GameObject:
   - component: {fileID: 1784376146}
   - component: {fileID: 1784376148}
   - component: {fileID: 1784376145}
+  - component: {fileID: 1784376149}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -15958,6 +15959,7 @@ MonoBehaviour:
   enemiesPerSecond: 5
   timeBetweenWaves: 5
   difficultyScalingFactor: 1
+  enemyTesting: 0
 --- !u!114 &1784376146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16013,6 +16015,29 @@ MonoBehaviour:
   availableTowers:
   - {fileID: 2982197973016021227, guid: e9d461abfb00e0b42a6acf26ee42bcfd, type: 3}
   - {fileID: 2982197973016021227, guid: 890ed189504651049af7d716785cd92f, type: 3}
+--- !u!114 &1784376149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784376144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb72adc554266e43b35642e25f2a4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerDamageInflicted: 0
+  playerCurrencySpent: 0
+  lastPlayerCurrencySpent: 0
+  enemyDamageInflicted: 0
+  lastEnemyDamageInflicted: 0
+  hasArialDefence: 0
+  hasGroundDefence: 0
+  hasOnTrackObstacle: 0
+  hasMeleeDefence: 0
+  hasProjectileDefence: 0
+  hasHitscanDefence: 0
 --- !u!4 &1787406193 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5327388257497988143, guid: 894b9a6059955ed448e1cb89272e41d7, type: 3}

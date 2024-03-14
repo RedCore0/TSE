@@ -6,31 +6,35 @@ using static UnityEngine.GraphicsBuffer;
 public class BaseEnemy : MonoBehaviour
 {
     private Rigidbody2D rb; // The enemy's collision hitbox.
-    private bool isDestroyed; // Resolves an issue where multiple bullets could collide at once and both would cause the onEnemyDestroy to be called.
+    private bool isDestroyed = false; // Resolves an issue where multiple bullets could collide at once and both would cause the onEnemyDestroy to be called.
     private bool isAttacking; // Whether or not the enemy has started attacking the objective.
-    private float distanceTravelled; // Tracks how far the enemy is along the track - allows for 'first'/'last' targetting.
+    private float distanceTravelled; // Tracks how far the enemy is along the track - allows for 'first'/'last' targeting.
     private float nextAttack; // The next time the enemy can attack.
     
     private Transform targetLocation;
-    private int pathIndex = 0;
+    private int pathIndex;
     // Enemies follow a sequence of points. The index allows traversal of the array of points.
 
     // [Header("References")]
     // but we don't need any yet.
 
-    [Header("Stats")]
-    [SerializeField] private int enemyHealth; // How much health the enemy has, the damage it can take before it dies.
-    [SerializeField] private int enemyDefense; // The enemy's defense - this value is subtracted from all incoming damage.
+    [Header("Attributes")]
+    public int enemyHealth; // How much health the enemy has, the damage it can take before it dies.
+    public int enemyDefense; // The enemy's defense - this value is subtracted from all incoming damage.
 
-    [SerializeField] private int attackDamage; // The enemy's attack - the damage it deals to the 'objective' the player defends.
-    [SerializeField] private float attackCooldown; // The delay between each of the enemy's attacks to the objective.
-    [SerializeField] private int attackLimit; // The limit to the enemy's attacks - how many times it can attack in its lifespan.
+    public int attackDamage; // The enemy's attack - the damage it deals to the 'objective' the player defends.
+    public float attackCooldown; // The delay between each of the enemy's attacks to the objective.
+    public int attackLimit; // The limit to the enemy's attacks - how many times it can attack in its lifespan.
 
-    [SerializeField] private float enemySpeed; // How fast the enemy moves along the track. Makes it harder for towers to hit it.
-    [SerializeField] private bool isAerial; // Whether or not the enemy is 'aerial' (flying). Influences which towers can target it.
+    public float enemySpeed; // How fast the enemy moves along the track. Makes it harder for towers to hit it.
+    public bool isAerial; // Whether or not the enemy is 'aerial' (flying). Influences which towers can target it.
 
-    [SerializeField] private int enemyCost; // How much the enemy 'costs' for the AI to spawn it. Stronger enemies have higher values.
-    [SerializeField] private int killReward; // How much currency the player is rewarded for killing the enemy.
+    public int enemyCost; // How much the enemy 'costs' for the AI to spawn it. Stronger enemies have higher values.
+    public int killReward; // How much currency the player is rewarded for killing the enemy.
+
+    [Header("Statistics")]
+    public int damageDealt; // How much damage the enemy has done
+    public float timeAlive; // How much time the enemy was alive
 
     [Header("Info")]
     public string enemyName; // The enemy's name.
@@ -38,23 +42,27 @@ public class BaseEnemy : MonoBehaviour
     [TextArea]
     public string enemyDescription; // The enemy's description.
 
-    private void Start()
+    public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Gets the enemy's attached rigidbody component.
-        targetLocation = LevelManager.main.path[pathIndex]; // Set the initial index to 0.
+        pathIndex = 1; // Set the initial index to 1.
+        targetLocation = LevelManager.main.path[pathIndex]; // Set the initial target location to the first point in the path.
         isDestroyed = false; // Initialises isDestroyed to false.
         isAttacking = false; // Initialises isAttacking to false.
         distanceTravelled = 0; // Sets initial distance travelled to 0 .
         nextAttack = Time.time + attackCooldown; // Sets next attack time. (the current time + the attack cooldown)
     }
 
-    private void Update()
+    public virtual void Update()
     {
+        timeAlive += Time.deltaTime; // Increment the time alive by the change in time 
+
         if (isAttacking) // If the enemy is attacking,
         {
             if (Time.time >= nextAttack) // and the next attack is due,
             {
                 DoAttack(); // do an attack,
+                damageDealt += attackDamage; // Increment the damageDealt by the enemy damage (might need adjusting if player has a defence stat)
                 nextAttack = Time.time + attackCooldown; // and reset the cooldown.
             }
             return; // Return as we are no longer moving.
@@ -113,7 +121,7 @@ public class BaseEnemy : MonoBehaviour
         return enemySpeed;
     }
 
-    public void TakeDamage(int incomingDamage) // Controls the enemy taking damage on hits.
+    virtual public void TakeDamage(int incomingDamage) // Controls the enemy taking damage on hits.
     {
         incomingDamage -= enemyDefense; // Reduce incoming damage by the enemy's defense.
         
@@ -131,14 +139,14 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    private void DestroyEnemy() // To be called when the enemy is to be destroyed.
+    public void DestroyEnemy() // To be called when the enemy is to be destroyed.
     {
         EnemySpawner.onEnemyDestroy.Invoke(); // Tells the EnemySpawner that the enemy has been destroyed.
         isDestroyed = true; // Sets isDestroyed to true to resolve a certain conflict.
         Destroy(gameObject); // Destroys the gameObject for the enemy.
     }
 
-    private void DoAttack() // Have the enemy attack the objective.
+    virtual public void DoAttack() // Have the enemy attack the objective.
     {
         if (attackLimit > 0) // If the enemy has attacks remaining,
         {

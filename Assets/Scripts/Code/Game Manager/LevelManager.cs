@@ -8,10 +8,10 @@ public class LevelManager : MonoBehaviour
     public Transform startPoint; // The start point enemies spawn at.
     public Transform[] path; // The array of points that enemies follow.
     private int playerCurrency; // The player's current currency, how much they can spend.
-
+    
     public int startingCurrency = 100; // How much currency the player should start with. 100 by default.
     public int structureHealth; // The health of the objective the player is defending.
-
+    
     public int GetCurrency() // Gets the player's currency.
     {
         return playerCurrency;
@@ -57,5 +57,6 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         playerCurrency = startingCurrency; // Set player currency to the starting value.
+        path = GameObject.Find("Path").GetComponentsInChildren<Transform>(); // Get the path points from the path object.
     }
 }

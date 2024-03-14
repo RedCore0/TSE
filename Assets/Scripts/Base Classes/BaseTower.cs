@@ -19,7 +19,7 @@ public class BaseTower : MonoBehaviour
     [SerializeField] private GameObject projectilePrefab; // The projectile the tower will shoot with every attack.
 
 
-    [Header("Stats")]
+    [Header("Attributes")]
     [SerializeField] private float attackRange; // The range the tower can attack enemies within.
     [SerializeField] private float attackDelay; // The delay between each tower attack.
     [SerializeField] private int attackDamage; // The damage each of the tower's attacks does.
@@ -29,6 +29,10 @@ public class BaseTower : MonoBehaviour
     [SerializeField] private float projectileSpeed; // How fast the projectile moves. Influences range and accuracy.
     [SerializeField] private int projectilePierce; // How many enemies the projectile can pass through and damage in its lifespan.
     [SerializeField] private int projectileCount; // How many projectiles are shot per attack from the tower.
+
+    [Header("Statistics")]
+    [SerializeField] private int damageDealt; // Total Damage dealt by this tower
+    [SerializeField] private int lastDamageDealt; // Damage dealt in the last round (same logic for counting just reset at the end/start of each round) 
 
     [Header("Info")]
     public string towerName; // The tower's name.
