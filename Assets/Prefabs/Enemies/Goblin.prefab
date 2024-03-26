@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6700248723080739876}
   - component: {fileID: 8239527081474420874}
   - component: {fileID: 7583025769689098375}
-  - component: {fileID: -8770238346756472652}
+  - component: {fileID: 8930073215970851729}
   m_Layer: 6
-  m_Name: Dragon
+  m_Name: Goblin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_LocalScale: {x: 0.880375, y: 0.880375, z: 1.76075}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1418815254066330579}
+  - {fileID: 8458521673415739171}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8239527081474420874
@@ -97,7 +97,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.6
---- !u!114 &-8770238346756472652
+--- !u!114 &8930073215970851729
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,26 +106,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 6096530932571837085}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73bc982b59cae8245b7e263fd1114f35, type: 3}
+  m_Script: {fileID: 11500000, guid: 34ab14812c0754548b19a3ef40b9cc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 30
-  enemyDefense: 3
-  attackDamage: 3
-  attackCooldown: 4
-  attackLimit: 3
-  enemySpeed: 2
-  isAerial: 1
-  enemyCost: 20
-  killReward: 40
+  enemyHealth: 3
+  enemyDefense: 0
+  attackDamage: 1
+  attackCooldown: 0.5
+  attackLimit: 15
+  enemySpeed: 5
+  isAerial: 0
+  enemyCost: 7
+  killReward: 12
   damageDealt: 0
   timeAlive: 0
-  enemyName: Dragon
-  enemyDescription: Though still young, its skin is tough enough to resist weak attacks
-    and it'll breath small but devastating bursts of fire onto your structures.
-  shotsPerBurst: 5
-  timeBetweenShots: 0.2
---- !u!1001 &333111340389532173
+  enemyName: Goblin
+  enemyDescription: 'Goblins are nimble, attack quickly and only have one goal in
+    mind: stealing any resource thats in range for themselves. At least they''re
+    kept safely off screen, leaving any goblins to weakly swipe at your walls.'
+--- !u!1001 &7083426290718916349
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -133,59 +132,59 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6700248723080739876}
     m_Modifications:
-    - target: {fileID: -8653719598885068355, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+    - target: {fileID: -8653719598885068355, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
       propertyPath: m_Name
-      value: dragon
+      value: goblin
       objectReference: {fileID: 0}
-    - target: {fileID: -7552582706839291426, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+    - target: {fileID: -7552582706839291426, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.28088304
+      value: 0.18296687
       objectReference: {fileID: 0}
-    - target: {fileID: -7552582706839291426, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+    - target: {fileID: -7552582706839291426, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.28088304
+      value: 0.18296687
       objectReference: {fileID: 0}
-    - target: {fileID: -7552582706839291426, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+    - target: {fileID: -7552582706839291426, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.14044152
+      value: 0.09148344
       objectReference: {fileID: 0}
-    - target: {fileID: -7552582706839291426, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+    - target: {fileID: -7552582706839291426, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.057
+      value: 0.004
       objectReference: {fileID: 0}
-    - target: {fileID: -7552582706839291426, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+    - target: {fileID: -7552582706839291426, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.792
+      value: -0.487
       objectReference: {fileID: 0}
-    - target: {fileID: -7552582706839291426, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+    - target: {fileID: -7552582706839291426, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7552582706839291426, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+    - target: {fileID: -7552582706839291426, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7552582706839291426, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+    - target: {fileID: -7552582706839291426, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -7552582706839291426, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+    - target: {fileID: -7552582706839291426, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -7552582706839291426, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+    - target: {fileID: -7552582706839291426, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -7552582706839291426, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+    - target: {fileID: -7552582706839291426, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7552582706839291426, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+    - target: {fileID: -7552582706839291426, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7552582706839291426, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+    - target: {fileID: -7552582706839291426, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
@@ -193,9 +192,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 4843985084834002234, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
---- !u!4 &1418815254066330579 stripped
+  m_SourcePrefab: {fileID: 4843985084834002234, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
+--- !u!4 &8458521673415739171 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
-  m_PrefabInstance: {fileID: 333111340389532173}
+  m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: f15ef258d0dafef4d929aadd8192276d, type: 3}
+  m_PrefabInstance: {fileID: 7083426290718916349}
   m_PrefabAsset: {fileID: 0}

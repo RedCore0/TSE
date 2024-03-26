@@ -15953,6 +15953,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
+  - {fileID: 6096530932571837085, guid: ad8ed124afc99084bb213f8bd9c7c8f3, type: 3}
+  - {fileID: 6096530932571837085, guid: d91b65ce54982224f88718b50d735b50, type: 3}
   - {fileID: 6096530932571837085, guid: a8b08dc384acda043bcd0538fcfc771f, type: 3}
   - {fileID: 6096530932571837085, guid: 158949f0bbe14094abc812ed9cff2d96, type: 3}
   baseEnemies: 20
@@ -16003,6 +16005,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ffdfee0acc2cfa4f9b0dcc3069007f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  availableTowers:
+  - {fileID: 2982197973016021227, guid: e9d461abfb00e0b42a6acf26ee42bcfd, type: 3}
+  - {fileID: 2982197973016021227, guid: 890ed189504651049af7d716785cd92f, type: 3}
 --- !u!4 &1787406193 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5327388257497988143, guid: 894b9a6059955ed448e1cb89272e41d7, type: 3}
