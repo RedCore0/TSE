@@ -16,9 +16,9 @@ public class BuildManager : MonoBehaviour
         main = this;
     }
 
-    public BaseTower GetSelectedTower()
+    public GameObject GetSelectedTower()
     {
-        return availableTowers[selectedTower].GetComponent<BaseTower>();
+        return availableTowers[selectedTower];
     }
 
     public void SetSelectedTower(int _selectedTower)
