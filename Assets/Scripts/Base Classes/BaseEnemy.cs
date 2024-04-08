@@ -42,7 +42,7 @@ public class BaseEnemy : MonoBehaviour
     [TextArea]
     public string enemyDescription; // The enemy's description.
 
-    private void Start()
+    public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Gets the enemy's attached rigidbody component.
         pathIndex = 1; // Set the initial index to 1.
@@ -53,7 +53,7 @@ public class BaseEnemy : MonoBehaviour
         nextAttack = Time.time + attackCooldown; // Sets next attack time. (the current time + the attack cooldown)
     }
 
-    private void Update()
+    public virtual void Update()
     {
         timeAlive += Time.deltaTime; // Increment the time alive by the change in time 
 
@@ -121,7 +121,7 @@ public class BaseEnemy : MonoBehaviour
         return enemySpeed;
     }
 
-    public void TakeDamage(int incomingDamage) // Controls the enemy taking damage on hits.
+    virtual public int TakeDamage(int incomingDamage) // Controls the enemy taking damage on hits.
     {
         incomingDamage -= enemyDefense; // Reduce incoming damage by the enemy's defense.
         
@@ -137,6 +137,8 @@ public class BaseEnemy : MonoBehaviour
             LevelManager.main.AddCurrency(killReward); // Increases the player's currency by the enemy's kill reward.
             DestroyEnemy(); // Destroys the enemy.
         }
+
+        return incomingDamage;
     }
 
     public void DestroyEnemy() // To be called when the enemy is to be destroyed.
