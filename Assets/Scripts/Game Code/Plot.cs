@@ -44,9 +44,10 @@ public class Plot : MonoBehaviour
 
         // The plot is empty...
 
-        BaseTower towerToBuild = BuildManager.main.GetSelectedTower(); // Gets the currently selected tower to build.
+        GameObject towerToBuild = BuildManager.main.GetSelectedTower(); // Gets the currently selected tower to build.
+        BaseTower towerToBuildScript = towerToBuild.GetComponentInChildren<BaseTower>(); // Gets the tower's script.
 
-        if (towerToBuild.towerCost > LevelManager.main.GetCurrency()) // Checks to see if the player can afford the tower.
+        if (towerToBuildScript.towerCost > LevelManager.main.GetCurrency()) // Checks to see if the player can afford the tower.
         {
             Debug.Log("You can not afford this.");
             // Eventually to be replaced with some kind of UI pop-up.
@@ -55,8 +56,8 @@ public class Plot : MonoBehaviour
 
         // The player can afford the tower...
 
-        LevelManager.main.SpendCurrency(towerToBuild.towerCost); // Spend the currency for the tower.
-        tower = Instantiate(towerToBuild.gameObject, transform.position, Quaternion.identity); // Build the selected tower.
+        LevelManager.main.SpendCurrency(towerToBuildScript.towerCost); // Spend the currency for the tower.
+        tower = Instantiate(towerToBuild, transform.position, Quaternion.identity); // Build the selected tower.
     }
 
     void Start()
