@@ -5,24 +5,25 @@ using static UnityEngine.GraphicsBuffer;
 
 public class BaseProjectile : MonoBehaviour
 {
-    private Rigidbody2D rb; // The projectile's collision hitbox.
-    private float deathTime; // The time the projectile will 'die' at - set to Time.time + myLife.
-    private Vector2 direction; // The direction the projectile travels in.
-    private LayerMask enemyMask; // The mask that enemies are on - what the projectile can target.
+    protected Rigidbody2D rb; // The projectile's collision hitbox.
+    protected float deathTime; // The time the projectile will 'die' at - set to Time.time + myLife.
+    protected Vector2 direction; // The direction the projectile travels in.
+    protected LayerMask enemyMask; // The mask that enemies are on - what the projectile can target.
 
-    private Transform myTarget; // The projectile's target location.
-    private int myDamage; // The incoming damage this projectile will deal to an enemy.
-    private bool amIAerial; // Whether or not the projectile is aerial - if it can hit aerial enemies.
-    private float myLife; // How long the projectile's lifespan is. Influences range.
-    private float mySpeed; // How fast the projectile moves. Influences range and accuracy.
-    private int myPierce; // How many seperate enemies the projectile can pass through and damage in its lifespan.
+    protected BaseTower myOwner; // The tower which fired this projectile.
+    protected Transform myTarget; // The projectile's target location.
+    protected int myDamage; // The incoming damage this projectile will deal to an enemy.
+    protected bool amIAerial; // Whether or not the projectile is aerial - if it can hit aerial enemies.
+    protected float myLife; // How long the projectile's lifespan is. Influences range.
+    protected float mySpeed; // How fast the projectile moves. Influences range and accuracy.
+    protected int myPierce; // How many seperate enemies the projectile can pass through and damage in its lifespan.
 
-    private void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Gets the projectile's attached rigidbody component.
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (Time.time >= deathTime) // If the projectile's death time is due,
         {
@@ -30,7 +31,7 @@ public class BaseProjectile : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!myTarget)
         {
@@ -39,8 +40,9 @@ public class BaseProjectile : MonoBehaviour
         rb.velocity = direction * mySpeed; // Accelerate the projectile in the given direction.
     }
 
-    public void SetUp(Transform target, int damage, bool aerial, float life, float speed, int pierce) // Called by towers to set up a projectile.
+    public virtual void SetUp(BaseTower owner, Transform target, int damage, bool aerial, float life, float speed, int pierce) // Called by towers to set up a projectile.
     {
+        myOwner = owner;
         myTarget = target;
         myDamage = damage;
         amIAerial = aerial;
@@ -53,7 +55,7 @@ public class BaseProjectile : MonoBehaviour
         enemyMask = myTarget.gameObject.layer; // Set the enemy mask to the layer the target is on.
     }
 
-    private void OnTriggerEnter2D(Collider2D other) // When the projectile collides with another object,
+    protected virtual void OnTriggerEnter2D(Collider2D other) // When the projectile collides with another object,
     {
         if (other.gameObject.layer == enemyMask) // if the object is on the target (enemy) layer,
         {
@@ -78,9 +80,9 @@ public class BaseProjectile : MonoBehaviour
         }
     }
 
-    private void HitEnemy(BaseEnemy enemy) // When a projectile 'hits' an enemy.
+    protected virtual void HitEnemy(BaseEnemy enemy) // When a projectile 'hits' an enemy.
     {
-        enemy.TakeDamage(myDamage); // The projectile will damage the enemy,
+        myOwner.damageDealt += enemy.TakeDamage(myDamage); // The projectile will damage the enemy,
         myPierce -= 1; // decrease remaining pierce by one,
         if (myPierce == 0) // and if remaining pierce hits zero,
         {

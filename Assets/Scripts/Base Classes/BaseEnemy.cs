@@ -121,7 +121,7 @@ public class BaseEnemy : MonoBehaviour
         return enemySpeed;
     }
 
-    virtual public void TakeDamage(int incomingDamage) // Controls the enemy taking damage on hits.
+    virtual public int TakeDamage(int incomingDamage) // Controls the enemy taking damage on hits.
     {
         incomingDamage -= enemyDefense; // Reduce incoming damage by the enemy's defense.
         
@@ -137,6 +137,8 @@ public class BaseEnemy : MonoBehaviour
             LevelManager.main.AddCurrency(killReward); // Increases the player's currency by the enemy's kill reward.
             DestroyEnemy(); // Destroys the enemy.
         }
+
+        return incomingDamage;
     }
 
     public void DestroyEnemy() // To be called when the enemy is to be destroyed.

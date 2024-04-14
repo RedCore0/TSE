@@ -170,4 +170,7 @@ MonoBehaviour:
   isAerial: 0
   enemyCost: 5
   killReward: 5
+  damageDealt: 0
+  timeAlive: 0
+  enemyName: 
   enemyDescription: An enemy which exists for testing purposes.

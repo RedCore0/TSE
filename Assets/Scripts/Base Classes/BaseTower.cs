@@ -7,32 +7,32 @@ using static UnityEngine.GraphicsBuffer;
 
 public class BaseTower : MonoBehaviour
 {
-    private Transform targetLocation; // The location of the tower's current target.
-    private GameObject targettedEnemy; // The enemy being targetted by the tower.
-    private List<GameObject> targetsInRange; // A list of targets that are in the tower's range.
-    private string targettingMode; // The targetting mode of the tower.
-    private bool prioritiseAerial; // Whether the tower should prioritise aerial targets.
-    private float nextAttack; // The next time the tower can attack.
+    protected Transform targetLocation; // The location of the tower's current target.
+    protected GameObject targettedEnemy; // The enemy being targetted by the tower.
+    protected List<GameObject> targetsInRange; // A list of targets that are in the tower's range.
+    protected string targettingMode; // The targetting mode of the tower.
+    protected bool prioritiseAerial; // Whether the tower should prioritise aerial targets.
+    protected float nextAttack; // The next time the tower can attack.
 
     [Header("References")]
-    [SerializeField] private LayerMask enemyMask; // The mask enemies are on - where the tower targets.
-    [SerializeField] private GameObject projectilePrefab; // The projectile the tower will shoot with every attack.
+    [SerializeField] protected LayerMask enemyMask; // The mask enemies are on - where the tower targets.
+    [SerializeField] protected GameObject projectilePrefab; // The projectile the tower will shoot with every attack.
+    [SerializeField] protected BaseUpgrade[] towerUpgrades; // A list of upgrades accessible by this tower.
 
 
     [Header("Attributes")]
-    [SerializeField] private float attackRange; // The range the tower can attack enemies within.
-    [SerializeField] private float attackDelay; // The delay between each tower attack.
-    [SerializeField] private int attackDamage; // The damage each of the tower's attacks does.
-    [SerializeField] private bool aerialTargetting; // Whether or not the tower can target aerial enemies.
+    [SerializeField] protected float attackRange; // The range the tower can attack enemies within.
+    [SerializeField] protected float attackDelay; // The delay between each tower attack.
+    [SerializeField] protected int attackDamage; // The damage each of the tower's attacks does.
+    [SerializeField] protected bool aerialTargetting; // Whether or not the tower can target aerial enemies.
 
-    [SerializeField] private float projectileLife; // How long the projectile's lifespan is - influences range.
-    [SerializeField] private float projectileSpeed; // How fast the projectile moves. Influences range and accuracy.
-    [SerializeField] private int projectilePierce; // How many enemies the projectile can pass through and damage in its lifespan.
-    [SerializeField] private int projectileCount; // How many projectiles are shot per attack from the tower.
+    [SerializeField] protected float projectileLife; // How long the projectile's lifespan is - influences range.
+    [SerializeField] protected float projectileSpeed; // How fast the projectile moves. Influences range and accuracy.
+    [SerializeField] protected int projectilePierce; // How many enemies the projectile can pass through and damage in its lifespan.
 
     [Header("Statistics")]
-    [SerializeField] private int damageDealt; // Total Damage dealt by this tower
-    [SerializeField] private int lastDamageDealt; // Damage dealt in the last round (same logic for counting just reset at the end/start of each round) 
+    public int damageDealt; // Total damage dealt by this tower, across its whole lifetime.
+    public int lastDamageDealt; // Damage dealt by this tower in just the previous round.
 
     [Header("Info")]
     public string towerName; // The tower's name.
@@ -41,20 +41,20 @@ public class BaseTower : MonoBehaviour
     [TextArea]
     public string towerDescription; // The tower's description.
 
-    private void OnDrawGizmosSelected() // Shows the tower's range while selected in the editor.
+    protected virtual void OnDrawGizmosSelected() // Shows the tower's range while selected in the editor.
     {
         Handles.color = Color.red;
         Handles.DrawWireDisc(transform.position, transform.forward, attackRange);
     }
 
-    private void Start() // Called when the object is instantiated.
+    protected virtual void Start() // Called when the object is instantiated.
     {
         targettingMode = "FIRST"; // Set targetting mode to the initial mode. (FIRST is the default)
         prioritiseAerial = aerialTargetting; // By default, towers with aerial targetting will prioritise aerial units.
         nextAttack = Time.time + attackDelay; // Sets next attack time. (the current time + the delay between attacks)
     }
 
-    private void Update() // Called every frame.
+    protected virtual void Update() // Called every frame.
     {
         targetsInRange = FindTargets(); // Gets the targets (enemies) in the tower's range.
         targettedEnemy = SelectTarget(); // Selects a single target to fire at based on tower priorities.
@@ -68,7 +68,7 @@ public class BaseTower : MonoBehaviour
         }
     }
 
-    private List<GameObject> FindTargets() // Find all targets in range of the tower, return as a list.
+    protected virtual List<GameObject> FindTargets() // Find all targets in range of the tower, return as a list.
     {
         List<GameObject> targets = new List<GameObject>(); // A list of targets found in the tower's range.
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, attackRange, (Vector2)transform.position, 0f, enemyMask); // Raycast to see enemies in range.
@@ -87,7 +87,7 @@ public class BaseTower : MonoBehaviour
         return targets; // Return the list of targets in range.
     }
 
-    private GameObject SelectTarget() // Select a target from the targets in the tower's range.
+    protected virtual GameObject SelectTarget() // Select a target from the targets in the tower's range.
     {
         GameObject target = null;
         List<GameObject> validTargets = new List<GameObject>();
@@ -181,21 +181,21 @@ public class BaseTower : MonoBehaviour
         return target; // Return the selected target.
     }
 
-    private void AimAtTarget(Transform target) // Aims at a given target based on its transform.
+    protected virtual void AimAtTarget(Transform target) // Aims at a given target based on its transform.
     {
         float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
         transform.rotation = targetRotation; // 'Snappy' tower rotation, immediately snaps aim to the target.
     }
 
-    private void DoAttack(Transform target) // Attacks at a given target's position.
+    protected virtual void DoAttack(Transform target) // Attacks at a given target position.
     {
         GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         BaseProjectile projectileScript = projectileObj.GetComponent<BaseProjectile>();
-        projectileScript.SetUp(target, attackDamage, aerialTargetting, projectileLife, projectileSpeed, projectilePierce);
-    } // TO-DO : Modify later to account for multiple projectiles, spread, etc.
+        projectileScript.SetUp(this, target, attackDamage, aerialTargetting, projectileLife, projectileSpeed, projectilePierce);
+    }
 
-    private bool CheckTargetIsInRange(Transform target)  // Ensures the tower doesn't attack a target that has left its range.
+    protected virtual bool CheckTargetIsInRange(Transform target)  // Ensures the tower doesn't attack a target that has left its range.
     {
         return Vector2.Distance(target.position, transform.position) <= attackRange;
     }

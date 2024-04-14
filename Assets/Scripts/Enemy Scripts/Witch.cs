@@ -33,7 +33,7 @@ public class Witch : BaseEnemy
         base.Update();
     }
     
-    public override void TakeDamage(int incomingDamage) 
+    public override int TakeDamage(int incomingDamage) 
     {
         if (!shieldBroken)  // Applies damage the same way that the base class does, but to the the shield initally instead
         {
@@ -41,9 +41,10 @@ public class Witch : BaseEnemy
             if (incomingDamage <= 0) { incomingDamage = 1; }
             shieldHealth -= incomingDamage;
             if (shieldHealth <= 0) { BreakShield(); }
+            return 0;
         }
         
-        else { base.TakeDamage(incomingDamage); }   // run standard function if theres no shield
+        else { return base.TakeDamage(incomingDamage); }   // run standard function if theres no shield
     }
     
     private void BreakShield()  // Disables shield and begins wait time for regen
