@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float enemiesPerSecond; // Controls the rate at which enemies spawn.
     [SerializeField] private float timeBetweenWaves; // Controls the time between waves of enemies.
     [SerializeField] private float difficultyScalingFactor; // Controls the scaling of enemies between waves.
+    [SerializeField] public GameObject[] enemiesWave; // The enemies that are going to be spawned this wave 
 
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
@@ -63,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
         
         if (timeSinceLastSpawn >= (1f / enemiesPerSecond) && enemiesLeftToSpawn > 0) // Checks to see if another enemy should spawn.
         {
-            SpawnEnemy(); // Spawns the enemy.
+            ; // Spawns the enemy.
             enemiesLeftToSpawn--; // Subtracts 1 from the enemies left in the wave.
             enemiesAlive++; // Adds 1 to the enemies alive as one has just spawned.
             timeSinceLastSpawn = 0f; // Resets the time since a spawn event occured to 0.
@@ -83,9 +84,14 @@ public class EnemySpawner : MonoBehaviour
         enemiesLeftToSpawn = EnemiesPerWave(); // Calculates the wave size for this wave.
     }
 
-    private void SpawnEnemy() // Spawns an enemy.
+    private void SpawnNextWaveEnemy(GameObject enemies[])
     {
-        int toSpawn = UnityEngine.Random.Range(0, enemyPrefabs.Length); // Randomly selects an enemy to spawn until the ai does this in future/a better temporary method is designed.
+        Instantiate(enemies[0], LevelManager.main.startPoint.position, Quaternion.identity);
+    }
+
+    private void SpawnEnemy() // Spawns a random enemy.
+    {
+        int toSpawn = UnityEngine.Random.Range(0, enemyPrefabs.Length -1); // Randomly selects an enemy to spawn until the ai does this in future/a better temporary method is designed.
         GameObject prefabToSpawn = enemyPrefabs[toSpawn]; // Selects the type of enemy to spawn from the available enemy prefabs.
         Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawns the enemy at the level's start point.
     }
@@ -94,6 +100,23 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject prefabToSpawn = enemyPrefabs[0]; // Selects the type of enemy to spawn from the available enemy prefabs.
         Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawns the enemy at the level's start point.
+    }
+
+    private void GetCheapestEnemies()
+    {
+        GameObject cheapest = enemyPrefabs[0];
+        for (int i = 1 ; i < enemyPrefabs.Length -1 ; i++)
+        {
+            if cheapest.enemyCost > enemyPrefabs[i].enemyCost && 
+            {
+                cheapest = enemyPrefabs[i];
+            }
+        }
+    }
+
+    private void SpawnDearestEnemies()
+    {
+
     }
 
     private void EnemyDestroyed() // When an enemy is destroyed,
