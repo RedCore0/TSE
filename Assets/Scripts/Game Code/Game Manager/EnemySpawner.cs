@@ -114,4 +114,10 @@ public class EnemySpawner : MonoBehaviour
         currentWave++; // Increment t he current wave.
         StartCoroutine(StartWave()); // Start another wave.
     }
+
+    public void incrementCount()
+    {
+        enemiesAlive++;
+        Debug.Log("Enemies alive: " + enemiesAlive);
+    }
 }
