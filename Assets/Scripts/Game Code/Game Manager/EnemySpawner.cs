@@ -8,17 +8,23 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] public GameObject[] enemyPrefabs;  // Stores the enemy types which can be spawned.
+    [SerializeField] public GameObject testEnemyPrefab; // Stores one specific enemy prefab for testing purposes
 
     [Header("Attributes")]
-    [SerializeField] private int baseEnemies; // Controls the amount of enemies in a given wave.
+
     [SerializeField] private float enemiesPerSecond; // Controls the rate at which enemies spawn.
     [SerializeField] private float timeBetweenWaves; // Controls the time between waves of enemies.
-    [SerializeField] private float difficultyScalingFactor; // Controls the scaling of enemies between waves.
+
+    //Old
+    [SerializeField] private int baseEnemies; // Controls the amount of enemies in a given wave. (Shouldn't be used)
+    [SerializeField] private float difficultyScalingFactor; // Controls the scaling of enemies between waves. (Shouldn't be used)
 
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
 
-    private int currentWave = 1; // The current wave - initialised as 1. Eventually starting wave may be something we change.
+    private GameObject[] currentWave; // Stores the prefabs of the enemies that will be spawned this wave
+
+    private int waveNumber = 1; // The current wave - initialised as 1. Eventually starting wave may be something we change.
     private float timeSinceLastSpawn; // Checked against timeBetweenWaves to ensure enemies are spawning at the correct speed.
     private int enemiesAlive; // How many enemies are currently still alive.
     private int enemiesLeftToSpawn; // How many enemies are yet to spawn this wave.
@@ -63,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
         
         if (timeSinceLastSpawn >= (1f / enemiesPerSecond) && enemiesLeftToSpawn > 0) // Checks to see if another enemy should spawn.
         {
-            SpawnEnemy(); // Spawns the enemy.
+            SpawnRandomEnemy(); // Spawns the enemy.(Temporarily random)
             enemiesLeftToSpawn--; // Subtracts 1 from the enemies left in the wave.
             enemiesAlive++; // Adds 1 to the enemies alive as one has just spawned.
             timeSinceLastSpawn = 0f; // Resets the time since a spawn event occured to 0.
@@ -80,20 +86,27 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenWaves); // Wait for the delay between waves.
 
         isSpawning = true; // Ensures the spawning code will run.
-        enemiesLeftToSpawn = EnemiesPerWave(); // Calculates the wave size for this wave.
+        enemiesLeftToSpawn = baseEnemies; // Calculates the wave size for this wave.
     }
 
-    private void SpawnEnemy() // Spawns an enemy.
+    private void EndWave() // Ends the current wave.
     {
-        int toSpawn = UnityEngine.Random.Range(0, enemyPrefabs.Length); // Randomly selects an enemy to spawn until the ai does this in future/a better temporary method is designed.
-        GameObject prefabToSpawn = enemyPrefabs[toSpawn]; // Selects the type of enemy to spawn from the available enemy prefabs.
-        Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawns the enemy at the level's start point.
-    }
+        isSpawning = false; // Enemies should no longer be spawning.
+        timeSinceLastSpawn = 0f; // Reset last spawn to 0.
+        waveNumber++; // Increment the current wave.
+        StartCoroutine(StartWave()); // Start another wave.
+    }    
     
-    private void SpawnEnemyDev() // Temporary spawn method for testing new creatures.
+
+
+    private void SpawnNextEnemy() //  -- Not Working -- //
     {
-        GameObject prefabToSpawn = enemyPrefabs[0]; // Selects the type of enemy to spawn from the available enemy prefabs.
-        Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawns the enemy at the level's start point.
+        if (currentWave.Length> 0)
+        {
+            GameObject prefabToSpawn = currentWave[0];
+            Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity);
+        }
+        
     }
 
     private void EnemyDestroyed() // When an enemy is destroyed,
@@ -101,23 +114,35 @@ public class EnemySpawner : MonoBehaviour
         enemiesAlive--; // decreases the number of enemies alive.
     }
 
-    private int EnemiesPerWave() // Calculates the enemies to be spawned per wave.
+
+
+
+    private void SpawnRandomEnemy() // Spawns a random enemy.
     {
-        return Mathf.RoundToInt(baseEnemies * Mathf.Pow(currentWave, difficultyScalingFactor));
-        // This could eventually be repurposed to calculate the number of credits the AI gets per wave.
+        int toSpawn = UnityEngine.Random.Range(0, enemyPrefabs.Length); // Randomly selects an enemy to spawn until the ai does this in future/a better temporary method is designed.
+        GameObject prefabToSpawn = enemyPrefabs[toSpawn]; // Selects the type of enemy to spawn from the available enemy prefabs.
+        Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawns the enemy at the level's start point.
     }
 
-    private void EndWave() // Ends the current wave.
+    private void SpawnEnemyDev() // Temporary spawn method for testing new creatures.
     {
-        isSpawning = false; // Enemies should no longer be spawning.
-        timeSinceLastSpawn = 0f; // Reset last spawn to 0.
-        currentWave++; // Increment t he current wave.
-        StartCoroutine(StartWave()); // Start another wave.
+        GameObject prefabToSpawn = testEnemyPrefab; // Selects the type of enemy to spawn from the available enemy prefabs.
+        Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawns the enemy at the level's start point.
     }
 
     public void incrementCount()
     {
         enemiesAlive++;
         Debug.Log("Enemies alive: " + enemiesAlive);
+    }
+
+
+//Old Code
+
+
+    private int EnemiesPerWave() // Calculates the enemies to be spawned per wave. (Shouldn't be needed)
+    {
+        return Mathf.RoundToInt(baseEnemies * Mathf.Pow(waveNumber, difficultyScalingFactor));
+        // This could eventually be repurposed to calculate the number of credits the AI gets per wave.
     }
 }
