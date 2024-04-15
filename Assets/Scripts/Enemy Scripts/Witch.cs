@@ -20,7 +20,7 @@ public class Witch : BaseEnemy
     private float shieldWaitTime;   // Remaining time before shield regen starts
     private int maxShieldHealth;    // Additional declaration to ensure shield health doesnt go over the inital value
 
-    public override void Start()    // Appends an additional line to the start method 
+    public override void Start()    // Appends additional lines to the start method 
     {
         base.Start();
         maxShieldHealth = shieldHealth;
