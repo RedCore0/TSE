@@ -193,7 +193,7 @@ public class BaseTower : MonoBehaviour
         GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         BaseProjectile projectileScript = projectileObj.GetComponent<BaseProjectile>();
         projectileScript.SetUp(this, target, attackDamage, aerialTargetting, projectileLife, projectileSpeed, projectilePierce);
-        GetComponent<AudioSource>().Play();
+        if (GetComponent<AudioSource>() != null) { GetComponent<AudioSource>().Play(); }
     }
 
     protected virtual bool CheckTargetIsInRange(Transform target)  // Ensures the tower doesn't attack a target that has left its range.

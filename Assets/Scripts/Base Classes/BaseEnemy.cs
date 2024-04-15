@@ -4,6 +4,7 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Enemy", order = 1)]
+
 public class BaseEnemy : MonoBehaviour
 {
     private Rigidbody2D rb; // The enemy's collision hitbox.
@@ -136,6 +137,7 @@ public class BaseEnemy : MonoBehaviour
         if (enemyHealth <= 0 && !isDestroyed) // Checks if the enemy should be dead.
         {
             LevelManager.main.AddCurrency(killReward); // Increases the player's currency by the enemy's kill reward.
+            incomingDamage = enemyHealth;
             DestroyEnemy(); // Destroys the enemy.
         }
 
