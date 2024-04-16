@@ -41,12 +41,12 @@ public class BaseTower : MonoBehaviour
     [TextArea]
     public string towerDescription; // The tower's description.
 
-    protected virtual int GetTowerCost() // Getter for tower cost
+    public int GetTowerCost() // Getter for tower cost
     {
         return towerCost;
     }
 
-    protected virtual string GetTowerName() // Getter for tower name
+    public string GetTowerName() // Getter for tower name
     {
         return towerName;
     }

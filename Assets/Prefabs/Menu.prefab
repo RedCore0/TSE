@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 8995444633705668494}
   - component: {fileID: 226030995204056527}
   - component: {fileID: 6102170808680789297}
+  - component: {fileID: 4468248614093889210}
   m_Layer: 5
   m_Name: Necromancer
   m_TagString: Untagged
@@ -511,6 +512,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4468248614093889210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134801407453750174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b778c1f2ae87e4d45bfbafcb491d19a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerLabelUI: {fileID: 6238361968147100007}
+  towerPrefab: {fileID: 2382443908746138060, guid: 13b015adbd1c6844bbb0e9632488aa5d, type: 3}
 --- !u!1 &665070944103784778
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,6 +675,7 @@ GameObject:
   - component: {fileID: 2008870666948481381}
   - component: {fileID: 1415691531375040786}
   - component: {fileID: 7770433313470421579}
+  - component: {fileID: 2216970752534898646}
   m_Layer: 5
   m_Name: Heavy Knight
   m_TagString: Untagged
@@ -889,6 +905,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2216970752534898646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065870390561134093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b778c1f2ae87e4d45bfbafcb491d19a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerLabelUI: {fileID: 626822271727678813}
+  towerPrefab: {fileID: 1374216162943838068, guid: c323aa2d83159b143a657715708f3937, type: 3}
 --- !u!1 &2129771476104968337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,6 +1270,7 @@ GameObject:
   - component: {fileID: 7942189572409255162}
   - component: {fileID: 2609520471641574737}
   - component: {fileID: 2792246805978503611}
+  - component: {fileID: 5658395296577215115}
   m_Layer: 5
   m_Name: Swordsman
   m_TagString: Untagged
@@ -1469,6 +1500,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5658395296577215115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231991236259032947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b778c1f2ae87e4d45bfbafcb491d19a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerLabelUI: {fileID: 6474684007562118616}
+  towerPrefab: {fileID: 4427961744780687795, guid: aad75e81ee1874f4992174ed488533d8, type: 3}
 --- !u!1 &4329568357242305717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1724,6 +1769,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b778c1f2ae87e4d45bfbafcb491d19a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerLabelUI: {fileID: 8559489130329429042}
+  towerPrefab: {fileID: 5665274592823638842, guid: 7f82b633aa2dbc14ebe9b945f05f20fd, type: 3}
 --- !u!1 &5443532195660311966
 GameObject:
   m_ObjectHideFlags: 0
@@ -2279,6 +2326,7 @@ GameObject:
   - component: {fileID: 2777126761289582088}
   - component: {fileID: 5029900255109129776}
   - component: {fileID: 2099750278710218666}
+  - component: {fileID: 7452667172277313990}
   m_Layer: 5
   m_Name: Catapult
   m_TagString: Untagged
@@ -2508,6 +2556,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7452667172277313990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7027926652731382847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b778c1f2ae87e4d45bfbafcb491d19a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerLabelUI: {fileID: 5293545013356665645}
+  towerPrefab: {fileID: 1632677240251309489, guid: 7b19a9129a799c742be7ec5231db4648, type: 3}
 --- !u!1 &7458489480967085697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2657,6 +2719,7 @@ GameObject:
   - component: {fileID: 2054804048312461634}
   - component: {fileID: 5825509461423322131}
   - component: {fileID: 4531432688601261154}
+  - component: {fileID: 5592439142145715380}
   m_Layer: 5
   m_Name: Ballista
   m_TagString: Untagged
@@ -2886,6 +2949,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5592439142145715380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7964902225806808259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b778c1f2ae87e4d45bfbafcb491d19a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerLabelUI: {fileID: 8850466887065710645}
+  towerPrefab: {fileID: 5876757537888297603, guid: 410b7090b186e444d8126bf05a7f7ef2, type: 3}
 --- !u!1 &8319252223185948828
 GameObject:
   m_ObjectHideFlags: 0

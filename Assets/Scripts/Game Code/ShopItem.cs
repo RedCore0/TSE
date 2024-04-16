@@ -7,12 +7,15 @@ public class ShopItem : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] TextMeshProUGUI towerLabelUI;
-    [SerializeField] GameObject towerPrefab;
+    [SerializeField] private GameObject towerPrefab;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start() // Ideally this will take the name and price from the tower prefab and display them in the button's text ui, however it doesn't
     {
-        towerLabelUI = towerPrefab.GetTowerName + " - " + (towerPrefab.GetTowerCost.toString());
-    }
+        //private string thisTowerName = towerPrefab.GetTowerName();
+        //private string thisTowerCost = towerPrefab.GetTowerCost().toString();
+        //private string thisTowerLabel = thisTowerName + " - " + thisTowerCost;
 
+        //towerLabelUI.text = thisTowerLabel;
+    }
 }
