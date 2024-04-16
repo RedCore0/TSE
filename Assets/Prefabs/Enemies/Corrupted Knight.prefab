@@ -205,7 +205,7 @@ MonoBehaviour:
   killReward: 150
   damageDealt: 0
   timeAlive: 0
-  enemyName: Corrupted Knight (subject to change)
+  enemyName: Corrupted Knight
   enemyDescription: An ally knight who's will is no longer their own. They were taken,
     but they can be saved (kind of). Defeating one will reward you with the same
     amount of money that you would need to place one of your own (subject to change/balancing).

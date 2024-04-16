@@ -11,8 +11,20 @@ public class Necromancer : BaseTower
 
     private List<string> summonStock; // The necromancer's summon stock - the summon attacks available to it.
     private string upcomingSummon; // The summon the necromancer will use in its next summon attack.
+    // "CKNIGHT"
+    // "DRAGON"
+    // "GOBLIN"
+    // "SLIME"
+    // "PGEIST"
+    // "SKELETON"
+    // "WITCH"
 
     [Header("Necromancer References")]
     [SerializeField] private GameObject[] summonEnemies; // The prefabs for enemies which correspond to specific summon projectiles.
     [SerializeField] private GameObject[] summonProjectiles; // The prefabs for projectiles which can be used in summon attacks.
+
+    public void StockAdd(string summon)
+    {
+        summonStock.Add(summon);
+    }
 }

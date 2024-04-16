@@ -251,7 +251,7 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
-  projectilePrefab: {fileID: 1042632466133253721, guid: 172a9d6476ad90b448d020d30cdcd683, type: 3}
+  projectilePrefab: {fileID: 1042632466133253721, guid: 17a197ac8fce7e94fbca7a62793dd508, type: 3}
   towerUpgrades: []
   attackRange: 1
   attackDelay: 0.5
@@ -264,10 +264,14 @@ MonoBehaviour:
   lastDamageDealt: 0
   towerName: Necromancer
   towerCost: 300
-  towerDescription: The necromancer has weak aerial attacks and only typical melee
-    range and attack speed, but ignores defense and will always target the lowest
-    health enemy with its scythe - converting the power of those it defeats into
-    ranged projectiles which scale based on their stats.
+  towerDescription: 'The necromancer''s scythe has weak attacks with only typical
+    melee range and attack speed, but it can target aerial enemies, and will always
+    target the lowest health enemy within its range.
+
+
+    Aditionally, the necromancer''s
+    attacks ignore defense, and any enemy the necromancer defeats will be converted
+    into special ''summon attacks'', differing depending on the type slain.'
 --- !u!1 &6971321890026631304
 GameObject:
   m_ObjectHideFlags: 0
