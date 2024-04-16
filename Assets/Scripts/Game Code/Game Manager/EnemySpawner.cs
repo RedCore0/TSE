@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
 
-    private GameObject[] currentWave; // Stores the prefabs of the enemies that will be spawned this wave
+    List<int> currentWave = new List<int>(); // Stores the prefabs of the enemies that will be spawned this wave
 
     private int waveNumber = 1; // The current wave - initialised as 1. Eventually starting wave may be something we change.
     private float timeSinceLastSpawn; // Checked against timeBetweenWaves to ensure enemies are spawning at the correct speed.
@@ -69,9 +69,7 @@ public class EnemySpawner : MonoBehaviour
         
         if (timeSinceLastSpawn >= (1f / enemiesPerSecond) && enemiesLeftToSpawn > 0) // Checks to see if another enemy should spawn.
         {
-            SpawnRandomEnemy(); // Spawns the enemy.(Temporarily random)
-            enemiesLeftToSpawn--; // Subtracts 1 from the enemies left in the wave.
-            enemiesAlive++; // Adds 1 to the enemies alive as one has just spawned.
+            SpawnNextEnemy(); // Spawns the enemy.
             timeSinceLastSpawn = 0f; // Resets the time since a spawn event occured to 0.
         }
 
@@ -86,7 +84,8 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenWaves); // Wait for the delay between waves.
 
         isSpawning = true; // Ensures the spawning code will run.
-        enemiesLeftToSpawn = baseEnemies; // Calculates the wave size for this wave.
+        GenerateWave();
+        enemiesLeftToSpawn = currentWave.Count - 1; // Calculates the wave size for this wave.
     }
 
     private void EndWave() // Ends the current wave.
@@ -98,15 +97,28 @@ public class EnemySpawner : MonoBehaviour
     }    
     
 
-
-    private void SpawnNextEnemy() //  -- Not Working -- //
+    private void GenerateWave() // Picking which enemies to send (Always misses the last enemy for some reason <- likely list index error somewhere)
     {
-        if (currentWave.Length> 0)
+        currentWave.Add(4);
+        currentWave.Add(5);
+        currentWave.Add(4);
+        currentWave.Add(5);
+        currentWave.Add(4);
+        currentWave.Add(5);
+    }
+
+
+    private void SpawnNextEnemy()
+    {
+        if (enemiesLeftToSpawn > 0) // Check there are still enemies left to spawn
         {
-            GameObject prefabToSpawn = currentWave[0];
-            Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity);
+            GameObject prefabToSpawn = enemyPrefabs[currentWave[0]]; // Select the prefab for the next spawning enemy
+            Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawn the enemy
+            currentWave.RemoveAt(0); // Remove the enemy that has just spawned from the wave
+
+            enemiesLeftToSpawn--; // Subtracts 1 from the enemies left to spawn as one has just spawned
+            enemiesAlive++; // Adds 1 to the enemies alive as one has just spawned.
         }
-        
     }
 
     private void EnemyDestroyed() // When an enemy is destroyed,
