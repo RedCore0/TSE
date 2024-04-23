@@ -11,7 +11,8 @@ public class Slime : BaseEnemy
     public float jumpLength; // The length of time the slime is jumping for. 
     public bool canSplit; // Whether or not the slime can split.
     public GameObject splitSlime; // The Creature that the original slime will split into. (maybe multiple types?)
-
+    public bool isTheSplit; // Whether or not the slime is a split slime (used to resolve an issue where the new slime wouldn't move to the correct place)
+    
     private float waitTime; // The amount of time since the last jump
     private float jumpSpeed; // The speed of the jump
     private bool isJumping; // Whether or not the slime is currently jumping
@@ -19,8 +20,14 @@ public class Slime : BaseEnemy
 
     public override void Start()
     {
+        int tempIndex = 0; 
+        float tempTime = 0;
+        if (isTheSplit) { tempIndex = pathIndex; tempTime = waitTime; }
+        
         base.Start();
-        waitTime = Time.time;
+        
+        if (isTheSplit) { pathIndex = tempIndex; waitTime = tempTime; }  // Resolves an issue where the start procedure would overwrite the parameters set by the parent slime
+        else { waitTime = Time.time; }
         jumpSpeed = enemySpeed;
         enemySpeed = 0;
     }
