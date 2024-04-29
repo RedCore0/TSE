@@ -200,15 +200,19 @@ MonoBehaviour:
   attackLimit: 3
   enemySpeed: 6
   isAerial: 0
-  enemyCost: 0
-  killReward: 40
+  enemyCost: 30
+  killReward: 20
   damageDealt: 0
   timeAlive: 0
   enemyName: Young Slimeling
-  enemyDescription: 
+  enemyDescription: A small slime, probably produced from a forced mitosis imposed
+    on a larger varient. As a result, successful termination for slimes consists
+    of reducing it down to a size thats completely harmless, or hoping that you manage
+    to take out whatever it is that keeps it concious.
   splitCount: 2
   jumpTime: 1.5
   jumpLength: 0.3
   canSplit: 0
   splitSlime: {fileID: 0}
-  gameManager: {fileID: 0}
+  isTheSplit: 1
+  gameManager: {fileID: 545888410606766099, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}

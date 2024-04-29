@@ -21,15 +21,17 @@ public class Slime : BaseEnemy
     public override void Start()
     {
         int tempIndex = 0; 
-        float tempTime = 0;
-        if (isTheSplit) { tempIndex = pathIndex; tempTime = waitTime; }
+        if (isTheSplit) { tempIndex = pathIndex; }
         
         base.Start();
         
-        if (isTheSplit) { pathIndex = tempIndex; waitTime = tempTime; }  // Resolves an issue where the start procedure would overwrite the parameters set by the parent slime
-        else { waitTime = Time.time; }
+        if (isTheSplit) { pathIndex = tempIndex; }  // Resolves an issue where the start procedure would overwrite the parameters set by the parent slime
+
+        waitTime = Time.time;
+        waitTime += Random.Range(0, isTheSplit ? jumpTime*2 : jumpTime);
         jumpSpeed = enemySpeed;
         enemySpeed = 0;
+        targetLocation = LevelManager.main.path[pathIndex];
     }
 
     // Update is called once per frame
@@ -64,7 +66,7 @@ public class Slime : BaseEnemy
                 GameObject newSlime = Instantiate(splitSlime, transform.position, transform.rotation);
                 
                 newSlime.GetComponent<Slime>().pathIndex = pathIndex;
-                newSlime.GetComponent<Slime>().waitTime += Random.Range(0, jumpTime);
+                newSlime.GetComponent<Slime>().transform.position += new Vector3(Random.Range(-0.5f,0.5f), Random.Range(-0.5f,0.5f), 0);
             }
         }
         base.DestroyEnemy();

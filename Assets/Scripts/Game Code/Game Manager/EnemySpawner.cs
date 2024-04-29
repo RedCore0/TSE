@@ -28,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
     
     public void Start()
     {
+        enemiesAlive = 0;
         enemiesLeftToSpawn = baseEnemies; // Sets the size of the first wave to the default wave size.
         StartCoroutine(StartWave()); // Starts the first wave.
     }

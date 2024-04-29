@@ -17374,6 +17374,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2906228155834675079, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906228155834675079, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
+      propertyPath: enemyPrefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 6096530932571837085, guid: 80ed6e318a3658d4aa73c9f1a0f2b9a1, type: 3}
     - target: {fileID: 5596908867593960663, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

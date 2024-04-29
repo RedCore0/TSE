@@ -12,7 +12,7 @@ public class BaseEnemy : MonoBehaviour
     private float distanceTravelled; // Tracks how far the enemy is along the track - allows for 'first'/'last' targeting.
     private float nextAttack; // The next time the enemy can attack.
     
-    private Transform targetLocation;
+    protected Transform targetLocation;
     protected int pathIndex;
     // Enemies follow a sequence of points. The index allows traversal of the array of points.
 
