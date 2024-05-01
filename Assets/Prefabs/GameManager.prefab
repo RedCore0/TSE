@@ -85,8 +85,9 @@ MonoBehaviour:
   - {fileID: 6096530932571837085, guid: a8b08dc384acda043bcd0538fcfc771f, type: 3}
   - {fileID: 6096530932571837085, guid: 158949f0bbe14094abc812ed9cff2d96, type: 3}
   - {fileID: 6096530932571837085, guid: f83315956fcf52246aadd7fcd9dafbbb, type: 3}
+  - {fileID: 6096530932571837085, guid: 80ed6e318a3658d4aa73c9f1a0f2b9a1, type: 3}
   baseEnemies: 20
   enemiesPerSecond: 2
   timeBetweenWaves: 5
   difficultyScalingFactor: 1
-  enemyTesting: 1
+  enemyTesting: 0

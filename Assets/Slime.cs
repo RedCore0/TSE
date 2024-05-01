@@ -31,7 +31,7 @@ public class Slime : BaseEnemy
         waitTime += Random.Range(0, isTheSplit ? jumpTime*2 : jumpTime);
         jumpSpeed = enemySpeed;
         enemySpeed = 0;
-        targetLocation = LevelManager.main.path[pathIndex];
+        targetLocation = pathPoints[pathIndex];
     }
 
     // Update is called once per frame
@@ -65,7 +65,7 @@ public class Slime : BaseEnemy
                 gameManager.GetComponent<EnemySpawner>().incrementCount();
                 GameObject newSlime = Instantiate(splitSlime, transform.position, transform.rotation);
                 
-                newSlime.GetComponent<Slime>().pathIndex = pathIndex;
+                newSlime.GetComponent<Slime>().pathIndex = pathIndex > pathPoints.Length ? pathIndex-- : pathIndex;
                 newSlime.GetComponent<Slime>().transform.position += new Vector3(Random.Range(-0.5f,0.5f), Random.Range(-0.5f,0.5f), 0);
             }
         }
