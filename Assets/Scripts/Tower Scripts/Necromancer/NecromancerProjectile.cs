@@ -15,6 +15,7 @@ public class NecromancerProjectile : BaseProjectile
 
     protected override void HitEnemy(BaseEnemy enemy) // When a necromancer projectile 'hits' an enemy.
     {
+        IgnoreDef(enemy); // If the attack is melee it ignores defense.
         myOwner.damageDealt += enemy.TakeDamage(myDamage); // The projectile will damage the enemy,
         myPierce -= 1; // decrease remaining pierce by one,
 
@@ -64,11 +65,12 @@ public class NecromancerProjectile : BaseProjectile
         }
     }
 
-    private void IgnoreDef()
+    private void IgnoreDef(BaseEnemy enemy)
     {
         if (myPierce < 0) // If pierce is less than zero,
         {
             // we know this projectile is the scythe melee attack:
+            myDamage += enemy.enemyDefense;
         }
     }
 }

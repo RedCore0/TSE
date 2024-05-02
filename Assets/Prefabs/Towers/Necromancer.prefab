@@ -211,7 +211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 81710505558272918}
-  - component: {fileID: 2796473665289718046}
+  - component: {fileID: 4550612014511928078}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -236,7 +236,7 @@ Transform:
   - {fileID: 5541934044663068427}
   m_Father: {fileID: 3063143295035962953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2796473665289718046
+--- !u!114 &4550612014511928078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6641715463025701502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dad802e5f397f9438e851b97b6d8d30, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b901f5fa00eecc44abf56dab57177b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMask:
@@ -272,6 +272,8 @@ MonoBehaviour:
     Aditionally, the necromancer''s
     attacks ignore defense, and any enemy the necromancer defeats will be converted
     into special ''summon attacks'', differing depending on the type slain.'
+  summonEnemies: []
+  summonProjectiles: []
 --- !u!1 &6971321890026631304
 GameObject:
   m_ObjectHideFlags: 0
