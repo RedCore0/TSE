@@ -17,7 +17,7 @@ public class Menu : MonoBehaviour
         anim.SetBool("MenuOpen", isMenuOpen); // Changing the boolean value in the animator.
     }
 
-    private void OnGUI ()
+    private void OnGUI()
     {
         currencyUI.text = LevelManager.main.GetCurrency().ToString();
     }
