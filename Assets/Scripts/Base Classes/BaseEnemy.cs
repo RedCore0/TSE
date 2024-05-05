@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Enemy", order = 1)]
 public class BaseEnemy : MonoBehaviour
 {
     private Rigidbody2D rb; // The enemy's collision hitbox.
@@ -12,7 +13,7 @@ public class BaseEnemy : MonoBehaviour
     private float nextAttack; // The next time the enemy can attack.
     
     private Transform targetLocation;
-    private int pathIndex;
+    protected int pathIndex;
     // Enemies follow a sequence of points. The index allows traversal of the array of points.
 
     // [Header("References")]
@@ -141,7 +142,7 @@ public class BaseEnemy : MonoBehaviour
         return incomingDamage;
     }
 
-    public void DestroyEnemy() // To be called when the enemy is to be destroyed.
+    virtual public void DestroyEnemy() // To be called when the enemy is to be destroyed.
     {
         EnemySpawner.onEnemyDestroy.Invoke(); // Tells the EnemySpawner that the enemy has been destroyed.
         isDestroyed = true; // Sets isDestroyed to true to resolve a certain conflict.
