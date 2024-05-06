@@ -41,6 +41,16 @@ public class BaseTower : MonoBehaviour
     [TextArea]
     public string towerDescription; // The tower's description.
 
+    public int GetTowerCost() // Getter for tower cost
+    {
+        return towerCost;
+    }
+
+    public string GetTowerName() // Getter for tower name
+    {
+        return towerName;
+    }
+
     protected virtual void OnDrawGizmosSelected() // Shows the tower's range while selected in the editor.
     {
         Handles.color = Color.red;
