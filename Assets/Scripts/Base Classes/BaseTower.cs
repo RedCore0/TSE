@@ -102,7 +102,7 @@ public class BaseTower : MonoBehaviour
         GameObject target = null;
         List<GameObject> validTargets = new List<GameObject>();
 
-        if (prioritiseAerial) // If aerial priority is enabled,
+        if (prioritiseAerial && aerialTargetting) // If aerial priority is enabled (and we have aerial targetting),
         {
             foreach (GameObject checkTarget in targetsInRange) // for each target in range,
             {
@@ -114,7 +114,19 @@ public class BaseTower : MonoBehaviour
             }
         }
 
-        if (validTargets.Count <= 0) // If, after priority filters, there are no valid targets,
+        if (!aerialTargetting) // If we do not have aerial targetting,
+        {
+            foreach (GameObject checkTarget in targetsInRange) // for each target in range,
+            {
+                BaseEnemy checkScript = checkTarget.GetComponent<BaseEnemy>();
+                if (!checkScript.IsAerial()) // if the target is not aerial,
+                {
+                    validTargets.Add(checkTarget); // add it to the list of valid targets.
+                }
+            }
+        }
+
+        else // Otherwise,
         {
             validTargets = targetsInRange; // simply add all targets in range as valid targets.
         }

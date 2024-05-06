@@ -132,12 +132,15 @@ public class BaseEnemy : MonoBehaviour
             incomingDamage = 1; // it is set to a minimum of one damage.
         }
 
+        if (incomingDamage >= enemyHealth)
+        {
+            incomingDamage = enemyHealth; // A fix for damage statistics.
+        }
         enemyHealth -= incomingDamage; // Lowers the enemy's health accordingly.
 
         if (enemyHealth <= 0 && !isDestroyed) // Checks if the enemy should be dead.
         {
             LevelManager.main.AddCurrency(killReward); // Increases the player's currency by the enemy's kill reward.
-            incomingDamage = enemyHealth;
             DestroyEnemy(); // Destroys the enemy.
         }
 
