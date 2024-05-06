@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,9 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private float enemiesPerSecond; // Controls the rate at which enemies spawn.
     [SerializeField] private float timeBetweenWaves; // Controls the time between waves of enemies.
+
+    [SerializeField] private float fireRatePoint;
+    [SerializeField] private float damagePoint;
 
     //Old
     [SerializeField] private int baseEnemies; // Controls the amount of enemies in a given wave. (Shouldn't be used)
@@ -96,16 +100,75 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(StartWave()); // Start another wave.
     }    
     
+    private float calcAverageDamage(List<BaseTower> towers)
+    {
+        int totalDamage = 0;
+        for (int i = 0; i< towers.Count; i++)
+        {
+            totalDamage += towers[i].GetTowerDamage();
+        }
+        float averageDamage = totalDamage / towers.Count;
+        return averageDamage;
+    }
+
+    private float calcAverageFirerate(List<BaseTower> towers)
+    {
+        float totalFireRate = 0.0f;
+        for (int i = 0; i < towers.Count; i++)
+        {
+            totalFireRate += towers[i].GetTowerFireRate();
+        }
+        float averageFireRate = totalFireRate / towers.Count;
+        return averageFireRate;
+    }
 
     private void GenerateWave() // Picking which enemies to send (Always misses the last enemy for some reason <- likely list index error somewhere)
     {
-        currentWave.Add(4);
-        currentWave.Add(5);
-        currentWave.Add(4);
-        currentWave.Add(5);
-        currentWave.Add(4);
-        currentWave.Add(5);
+        if (calcAverageFirerate(LevelManager.placedTowers) > fireRatePoint) // Player is mainly using high fire rate towers
+        {
+            //use high hp enemies
+            for (int i = 0; i < enemiesLeftToSpawn; i++) // Pick set ammount of random enemies that are "high hp"
+            {
+                Random r = new Random();
+                int rInt = r.Next(0,3);
+                if (rInt == 3)
+                {
+                    currentWave.Add(4);
+                }
+                else
+                {
+                    currentWave.Add(rInt);
+                }
+            }
+        }
+        if (calcAverageFirerate(LevelManager.placedTowers) > fireRatePoint) // Player is mainly using low fire rate towers
+        {
+            //use low hp enemies
+            for (int i = 0; i < enemiesLeftToSpawn; i++)
+            {
+                Random r = new Random();
+                int rInt = r.Next(4,6);
+                if (rInt == 4)
+                {
+                    currentWave.Add(3);
+                }
+                else
+                {
+                    currentWave.Add(rInt);
+                }
+            }
+        }
     }
+    // High Hp:
+    // 0 - Large Slime
+    // 1 - Corrupted Knight
+    // 2 - Witch
+    // 4 - Dragon
+
+    //Low Hp:
+    // 3 - Poltergeist
+    // 5 - Skeleton
+    // 6 - Goblin
 
 
     private void SpawnNextEnemy()

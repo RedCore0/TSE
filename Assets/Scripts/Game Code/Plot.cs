@@ -58,6 +58,7 @@ public class Plot : MonoBehaviour
 
         LevelManager.main.SpendCurrency(towerToBuildScript.towerCost); // Spend the currency for the tower.
         tower = Instantiate(towerToBuild, transform.position, Quaternion.identity); // Build the selected tower.
+        LevelManager.main.AddBuiltTower(towerToBuild); // Add the newly built tower to the list
         GetComponent<AudioSource>().Play();
     }
 

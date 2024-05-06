@@ -144,6 +144,7 @@ MonoBehaviour:
   projectilePierce: 3
   damageDealt: 0
   lastDamageDealt: 0
+  effectiveDamageRate: 5
   towerName: Ballista
   towerCost: 100
   towerDescription: The ballista fires high damage, high pierce bolts across a long
