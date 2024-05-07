@@ -124,13 +124,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void GenerateWave() // Picking which enemies to send (Always misses the last enemy for some reason <- likely list index error somewhere)
     {
-        if (calcAverageFirerate(LevelManager.placedTowers) > fireRatePoint) // Player is mainly using high fire rate towers
+        if (calcAverageFirerate(LevelManager.main.placedTowers) > fireRatePoint) // Player is mainly using high fire rate towers
         {
             //use high hp enemies
             for (int i = 0; i < enemiesLeftToSpawn; i++) // Pick set ammount of random enemies that are "high hp"
             {
-                Random r = new Random();
-                int rInt = r.Next(0,3);
+                int rInt = UnityEngine.Random.Range(0,3);
                 if (rInt == 3)
                 {
                     currentWave.Add(4);
@@ -141,13 +140,12 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
-        if (calcAverageFirerate(LevelManager.placedTowers) > fireRatePoint) // Player is mainly using low fire rate towers
+        if (calcAverageFirerate(LevelManager.main.placedTowers) > fireRatePoint) // Player is mainly using low fire rate towers
         {
             //use low hp enemies
             for (int i = 0; i < enemiesLeftToSpawn; i++)
             {
-                Random r = new Random();
-                int rInt = r.Next(4,6);
+                int rInt = UnityEngine.Random.Range(4,6);
                 if (rInt == 4)
                 {
                     currentWave.Add(3);
