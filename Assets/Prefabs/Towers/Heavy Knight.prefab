@@ -29,6 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7489422668671520489}
   - {fileID: 1772815204807549715}
   - {fileID: 1986545653318133778}
   - {fileID: 6236794916013725214}
@@ -59,13 +60,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2202638410875930891}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: 0.8870109, w: -0.46174863}
-  m_LocalPosition: {x: 0.075, y: 0.335, z: 0}
-  m_LocalScale: {x: 0.07, y: 0.07, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.31121242, w: 0.9503404}
+  m_LocalPosition: {x: -0.003, y: 0.751, z: 0}
+  m_LocalScale: {x: 0.14209524, y: 0.14209524, z: 2.0299318}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1772815204807549715}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 235}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -36.265}
 --- !u!212 &3216575102550244045
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -312,11 +313,11 @@ Transform:
   m_GameObject: {fileID: 8221973724970752865}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -0.0011000633, y: 0.31587505, z: 0}
+  m_LocalPosition: {x: -0.0011005402, y: -0.18799973, z: 0}
   m_LocalScale: {x: 0.045, y: 0.045, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1772815204807549715}
+  m_Father: {fileID: 1010203707732266276}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &3051760764296015622
 SpriteRenderer:
@@ -396,15 +397,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8982491073213388140}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.008264361, w: 0.99996585}
+  m_LocalPosition: {x: -0.254, y: -0.196, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7489422668671520489}
   - {fileID: 758290117866118161}
   m_Father: {fileID: 1010203707732266276}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.947}
 --- !u!114 &838273915137211010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,7 +423,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1042632466133253721, guid: 7f292dfaa9d925449ad4406d710fd83e, type: 3}
   towerUpgrades: []
   attackRange: 1.5
-  attackDelay: 1
+  attackDelay: 0.1
   attackDamage: 10
   aerialTargetting: 0
   projectileLife: 0.1
