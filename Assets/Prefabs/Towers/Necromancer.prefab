@@ -263,7 +263,7 @@ MonoBehaviour:
   damageDealt: 0
   lastDamageDealt: 0
   towerName: Necromancer
-  towerCost: 300
+  towerCost: 10
   towerDescription: The necromancer has weak aerial attacks and only typical melee
     range and attack speed, but ignores defense and will always target the lowest
     health enemy with its scythe - converting the power of those it defeats into
