@@ -9,14 +9,14 @@ public class LevelManager : MonoBehaviour
     public Transform[] path; // The array of points that enemies follow.
     [SerializeField] private int playerCurrency; // The player's current currency, how much they can spend.
     
-    public List<GameObject> placedTowers = new List<GameObject>();
+    public List<float> placedTowersFireRate = new List<float>();
 
     public int startingCurrency = 100; // How much currency the player should start with. 100 by default.
     public int structureHealth; // The health of the objective the player is defending.
 
-    public void AddBuiltTower(GameObject newTower)
+    public void AddBuiltTowerFireRate(float fireRate)
     {
-        placedTowers.Add(newTower);
+        placedTowersFireRate.Add(fireRate);
     }
     
     public int GetCurrency() // Gets the player's currency.

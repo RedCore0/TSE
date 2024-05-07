@@ -100,31 +100,21 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(StartWave()); // Start another wave.
     }    
     
-    private float calcAverageDamage(List<BaseTower> towers)
-    {
-        int totalDamage = 0;
-        for (int i = 0; i< towers.Count; i++)
-        {
-            totalDamage += towers[i].GetTowerDamage();
-        }
-        float averageDamage = totalDamage / towers.Count;
-        return averageDamage;
-    }
 
-    private float calcAverageFirerate(List<BaseTower> towers)
+    private float calcAverageFirerate(List<float> placedTowersFireRate)
     {
         float totalFireRate = 0.0f;
-        for (int i = 0; i < towers.Count; i++)
+        for (int i = 0; i < placedTowersFireRate.Count; i++)
         {
-            totalFireRate += towers[i].GetTowerFireRate();
+            totalFireRate += placedTowersFireRate[i];
         }
-        float averageFireRate = totalFireRate / towers.Count;
+        float averageFireRate = totalFireRate / placedTowersFireRate.Count;
         return averageFireRate;
     }
 
     private void GenerateWave() // Picking which enemies to send (Always misses the last enemy for some reason <- likely list index error somewhere)
     {
-        if (calcAverageFirerate(LevelManager.main.placedTowers) > fireRatePoint) // Player is mainly using high fire rate towers
+        if (calcAverageFirerate(LevelManager.main.placedTowersFireRate) > fireRatePoint) // Player is mainly using high fire rate towers
         {
             //use high hp enemies
             for (int i = 0; i < enemiesLeftToSpawn; i++) // Pick set ammount of random enemies that are "high hp"
@@ -140,7 +130,7 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
-        if (calcAverageFirerate(LevelManager.main.placedTowers) > fireRatePoint) // Player is mainly using low fire rate towers
+        if (calcAverageFirerate(LevelManager.main.placedTowersFireRate) < fireRatePoint) // Player is mainly using low fire rate towers
         {
             //use low hp enemies
             for (int i = 0; i < enemiesLeftToSpawn; i++)
