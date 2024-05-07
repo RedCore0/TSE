@@ -133,12 +133,12 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
-  projectilePrefab: {fileID: 1042632466133253721, guid: 6eb810cdefdefb94aae99585747de08a, type: 3}
+  projectilePrefab: {fileID: 1042632466133253721, guid: 7f292dfaa9d925449ad4406d710fd83e, type: 3}
   towerUpgrades: []
   attackRange: 1
-  attackDelay: 0.3333333
+  attackDelay: 0.1
   attackDamage: 3
-  aerialTargetting: 0
+  aerialTargetting: 1
   projectileLife: 0.1
   projectileSpeed: 10
   projectilePierce: -1
@@ -146,8 +146,9 @@ MonoBehaviour:
   lastDamageDealt: 0
   towerName: Swordsman
   towerCost: 100
-  towerDescription: The swordsman swiftly delivers melee strikes with a high attack
-    speed and typical range, but limited damage. It can target aerial enemies.
+  towerDescription: The swordsman swiftly delivers melee strikes with an absurdly
+    high attack speed and typical range, but limited damage. It can target aerial
+    enemies.
 --- !u!1 &3279502768606195259
 GameObject:
   m_ObjectHideFlags: 0
