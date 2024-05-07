@@ -100,12 +100,14 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemyDev() // Temporary spawn method for testing new creatures.
     {
         GameObject prefabToSpawn = enemyPrefabs[0]; // Selects the type of enemy to spawn from the available enemy prefabs.
-        Instantiate(prefabToSpawn, LevelManager.main.paths[spawnLane].position, Quaternion.identity); // Spawns the enemy at the level's start point.
+        prefabToSpawn.GetComponent<BaseEnemy>().followedPath = 0; // Resolves an out of bounds error
+        Instantiate(prefabToSpawn, LevelManager.main.paths[spawnLane].GetComponentsInChildren<Transform>()[1].position, Quaternion.identity); // Spawns the enemy at the level's start point.
     }
 
     private void EnemyDestroyed() // When an enemy is destroyed,
     {
         enemiesAlive--; // decreases the number of enemies alive.
+        Debug.Log("Enemies alive: " + enemiesAlive);
     }
 
     private int EnemiesPerWave() // Calculates the enemies to be spawned per wave.

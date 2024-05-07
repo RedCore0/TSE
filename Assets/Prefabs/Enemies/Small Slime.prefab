@@ -193,6 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8bd1ff5a8026b042b90d73b303bd849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followedPath: 0
   enemyHealth: 20
   enemyDefense: 0
   attackDamage: 4
@@ -214,5 +215,4 @@ MonoBehaviour:
   jumpLength: 0.3
   canSplit: 0
   splitSlime: {fileID: 0}
-  isTheSplit: 1
   gameManager: {fileID: 545888410606766099, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}

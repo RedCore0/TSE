@@ -17375,6 +17375,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 2906228155834675079, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
+      propertyPath: enemyTesting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906228155834675079, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: enemyPrefabs.Array.size
       value: 8
       objectReference: {fileID: 0}

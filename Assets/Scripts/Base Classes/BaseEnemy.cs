@@ -17,7 +17,7 @@ public class BaseEnemy : MonoBehaviour
     protected int pathIndex;
     protected Transform[] pathPoints;
 
-    [HideInInspector] public int followedPath;
+    [HideInInspector] public int followedPath = 0;
     // Enemies follow a sequence of points. The index allows traversal of the array of points.
 
     // [Header("References")]
