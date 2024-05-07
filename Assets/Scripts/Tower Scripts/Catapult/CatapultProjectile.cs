@@ -8,6 +8,5 @@ public class CatapultProjectile : BaseProjectile
     {
         base.SetUp(owner, target, damage, aerial, life, speed, pierce);
         direction = owner.transform.up; // Resets the projectile's direction to the direction of the catapult.
-        Debug.Log("word");
     }
 }
