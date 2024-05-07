@@ -133,7 +133,7 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
-  projectilePrefab: {fileID: 1042632466133253721, guid: 6eb810cdefdefb94aae99585747de08a, type: 3}
+  projectilePrefab: {fileID: 1042632466133253721, guid: 0726641dbe9841a46a178d29485b3053, type: 3}
   towerUpgrades: []
   attackRange: 5
   attackDelay: 1
