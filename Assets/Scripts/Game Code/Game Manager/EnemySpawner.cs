@@ -17,7 +17,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float timeBetweenWaves; // Controls the time between waves of enemies.
 
     [SerializeField] private float fireRatePoint;
-    [SerializeField] private float damagePoint;
 
     //Old
     [SerializeField] private int baseEnemies; // Controls the amount of enemies in a given wave. (Shouldn't be used)
@@ -28,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
 
     List<int> currentWave = new List<int>(); // Stores the prefabs of the enemies that will be spawned this wave
 
-    private int waveNumber = 1; // The current wave - initialised as 1. Eventually starting wave may be something we change.
+    [SerializeField] private int waveNumber = 1; // The current wave - initialised as 1. Eventually starting wave may be something we change.
     private float timeSinceLastSpawn; // Checked against timeBetweenWaves to ensure enemies are spawning at the correct speed.
     private int enemiesAlive; // How many enemies are currently still alive.
     private int enemiesLeftToSpawn; // How many enemies are yet to spawn this wave.
