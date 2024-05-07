@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8239527081474420874}
   - component: {fileID: 7583025769689098375}
   - component: {fileID: 8930073215970851729}
+  - component: {fileID: 7593542715096538624}
   m_Layer: 6
   m_Name: Skeleton
   m_TagString: Untagged
@@ -118,8 +119,31 @@ MonoBehaviour:
   isAerial: 0
   enemyCost: 5
   killReward: 10
+  damageDealt: 0
+  timeAlive: 0
   enemyName: Skeleton
   enemyDescription: A slow and brittle enemy, you're not gonna have a bad time.
+--- !u!95 &7593542715096538624
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6096530932571837085}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f6553ed020937c4bb49211e83b5c70f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1377233045209518588
 PrefabInstance:
   m_ObjectHideFlags: 0

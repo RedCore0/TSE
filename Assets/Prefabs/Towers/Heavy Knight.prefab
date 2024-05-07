@@ -422,7 +422,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1042632466133253721, guid: 7f292dfaa9d925449ad4406d710fd83e, type: 3}
   towerUpgrades: []
   attackRange: 1.5
-  attackDelay: 1
+  attackDelay: 0.1
   attackDamage: 10
   aerialTargetting: 0
   projectileLife: 0.1
