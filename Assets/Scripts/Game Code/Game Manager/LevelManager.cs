@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Xml.XPath;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager main;
-    public Transform startPoint; // The start point enemies spawn at.
-    public Transform[] path; // The array of points that enemies follow.
+    public static LevelManager main; 
+    public Transform[] paths; // The start point enemies spawn at.
     private int playerCurrency; // The player's current currency, how much they can spend.
     
     public int startingCurrency = 100; // How much currency the player should start with. 100 by default.
@@ -57,6 +58,6 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         playerCurrency = startingCurrency; // Set player currency to the starting value.
-        path = GameObject.Find("Path").GetComponentsInChildren<Transform>(); // Get the path points from the path object.
+        paths = GameObject.FindGameObjectsWithTag("Path").Select(x => x.transform).ToArray(); 
     }
 }

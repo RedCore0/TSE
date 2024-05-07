@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -29,11 +31,14 @@ public class EnemySpawner : MonoBehaviour
     private int enemiesAlive; // How many enemies are currently still alive.
     private int enemiesLeftToSpawn; // How many enemies are yet to spawn this wave.
     private bool isSpawning = false; // Determines if the enemies should currently be spawning.
+    
+    private int spawnLane = 0; // The lane the enemies will spawn in.
 
     public bool enemyTesting = false; // Changes spawning method for testing.
     
     public void Start()
     {
+        enemiesAlive = 0;
         enemiesLeftToSpawn = baseEnemies; // Sets the size of the first wave to the default wave size.
         StartCoroutine(StartWave()); // Starts the first wave.
     }
@@ -113,7 +118,9 @@ public class EnemySpawner : MonoBehaviour
         if (enemiesLeftToSpawn > 0) // Check there are still enemies left to spawn
         {
             GameObject prefabToSpawn = enemyPrefabs[currentWave[0]]; // Select the prefab for the next spawning enemy
-            Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawn the enemy
+            prefabToSpawn.GetComponent<BaseEnemy>().followedPath = spawnLane; 
+            Instantiate(prefabToSpawn, LevelManager.main.paths[spawnLane].GetComponentsInChildren<Transform>()[1].position, Quaternion.identity); // Spawns the enemy at the level's start point.
+            spawnLane = spawnLane++ > LevelManager.main.paths.Length-2 ? 0 : spawnLane++; // Cycles through the spawn lanes.
             currentWave.RemoveAt(0); // Remove the enemy that has just spawned from the wave
 
             enemiesLeftToSpawn--; // Subtracts 1 from the enemies left to spawn as one has just spawned
@@ -133,13 +140,16 @@ public class EnemySpawner : MonoBehaviour
     {
         int toSpawn = UnityEngine.Random.Range(0, enemyPrefabs.Length); // Randomly selects an enemy to spawn until the ai does this in future/a better temporary method is designed.
         GameObject prefabToSpawn = enemyPrefabs[toSpawn]; // Selects the type of enemy to spawn from the available enemy prefabs.
-        Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawns the enemy at the level's start point.
+        prefabToSpawn.GetComponent<BaseEnemy>().followedPath = spawnLane; 
+        Instantiate(prefabToSpawn, LevelManager.main.paths[spawnLane].GetComponentsInChildren<Transform>()[1].position, Quaternion.identity); // Spawns the enemy at the level's start point.
+        spawnLane = spawnLane++ > LevelManager.main.paths.Length-2 ? 0 : spawnLane++; // Cycles through the spawn lanes.
     }
 
     private void SpawnEnemyDev() // Temporary spawn method for testing new creatures.
     {
         GameObject prefabToSpawn = testEnemyPrefab; // Selects the type of enemy to spawn from the available enemy prefabs.
-        Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawns the enemy at the level's start point.
+        prefabToSpawn.GetComponent<BaseEnemy>().followedPath = spawnLane; 
+        Instantiate(prefabToSpawn, LevelManager.main.paths[spawnLane].GetComponentsInChildren<Transform>()[1].position, Quaternion.identity); // Spawns the enemy at the level's start point.
     }
 
     public void incrementCount()
