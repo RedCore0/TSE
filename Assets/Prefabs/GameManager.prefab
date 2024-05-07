@@ -63,8 +63,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableTowers:
-  - {fileID: 2982197973016021227, guid: e9d461abfb00e0b42a6acf26ee42bcfd, type: 3}
-  - {fileID: 2982197973016021227, guid: 890ed189504651049af7d716785cd92f, type: 3}
+  - {fileID: 5665274592823638842, guid: 7f82b633aa2dbc14ebe9b945f05f20fd, type: 3}
+  - {fileID: 5876757537888297603, guid: 410b7090b186e444d8126bf05a7f7ef2, type: 3}
+  - {fileID: 1632677240251309489, guid: 7b19a9129a799c742be7ec5231db4648, type: 3}
+  - {fileID: 1374216162943838068, guid: c323aa2d83159b143a657715708f3937, type: 3}
+  - {fileID: 2382443908746138060, guid: 13b015adbd1c6844bbb0e9632488aa5d, type: 3}
+  - {fileID: 4427961744780687795, guid: aad75e81ee1874f4992174ed488533d8, type: 3}
 --- !u!114 &2906228155834675079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,6 +90,7 @@ MonoBehaviour:
   - {fileID: 6096530932571837085, guid: 158949f0bbe14094abc812ed9cff2d96, type: 3}
   - {fileID: 6096530932571837085, guid: f83315956fcf52246aadd7fcd9dafbbb, type: 3}
   - {fileID: 6096530932571837085, guid: 80ed6e318a3658d4aa73c9f1a0f2b9a1, type: 3}
+  testEnemyPrefab: {fileID: 0}
   baseEnemies: 20
   enemiesPerSecond: 2
   timeBetweenWaves: 5
