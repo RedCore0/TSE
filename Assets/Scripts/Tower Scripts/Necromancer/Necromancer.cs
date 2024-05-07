@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class Necromancer : BaseTower
     private GameObject summonProjectilePrefab; // The projectile of the current summon attack.
     private float summonAttackRange;
     private float summonAttackDelay;
+    private bool usedSummon; // Whether we have used the currently held summon yet or not.
 
     private List<string> summonStock; // The necromancer's summon stock - the summon attacks available to it.
     private string upcomingSummon; // The summon the necromancer will use in its next summon attack.
@@ -44,16 +46,22 @@ public class Necromancer : BaseTower
         base.Start();
         summonNextAttack = Time.time;
         summonStock = new List<string>();
+        usedSummon = true;
     }
 
     protected override void Update()
     {
         // Summon attack handling:
-        if (summonStock.Count > 0)
+        if (summonStock.Count > 0 && usedSummon) // If summons are available and we used our last:
         {
             upcomingSummon = summonStock[0];
             summonStock.RemoveAt(0);
             SetUpSummon();
+            usedSummon = false;
+        }
+
+        if (!usedSummon) // If we have not used the current summon yet:
+        {
             summonTargetsInRange = FindSummonTargets();
             summonTargettedEnemy = SelectSummonTarget();
 
@@ -63,8 +71,10 @@ public class Necromancer : BaseTower
                 AimAtTarget(summonTargetLocation);
                 DoSummonAttack(summonTargetLocation);
                 summonNextAttack = Time.time + summonAttackDelay;
+                usedSummon = true;
             }
         }
+
 
         // Melee attack handling:
         targetsInRange = base.FindTargets();
@@ -85,43 +95,49 @@ public class Necromancer : BaseTower
         { // I manually set the projectiles up here on a case by case basis.
             case "CKNIGHT":
                 summonProjectilePrefab = summonProjectiles[0];
-                summonAttackRange = 20;
+                summonAttackRange = 3.75f;
                 summonAttackDelay = 1;
                 break;
 
             case "DRAGON":
-                summonProjectilePrefab = summonProjectiles[0];
-                summonAttackRange = 20;
+                summonProjectilePrefab = summonProjectiles[1];
+                summonAttackRange = 3.75f;
                 summonAttackDelay = 1;
                 break;
 
             case "GOBLIN":
-                summonProjectilePrefab = summonProjectiles[0];
-                summonAttackRange = 20;
+                summonProjectilePrefab = summonProjectiles[2];
+                summonAttackRange = 3.75f;
                 summonAttackDelay = 1;
                 break;
 
             case "SLIME":
-                summonProjectilePrefab = summonProjectiles[0];
-                summonAttackRange = 20;
+                summonProjectilePrefab = summonProjectiles[3];
+                summonAttackRange = 3.75f;
                 summonAttackDelay = 1;
                 break;
 
             case "PGEIST":
-                summonProjectilePrefab = summonProjectiles[0];
-                summonAttackRange = 20;
+                summonProjectilePrefab = summonProjectiles[4];
+                summonAttackRange = 3.75f;
                 summonAttackDelay = 1;
                 break;
 
             case "SKELETON":
-                summonProjectilePrefab = summonProjectiles[0];
-                summonAttackRange = 20;
+                summonProjectilePrefab = summonProjectiles[5];
+                summonAttackRange = 3.75f;
                 summonAttackDelay = 1;
                 break;
 
             case "WITCH":
-                summonProjectilePrefab = summonProjectiles[0];
-                summonAttackRange = 20;
+                summonProjectilePrefab = summonProjectiles[6];
+                summonAttackRange = 3.75f;
+                summonAttackDelay = 1;
+                break;
+
+            case "DEFAULT":
+                summonProjectilePrefab = summonProjectiles[Random.Range(0, summonProjectiles.Length)];
+                summonAttackRange = 3.75f;
                 summonAttackDelay = 1;
                 break;
         }
