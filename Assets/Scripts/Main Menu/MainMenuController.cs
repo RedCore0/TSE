@@ -35,7 +35,6 @@ public class MainMenuController : MonoBehaviour
             usernamepanel.SetActive(false);
         }
         */
-
         optionsMenu.SetActive(false);
         controlsPanel.SetActive(false);
         volumePanel.SetActive(false);
@@ -134,17 +133,17 @@ public class MainMenuController : MonoBehaviour
     public void ApeGarden()
     {
         SceneManager.LoadSceneAsync(sceneName: "Ape Garden");
-        SceneManager.UnloadSceneAsync(sceneName: "Main Menu");
+        //SceneManager.UnloadSceneAsync(sceneName: "Main Menu");
     }
     public void Map2()
     {
         SceneManager.LoadSceneAsync(sceneName: "Ape Garden");//Replace Ape Garden with different map name once maps are created
-        SceneManager.UnloadSceneAsync(sceneName: "Main Menu");
+        //SceneManager.UnloadSceneAsync(sceneName: "Main Menu");
     }
     public void Map3()
     {
         SceneManager.LoadSceneAsync(sceneName: "Ape Garden");//Replace Ape Garden with different map name once maps are created
-        SceneManager.UnloadSceneAsync(sceneName: "Main Menu");
+        //SceneManager.UnloadSceneAsync(sceneName: "Main Menu");
     }
     public void Volume()
     {

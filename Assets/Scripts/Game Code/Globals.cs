@@ -15,5 +15,4 @@ public class Globals
     }
    public static Maps curMap = Maps.ApeGarden; //defines current map
 
-
 }
