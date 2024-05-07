@@ -52,6 +52,12 @@ public class BaseProjectile : MonoBehaviour
 
         deathTime = Time.time + myLife; // Set the death time to current time + the projectile life span.
         direction = (myTarget.position - transform.position).normalized; // Set the projectile's direction to the enemy.
+
+        float angle = Mathf.Atan2(myTarget.position.y - transform.position.y, myTarget.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
+        Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        transform.rotation = targetRotation; // Aim the projetile at the targetted enemy.
+
+
         enemyMask = myTarget.gameObject.layer; // Set the enemy mask to the layer the target is on.
     }
 
