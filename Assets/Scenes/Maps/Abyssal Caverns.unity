@@ -8329,7 +8329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 121855020047598283, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: structureHealth
-      value: 1500
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 121855020047598283, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: startingCurrency
