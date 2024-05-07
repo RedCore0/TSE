@@ -273,7 +273,13 @@ MonoBehaviour:
     attacks ignore defense, and any enemy the necromancer defeats will be converted
     into special ''summon attacks'', differing depending on the type slain.'
   summonProjectiles:
-  - {fileID: 1042632466133253721, guid: 172a9d6476ad90b448d020d30cdcd683, type: 3}
+  - {fileID: 1042632466133253721, guid: 91c758a66eda80c4481ef00c734061c9, type: 3}
+  - {fileID: 1042632466133253721, guid: b7dd6071367c2a04d94f0e982340463a, type: 3}
+  - {fileID: 1042632466133253721, guid: b2a1eda0dbd8d1a41b6e0d6712c89d30, type: 3}
+  - {fileID: 1042632466133253721, guid: 7aace609e3c863348b1f6ed5c4145bdc, type: 3}
+  - {fileID: 1042632466133253721, guid: 65d37d62a0d3c1f48807502309f05511, type: 3}
+  - {fileID: 1042632466133253721, guid: c09062e8d5452714d8060742b138bed3, type: 3}
+  - {fileID: 1042632466133253721, guid: 1fbf59663e018e143b3206d35a81eea5, type: 3}
 --- !u!1 &6971321890026631304
 GameObject:
   m_ObjectHideFlags: 0
