@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -13,8 +14,11 @@ public class BaseEnemy : MonoBehaviour
     private float distanceTravelled; // Tracks how far the enemy is along the track - allows for 'first'/'last' targeting.
     private float nextAttack; // The next time the enemy can attack.
     
-    private Transform targetLocation;
+    protected Transform targetLocation;
     protected int pathIndex;
+    protected Transform[] pathPoints;
+
+    [HideInInspector] public int followedPath = 0;
     // Enemies follow a sequence of points. The index allows traversal of the array of points.
 
     // [Header("References")]
@@ -48,7 +52,8 @@ public class BaseEnemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>(); // Gets the enemy's attached rigidbody component.
         pathIndex = 1; // Set the initial index to 1.
-        targetLocation = LevelManager.main.path[pathIndex]; // Set the initial target location to the first point in the path.
+        pathPoints = LevelManager.main.paths[followedPath].GetComponentsInChildren<Transform>(); 
+        targetLocation = pathPoints[pathIndex]; // Set the initial target location to the first point in the path.
         isDestroyed = false; // Initialises isDestroyed to false.
         isAttacking = false; // Initialises isAttacking to false.
         distanceTravelled = 0; // Sets initial distance travelled to 0 .
@@ -74,7 +79,7 @@ public class BaseEnemy : MonoBehaviour
         {
             pathIndex++; // Increments the path index by one.
 
-            if (pathIndex == LevelManager.main.path.Length) // Checks to see if the enemy has reached the end of the path.
+            if (pathIndex == pathPoints.Length) // Checks to see if the enemy has reached the end of the path.
             {
                 rb.velocity = Vector2.zero; // If it has then stop moving,
                 isAttacking = true; // and start attacking...
@@ -82,7 +87,7 @@ public class BaseEnemy : MonoBehaviour
 
             else // If it is not at the end of the path,
             {
-                targetLocation = LevelManager.main.path[pathIndex]; // set the next target location.    
+                targetLocation = pathPoints[pathIndex]; // set the next target location.    
             }
         }
     }
