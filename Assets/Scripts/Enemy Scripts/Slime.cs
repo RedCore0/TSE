@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Slime : BaseEnemy
 {
-    [Header("Slime specific stats")]
+    [Header("Slime specific stats")]  
     public int splitCount; // The number of slimes spawned when the slime dies.
     public float jumpTime; // The time between each jump.
     [Tooltip("Length of time the slime is jumping for.")]

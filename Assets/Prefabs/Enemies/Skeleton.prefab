@@ -112,15 +112,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followedPath: 0
-  enemyHealth: 5
+  enemyHealth: 10
   enemyDefense: 0
   attackDamage: 2
   attackCooldown: 1.5
   attackLimit: 3
-  enemySpeed: 1
+  enemySpeed: 1.7
   isAerial: 0
   enemyCost: 5
-  killReward: 10
+  killReward: 5
   damageDealt: 0
   timeAlive: 0
   enemyName: Skeleton
