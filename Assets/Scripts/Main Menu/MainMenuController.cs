@@ -9,75 +9,52 @@ public class MainMenuController : MonoBehaviour
     // Start is called before the first frame update
     public GameObject mainMenu;
     public GameObject optionsMenu;
-   // public GameObject usernamePanel;
     public GameObject controlsPanel;
     public GameObject volumePanel;
     public GameObject creditsPanel;
     public GameObject difficultyPanel;
     public GameObject mapPanel;
-    //public TextMeshProUGUI username_text;
-    // public Slider slider;
+    public Slider musicSlider;
+    public Slider sfxSlider;
 
-    // AudioSource[] audio1;
+    AudioSource[] audio1;
 
 
     public void Start()
     {
-        /*
-        if (Globals.can_enter_username == true)
-        {
-            mainMenu.SetActive(false);
-            Globals.can_enter_username = false;
-        }
-        else
-        {
-            mainMenu.SetActive(true);
-            usernamepanel.SetActive(false);
-        }
-        */
         optionsMenu.SetActive(false);
         controlsPanel.SetActive(false);
         volumePanel.SetActive(false);
         creditsPanel.SetActive(false);
         difficultyPanel.SetActive(false);
         mapPanel.SetActive(false);
-        //audio1 = GetComponents<AudioSource>();
-        //slider.value = 10f;
+        audio1 = GetComponents<AudioSource>();
+        musicSlider.value = 100f;
+        sfxSlider.value = 100f;
 
     }
-    /*
-    public void PlayGame()
-    {
-
-        Play_sound();
-        SceneManager.LoadSceneAsync(sceneName: "Game Scene 1");
-        SceneManager.UnloadSceneAsync(sceneName: "Main Menu");
-
-
-
-    }
-    */
     public void SelectDifficulty()
     {
-        //Play_sound();
+        audio1[0].Play();
         mainMenu.SetActive(false);
         difficultyPanel.SetActive(true);
     }
     public void SelectDifficultyBack()
     {
 
-        //Play_sound();
+        audio1[0].Play();
         mainMenu.SetActive(true);
        difficultyPanel.SetActive(false);
     }
     public void MapsBack() 
     {
+        audio1[0].Play();
         difficultyPanel.SetActive(true);
         mapPanel.SetActive(false);
     }
     public void Options()
     {
-        //Play_sound();
+        audio1[0].Play();
         mainMenu.SetActive(false);
         optionsMenu.SetActive(true);
 
@@ -87,30 +64,20 @@ public class MainMenuController : MonoBehaviour
     public void OptionsBack()
     {
 
-        //Play_sound();
+        audio1[0].Play();
         mainMenu.SetActive(true);
         optionsMenu.SetActive(false);
     }
 
     public void ExitGame()
     {
-        //Play_exit_sound();
+        audio1[0].Play();
         Application.Quit();
     }
 
-
-    /*
-    public void SubmitOnClick()
-    {
-        Play_sound();
-        Globals.current_user = username_text.text;
-        usernamepanel.SetActive(false);
-        mainMenu.SetActive(true);
-
-    }
-    */
     public void Easy()
     {
+        audio1[0].Play();
         Globals.difficulty = 1;
         difficultyPanel.SetActive(false);
         mapPanel.SetActive(true);
@@ -118,6 +85,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void Medium()
     {
+        audio1[0].Play();
         Globals.difficulty = 2;
         difficultyPanel.SetActive(false);
         mapPanel.SetActive(true);
@@ -125,6 +93,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void Hard()
     {
+        audio1[0].Play();
         Globals.difficulty = 3;
         difficultyPanel.SetActive(false);
         mapPanel.SetActive(true);
@@ -132,82 +101,66 @@ public class MainMenuController : MonoBehaviour
     }
     public void ApeGarden()
     {
+        audio1[0].Play();
         SceneManager.LoadSceneAsync(sceneName: "Ape Garden");
-        //SceneManager.UnloadSceneAsync(sceneName: "Main Menu");
     }
     public void Map2()
     {
+        audio1[0].Play();
         SceneManager.LoadSceneAsync(sceneName: "Ape Garden");//Replace Ape Garden with different map name once maps are created
-        //SceneManager.UnloadSceneAsync(sceneName: "Main Menu");
     }
     public void Map3()
     {
+        audio1[0].Play();
         SceneManager.LoadSceneAsync(sceneName: "Ape Garden");//Replace Ape Garden with different map name once maps are created
-        //SceneManager.UnloadSceneAsync(sceneName: "Main Menu");
     }
     public void Volume()
     {
-        //Play_sound();
+        audio1[0].Play();
         optionsMenu.SetActive(false);
         volumePanel.SetActive(true);
     }
     public void Controls()
     {
-        //Play_sound();
+        audio1[0].Play();
         optionsMenu.SetActive(false);
         controlsPanel.SetActive(true);
     }
     public void VolumeBack()
     {
-        //Play_sound();
+        audio1[0].Play();
         volumePanel.SetActive(false);
         optionsMenu.SetActive(true);
 
     }
     public void ControlsBack()
     {
-        //Play_sound();
+        audio1[0].Play();
         controlsPanel.SetActive(false);
         optionsMenu.SetActive(true);
 
     }
     public void Credits()
     {
-        //Play_sound();
+        audio1[0].Play();
         optionsMenu.SetActive(false);
         creditsPanel.SetActive(true);
     }
     public void CreditsBack()
     {
-        //Play_sound();
+        audio1[0].Play();
         creditsPanel.SetActive(false);
         optionsMenu.SetActive(true);
 
     }
-    /*
-    public void VolumeControl()
+    public void MusicControl()
     {
-        Play_sound();
-        audio1[1].volume = slider.value;
+        audio1[1].volume = musicSlider.value;
+        Globals.musicVol = musicSlider.value;
     }
-    
-    void Play_sound()
+    public void SFXControl()
     {
-        if (audio1[0].isPlaying)
-        {
-            audio1[0].Stop();
-        }
-
-        audio1[0].Play();
+        audio1[0].volume = sfxSlider.value;
+        Globals.buttonVol = sfxSlider.value;
     }
-    void Play_exit_sound()
-    {
-        if (audio1[2].isPlaying)
-        {
-            audio1[2].Stop();
-        }
-
-        audio1[2].Play();
-    }
-    */
 }

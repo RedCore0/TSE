@@ -6,13 +6,13 @@ using Unity.VisualScripting;
 
 public class Menu : MonoBehaviour
 {
+    public GameObject cannotAffordText;
     [Header("References")]
     [SerializeField] TextMeshProUGUI currencyUI;
     [SerializeField] TextMeshProUGUI buttonUI;
     [SerializeField] Animator anim;
 
     private bool shopIsOpen = true;
-
     public void ToggleMenu() // Setting the menu to either be open or closed.
     {
         shopIsOpen = !shopIsOpen; 
@@ -30,6 +30,14 @@ public class Menu : MonoBehaviour
     private void OnGUI()
     {
         currencyUI.text = LevelManager.main.GetCurrency().ToString();
+        if(Globals.isUnpurchasable)
+        {
+            cannotAffordText.SetActive(true);
+        }
+        else
+        {
+            cannotAffordText.SetActive(false);
+        }
     }
 
     public void SetSelected()

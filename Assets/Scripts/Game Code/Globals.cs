@@ -14,5 +14,11 @@ public class Globals
         ApeGarden, MapOne, MapTwo
     }
    public static Maps curMap = Maps.ApeGarden; //defines current map
+    public static float buttonVol = 100f;
+    public static float musicVol = 100f;
+    public static float enemyVol = 100f;
+    public static float towerVol = 100f;
+    public static bool isUnpurchasable = false;
+
 
 }

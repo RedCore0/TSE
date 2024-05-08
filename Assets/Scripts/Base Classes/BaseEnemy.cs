@@ -7,12 +7,13 @@ using static UnityEngine.GraphicsBuffer;
 
 public class BaseEnemy : MonoBehaviour
 {
+    private bool hasAudio = false;
     private Rigidbody2D rb; // The enemy's collision hitbox.
     private bool isDestroyed = false; // Resolves an issue where multiple bullets could collide at once and both would cause the onEnemyDestroy to be called.
     private bool isAttacking; // Whether or not the enemy has started attacking the objective.
     private float distanceTravelled; // Tracks how far the enemy is along the track - allows for 'first'/'last' targeting.
     private float nextAttack; // The next time the enemy can attack.
-    
+    private AudioSource[] audio1;
     private Transform targetLocation;
     protected int pathIndex;
     // Enemies follow a sequence of points. The index allows traversal of the array of points.
@@ -46,6 +47,12 @@ public class BaseEnemy : MonoBehaviour
 
     public virtual void Start()
     {
+        
+        if (GetComponent<AudioSource>() != null)
+        {
+            hasAudio = true;
+            audio1 = GetComponents<AudioSource>();
+        }
         rb = GetComponent<Rigidbody2D>(); // Gets the enemy's attached rigidbody component.
         pathIndex = 1; // Set the initial index to 1.
         targetLocation = LevelManager.main.path[pathIndex]; // Set the initial target location to the first point in the path.
@@ -57,6 +64,10 @@ public class BaseEnemy : MonoBehaviour
 
     public virtual void Update()
     {
+        if (hasAudio)
+        {
+            audio1[0].volume = Globals.enemyVol;
+        }
         timeAlive += Time.deltaTime; // Increment the time alive by the change in time 
 
         if (isAttacking) // If the enemy is attacking,
@@ -160,6 +171,10 @@ public class BaseEnemy : MonoBehaviour
         {
             attackLimit -= 1; // decrease them by one,
             LevelManager.main.DamageStructure(attackDamage); // and damage the structure.
+            if (audio1[0] != null)
+            {
+                audio1[0].Play();
+            }
         }
         else // Otherwise, it has exhausted its attacks,
         {

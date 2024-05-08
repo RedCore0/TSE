@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -13,13 +14,27 @@ public class PauseMenu : MonoBehaviour
     public GameObject volumePanel;
     public GameObject creditsPanel;
     bool paused = false;
+    public Slider towerSlider;
+    public Slider enemySlider;
+    public Slider menuSlider;
+    public Slider musicSlider;
+    AudioSource[] audio1;
+    
     // Start is called before the first frame update
     void Start()
     {
+
         pauseMenu.SetActive(false);
         controlsPanel.SetActive(false);
         volumePanel.SetActive(false);
         creditsPanel.SetActive(false);
+        audio1 = GetComponents<AudioSource>();
+        audio1[0].volume = Globals.buttonVol;
+        audio1[1].volume = Globals.musicVol;
+        towerSlider.value = 100f;
+        enemySlider.value = 100f;
+        menuSlider.value = 100f;
+        musicSlider.value = 100f;
 
     }
     public void Update()
@@ -35,6 +50,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void Pause()
     {
+        audio1[0].Play();
         shop.SetActive(false);
         paused = true;
         pauseButton.SetActive(false);
@@ -43,6 +59,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void Resume()
     {
+        audio1[0].Play();
         shop.SetActive(true);
         paused = false;
         pauseButton.SetActive(true);
@@ -52,7 +69,7 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
 
-        //Play_sound();
+        audio1[0].Play();
         shop.SetActive(true);
         pauseButton.SetActive(true);
         pauseMenu.SetActive(false);
@@ -71,54 +88,75 @@ public class PauseMenu : MonoBehaviour
             SceneManager.LoadSceneAsync(sceneName: "Ape Garden");
         }
 
-        //SceneManager.UnloadSceneAsync(sceneName: "Main Menu");
     }
     public void MainMenu()
     {
+        audio1[0].Play();
         shop.SetActive(true);
         pauseButton.SetActive(true);
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
-        //SceneManager.UnloadSceneAsync(sceneName: "Ape Garden");
         SceneManager.LoadSceneAsync(sceneName: "Main Menu");
     }
     public void Volume()
     {
-        //Play_sound();
+        audio1[0].Play();
         pauseMenu.SetActive(false);
         volumePanel.SetActive(true);
     }
     public void Controls()
     {
-        //Play_sound();
+        audio1[0].Play();
         pauseMenu.SetActive(false);
         controlsPanel.SetActive(true);
     }
     public void VolumeBack()
     {
-        //Play_sound();
+        audio1[0].Play();
         volumePanel.SetActive(false);
         pauseMenu.SetActive(true);
 
     }
     public void ControlsBack()
     {
-        //Play_sound();
+        audio1[0].Play();
         controlsPanel.SetActive(false);
         pauseMenu.SetActive(true);
 
     }
     public void Credits()
     {
-        //Play_sound();
+        audio1[0].Play();
         pauseMenu.SetActive(false);
         creditsPanel.SetActive(true);
     }
     public void CreditsBack()
     {
-        //Play_sound();
+        audio1[0].Play();
         creditsPanel.SetActive(false);
         pauseMenu.SetActive(true);
 
+    }
+    public void MusicControl()
+    {
+        audio1[0].Play();
+        audio1[1].volume = musicSlider.value;
+        Globals.musicVol = musicSlider.value;
+    }
+    public void EnemyVolumeControl()
+    {
+        audio1[0].Play();
+        Globals.enemyVol = enemySlider.value;
+    }
+    public void TowerVolumeControl()
+    {
+        audio1[0].Play();
+        Globals.towerVol = towerSlider.value;
+    }
+    public void ButtonVolumeControl()
+    {
+        audio1[0].Play();
+        audio1[0].volume = menuSlider.value;
+        Globals.buttonVol = menuSlider.value;
     }
 }

@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class Plot : MonoBehaviour
 {
+    AudioSource[] audio1;
     [Header("References")]
     [SerializeField] private SpriteRenderer sr; // Stores the sprite renderer for the plot game object.
     [SerializeField] private Color hoverColor; // Stores the color to change the plot to once it is selected.
-
     private GameObject tower; // Stores the tower placed on this plot.
     private Color startColor; // Stores the default color of the plot.
 
@@ -50,19 +50,26 @@ public class Plot : MonoBehaviour
         if (towerToBuildScript.towerCost > LevelManager.main.GetCurrency()) // Checks to see if the player can afford the tower.
         {
             Debug.Log("You can not afford this.");
+            Globals.isUnpurchasable = true;
             // Eventually to be replaced with some kind of UI pop-up.
             return; // They can't, do nothing for now.
         }
 
         // The player can afford the tower...
-
+        Globals.isUnpurchasable = false;
         LevelManager.main.SpendCurrency(towerToBuildScript.towerCost); // Spend the currency for the tower.
         tower = Instantiate(towerToBuild, transform.position, Quaternion.identity); // Build the selected tower.
-        GetComponent<AudioSource>().Play();
+        audio1[0].Play();
     }
 
     void Start()
     {   
         startColor = sr.color; // Ensures the plot starts with the correct color.
+        audio1 = GetComponents<AudioSource>();
+
+    }
+    private void Update()
+    {
+        audio1[0].volume = Globals.buttonVol;
     }
 }
