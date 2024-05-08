@@ -146,7 +146,7 @@ MonoBehaviour:
   damageDealt: 0
   lastDamageDealt: 0
   towerName: Swordsman
-  towerCost: 100
+  towerCost: 125
   towerDescription: The swordsman swiftly delivers melee strikes with an absurdly
     high attack speed and typical range, but limited damage. It can target aerial
     enemies.
