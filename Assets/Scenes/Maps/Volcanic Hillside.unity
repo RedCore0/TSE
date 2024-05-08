@@ -395,14 +395,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 121855020047598283, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: startPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 121855020047598283, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: startingCurrency
-      value: 150
-      objectReference: {fileID: 0}
     - target: {fileID: 545888410606766099, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -447,34 +439,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7835849635379872702, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: availableTowers.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7835849635379872702, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: availableTowers.Array.data[0]
-      value: 
-      objectReference: {fileID: 5665274592823638842, guid: 7f82b633aa2dbc14ebe9b945f05f20fd, type: 3}
-    - target: {fileID: 7835849635379872702, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: availableTowers.Array.data[1]
-      value: 
-      objectReference: {fileID: 5876757537888297603, guid: 410b7090b186e444d8126bf05a7f7ef2, type: 3}
-    - target: {fileID: 7835849635379872702, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: availableTowers.Array.data[2]
-      value: 
-      objectReference: {fileID: 1632677240251309489, guid: 7b19a9129a799c742be7ec5231db4648, type: 3}
-    - target: {fileID: 7835849635379872702, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: availableTowers.Array.data[3]
-      value: 
-      objectReference: {fileID: 1374216162943838068, guid: c323aa2d83159b143a657715708f3937, type: 3}
-    - target: {fileID: 7835849635379872702, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: availableTowers.Array.data[4]
-      value: 
-      objectReference: {fileID: 2382443908746138060, guid: 13b015adbd1c6844bbb0e9632488aa5d, type: 3}
-    - target: {fileID: 7835849635379872702, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: availableTowers.Array.data[5]
-      value: 
-      objectReference: {fileID: 4427961744780687795, guid: aad75e81ee1874f4992174ed488533d8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -671,6 +635,10 @@ PrefabInstance:
     - target: {fileID: 6756863829818188319, guid: 894b9a6059955ed448e1cb89272e41d7, type: 3}
       propertyPath: m_Name
       value: Tile (214)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756863829818188319, guid: 894b9a6059955ed448e1cb89272e41d7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12991,15 +12959,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8826621528718146626, guid: ca6068932e629834d8145801d241b871, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5247825
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8826621528718146626, guid: ca6068932e629834d8145801d241b871, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.27063224
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8826621528718146626, guid: ca6068932e629834d8145801d241b871, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.009533882
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8826621528718146626, guid: ca6068932e629834d8145801d241b871, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13507,7 +13475,7 @@ GameObject:
   - component: {fileID: 1337329801}
   - component: {fileID: 1337329800}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: Old Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13739,7 +13707,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 4.85
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -13764,7 +13732,7 @@ Transform:
   m_GameObject: {fileID: 1371824273}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 1, y: 0, z: -10}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18883,12 +18851,12 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 2025286445}
   - {fileID: 1371824276}
-  - {fileID: 452113127}
   - {fileID: 1040794377}
   - {fileID: 1953489605}
-  - {fileID: 51548391}
+  - {fileID: 452113127}
   - {fileID: 1250038555}
-  - {fileID: 1337329801}
+  - {fileID: 51548391}
+  - {fileID: 2025286445}
   - {fileID: 1948808132}
+  - {fileID: 1337329801}
