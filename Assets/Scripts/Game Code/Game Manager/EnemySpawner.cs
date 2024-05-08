@@ -14,9 +14,15 @@ public class EnemySpawner : MonoBehaviour
     [Header("Attributes")]
 
     [SerializeField] private float enemiesPerSecond; // Controls the rate at which enemies spawn.
+    [SerializeField] private float scaleEnemiesPerSecond; // Scalar to control the increase of enemies per second
     [SerializeField] private float timeBetweenWaves; // Controls the time between waves of enemies.
 
-    [SerializeField] private float fireRatePoint;
+    [SerializeField] private float fireRatePoint; // Arbitrary value to determine if player is using high fire rate towers
+    [SerializeField] private float aerialCapabilityPoint; // Arbitrary value to determine if player is using arial capable towers
+
+    [SerializeField] private float baseEnemyCurrency; // The enemy starting currency
+    [SerializeField] private float scaleEnemyCurrency; // Scaling value for enemy currency 
+    [SerializeField] private float enemyCurrency; // The enemy's current curreny
 
     //Old
     [SerializeField] private int baseEnemies; // Controls the amount of enemies in a given wave. (Shouldn't be used)
@@ -25,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
 
-    List<int> currentWave = new List<int>(); // Stores the prefabs of the enemies that will be spawned this wave
+    [SerializeField] List<int> currentWave = new List<int>(); // Stores the prefabs of the enemies that will be spawned this wave
 
     [SerializeField] private int waveNumber = 1; // The current wave - initialised as 1. Eventually starting wave may be something we change.
     private float timeSinceLastSpawn; // Checked against timeBetweenWaves to ensure enemies are spawning at the correct speed.
@@ -33,11 +39,22 @@ public class EnemySpawner : MonoBehaviour
     private int enemiesLeftToSpawn; // How many enemies are yet to spawn this wave.
     private bool isSpawning = false; // Determines if the enemies should currently be spawning.
 
+    List<int> enemyCosts = new List<int>(); // Stores the cost of each enemy (I could not get the enemy cost to be accessible from baseEnemy / the prefabs so this is my fix)
+
     public bool enemyTesting = false; // Changes spawning method for testing.
     
     public void Start()
     {
-        enemiesLeftToSpawn = baseEnemies; // Sets the size of the first wave to the default wave size.
+        enemyCurrency = baseEnemyCurrency; // Sets the enemy currency to the starting value
+
+        enemyCosts.Add(120); // Adds the cost of the enemies (again this is not ideal)
+        enemyCosts.Add(20);
+        enemyCosts.Add(7);
+        enemyCosts.Add(180);
+        enemyCosts.Add(30);
+        enemyCosts.Add(5);
+        enemyCosts.Add(80);
+        
         StartCoroutine(StartWave()); // Starts the first wave.
     }
 
@@ -88,7 +105,9 @@ public class EnemySpawner : MonoBehaviour
 
         isSpawning = true; // Ensures the spawning code will run.
         GenerateWave();
-        enemiesLeftToSpawn = currentWave.Count - 1; // Calculates the wave size for this wave.
+        enemyCurrency += (baseEnemyCurrency * scaleEnemyCurrency);
+        //enemiesLeftToSpawn = currentWave.Count - 1; // Calculates the wave size for this wave.
+
     }
 
     private void EndWave() // Ends the current wave.
@@ -102,6 +121,10 @@ public class EnemySpawner : MonoBehaviour
 
     private float calcAverageFirerate(List<float> placedTowersFireRate)
     {
+        if (placedTowersFireRate.Count == 0)
+        {
+            return 0;
+        }
         float totalFireRate = 0.0f;
         for (int i = 0; i < placedTowersFireRate.Count; i++)
         {
@@ -111,37 +134,205 @@ public class EnemySpawner : MonoBehaviour
         return averageFireRate;
     }
 
+    private float calcAverageAerialCapability(List<float> placedTowersAerialCapability)
+    {
+        if (placedTowersAerialCapability.Count == 0)
+        {
+            return 0;
+        }
+        float totalAerialCapability = 0.0f;
+        for (int i = 0; i < placedTowersAerialCapability.Count; i++)
+        {
+            totalAerialCapability += placedTowersAerialCapability[i];
+        }
+        float averageAerialCapability = totalAerialCapability / placedTowersAerialCapability.Count;
+        return averageAerialCapability;
+    }
+
     private void GenerateWave() // Picking which enemies to send (Always misses the last enemy for some reason <- likely list index error somewhere)
     {
-        if (calcAverageFirerate(LevelManager.main.placedTowersFireRate) > fireRatePoint) // Player is mainly using high fire rate towers
+        while (enemyCurrency > 4) // Loop until no more towers can be afforded (cheeapest tower is 5 (again this isn't great))
         {
-            //use high hp enemies
-            for (int i = 0; i < enemiesLeftToSpawn; i++) // Pick set ammount of random enemies that are "high hp"
-            {
-                int rInt = UnityEngine.Random.Range(0,3);
-                if (rInt == 3)
-                {
-                    currentWave.Add(4);
+            if (calcAverageFirerate(LevelManager.main.placedTowersFireRate) > fireRatePoint) // Player is mainly using high fire rate towers
+            {// use high hp enemies
+                if (calcAverageAerialCapability(LevelManager.main.placedTowersAerialCapability) > aerialCapabilityPoint)
+                {// use high hp and don't prioritise aerial enemies
+                    if (enemyCurrency > enemyCosts[1])
+                    {
+                        currentWave.Add(1);
+                        enemyCurrency -= enemyCosts[1];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[2])
+                    {
+                        currentWave.Add(2);
+                        enemyCurrency -= enemyCosts[2];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[0])
+                    {
+                        currentWave.Add(0);
+                        enemyCurrency -= enemyCosts[0];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[4])
+                    {
+                        currentWave.Add(4);
+                        enemyCurrency -= enemyCosts[4];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[5])
+                    {
+                        currentWave.Add(5);
+                        enemyCurrency -= enemyCosts[5];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[6])
+                    {
+                        currentWave.Add(6);
+                        enemyCurrency -= enemyCosts[6];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[3])
+                    {
+                        currentWave.Add(3);
+                        enemyCurrency -= enemyCosts[3];
+                    }
                 }
                 else
-                {
-                    currentWave.Add(rInt);
+                {// use high hp and prioritise aerial enemies
+                    if (enemyCurrency > enemyCosts[0])
+                    {
+                        currentWave.Add(0);
+                        enemyCurrency -= enemyCosts[0];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[4])
+                    {
+                        currentWave.Add(4);
+                        enemyCurrency -= enemyCosts[4];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[1])
+                    {
+                        currentWave.Add(1);
+                        enemyCurrency -= enemyCosts[1];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[2])
+                    {
+                        currentWave.Add(2);
+                        enemyCurrency -= enemyCosts[2];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[3])
+                    {
+                        currentWave.Add(3);
+                        enemyCurrency -= enemyCosts[3];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[5])
+                    {
+                        currentWave.Add(5);
+                        enemyCurrency -= enemyCosts[5];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[6])
+                    {
+                        currentWave.Add(6);
+                        enemyCurrency -= enemyCosts[6];
+                    }
                 }
             }
-        }
-        if (calcAverageFirerate(LevelManager.main.placedTowersFireRate) < fireRatePoint) // Player is mainly using low fire rate towers
-        {
-            //use low hp enemies
-            for (int i = 0; i < enemiesLeftToSpawn; i++)
-            {
-                int rInt = UnityEngine.Random.Range(4,6);
-                if (rInt == 4)
-                {
-                    currentWave.Add(3);
+            else // Player is mainly using low fire rate towers
+            {// use low hp enemies
+                if (calcAverageAerialCapability(LevelManager.main.placedTowersAerialCapability) > aerialCapabilityPoint)
+                {// use low hp and don't prioritise aerial enemies
+                    if (enemyCurrency > enemyCosts[5])
+                    {
+                        currentWave.Add(5);
+                        enemyCurrency -= enemyCosts[5];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[6])
+                    {
+                        currentWave.Add(6);
+                        enemyCurrency -= enemyCosts[6];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[3])
+                    {
+                        currentWave.Add(3);
+                        enemyCurrency -= enemyCosts[3];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[1])
+                    {
+                        currentWave.Add(1);
+                        enemyCurrency -= enemyCosts[1];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[2])
+                    {
+                        currentWave.Add(2);
+                        enemyCurrency -= enemyCosts[2];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[4])
+                    {
+                        currentWave.Add(4);
+                        enemyCurrency -= enemyCosts[4] ;
+                    }
+
+                    else if (enemyCurrency > enemyCosts[0])
+                    {
+                        currentWave.Add(0);
+                        enemyCurrency -= enemyCosts[0];
+                    }
                 }
                 else
-                {
-                    currentWave.Add(rInt);
+                {// use low hp and prioritise aerial enemies
+                    if (enemyCurrency > enemyCosts[3])
+                    {
+                        currentWave.Add(3);
+                        enemyCurrency -= enemyCosts[3];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[5])
+                    {
+                        currentWave.Add(5);
+                        enemyCurrency -= enemyCosts[5];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[6])
+                    {
+                        currentWave.Add(6);
+                        enemyCurrency -= enemyCosts[6];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[0])
+                    {
+                        currentWave.Add(0);
+                        enemyCurrency -= enemyCosts[0];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[4])
+                    {
+                        currentWave.Add(4);
+                        enemyCurrency -= enemyCosts[4];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[1])
+                    {
+                        currentWave.Add(1);
+                        enemyCurrency -= enemyCosts[1];
+                    }
+
+                    else if (enemyCurrency > enemyCosts[2])
+                    {
+                        currentWave.Add(2);
+                        enemyCurrency -= enemyCosts[2];
+                    }
                 }
             }
         }
@@ -175,9 +366,6 @@ public class EnemySpawner : MonoBehaviour
     {
         enemiesAlive--; // decreases the number of enemies alive.
     }
-
-
-
 
     private void SpawnRandomEnemy() // Spawns a random enemy.
     {

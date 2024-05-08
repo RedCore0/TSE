@@ -61,6 +61,18 @@ public class BaseTower : MonoBehaviour
         return attackDamage;
     }
 
+    public int GetTowerAerial()
+    {
+        if (aerialTargetting)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     protected virtual void OnDrawGizmosSelected() // Shows the tower's range while selected in the editor.
     {
         Handles.color = Color.red;

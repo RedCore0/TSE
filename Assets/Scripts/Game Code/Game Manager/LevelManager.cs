@@ -10,13 +10,21 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int playerCurrency; // The player's current currency, how much they can spend.
     
     public List<float> placedTowersFireRate = new List<float>();
+    public List<float> placedTowersAerialCapability = new List<float>();
 
-    public int startingCurrency = 100; // How much currency the player should start with. 100 by default.
+
+    public int startingPlayerCurrency = 100; // How much currency the player should start with. 100 by default.
+    public int startingEnemyCurrency = 100; // How much currency the enemy should start with.
     public int structureHealth; // The health of the objective the player is defending.
 
     public void AddBuiltTowerFireRate(float fireRate)
     {
         placedTowersFireRate.Add(fireRate);
+    }
+
+    public void AddBuiltTowerAerialCapability(int aerialCapability)
+    {
+        placedTowersAerialCapability.Add(aerialCapability);
     }
     
     public int GetCurrency() // Gets the player's currency.
@@ -63,7 +71,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        playerCurrency = startingCurrency; // Set player currency to the starting value.
+        playerCurrency = startingPlayerCurrency; // Set player currency to the starting value.
         path = GameObject.Find("Path").GetComponentsInChildren<Transform>(); // Get the path points from the path object.
     }
 }
