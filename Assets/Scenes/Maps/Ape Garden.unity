@@ -20986,10 +20986,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 121855020047598283, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: startPoint
-      value: 
-      objectReference: {fileID: 902224478}
-    - target: {fileID: 121855020047598283, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: startingCurrency
       value: 150
       objectReference: {fileID: 0}
@@ -21037,34 +21033,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7835849635379872702, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: availableTowers.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7835849635379872702, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: availableTowers.Array.data[0]
-      value: 
-      objectReference: {fileID: 5665274592823638842, guid: 7f82b633aa2dbc14ebe9b945f05f20fd, type: 3}
-    - target: {fileID: 7835849635379872702, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: availableTowers.Array.data[1]
-      value: 
-      objectReference: {fileID: 5876757537888297603, guid: 410b7090b186e444d8126bf05a7f7ef2, type: 3}
-    - target: {fileID: 7835849635379872702, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: availableTowers.Array.data[2]
-      value: 
-      objectReference: {fileID: 1632677240251309489, guid: 7b19a9129a799c742be7ec5231db4648, type: 3}
-    - target: {fileID: 7835849635379872702, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: availableTowers.Array.data[3]
-      value: 
-      objectReference: {fileID: 1374216162943838068, guid: c323aa2d83159b143a657715708f3937, type: 3}
-    - target: {fileID: 7835849635379872702, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: availableTowers.Array.data[4]
-      value: 
-      objectReference: {fileID: 2382443908746138060, guid: 13b015adbd1c6844bbb0e9632488aa5d, type: 3}
-    - target: {fileID: 7835849635379872702, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
-      propertyPath: availableTowers.Array.data[5]
-      value: 
-      objectReference: {fileID: 4427961744780687795, guid: aad75e81ee1874f4992174ed488533d8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

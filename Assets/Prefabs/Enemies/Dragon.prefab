@@ -110,14 +110,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73bc982b59cae8245b7e263fd1114f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 30
-  enemyDefense: 3
+  followedPath: 0
+  enemyHealth: 40
+  enemyDefense: 4
   attackDamage: 3
-  attackCooldown: 4
-  attackLimit: 3
+  attackCooldown: 3
+  attackLimit: 5
   enemySpeed: 2
   isAerial: 1
-  enemyCost: 20
+  enemyCost: 35
   killReward: 40
   damageDealt: 0
   timeAlive: 0

@@ -195,23 +195,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2359ad144fda7c04da821ae83b886413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 40
-  enemyDefense: 4
+  followedPath: 0
+  enemyHealth: 30
+  enemyDefense: 6
   attackDamage: 10
   attackCooldown: 4
   attackLimit: 6
   enemySpeed: 0.8
   isAerial: 0
-  enemyCost: 80
-  killReward: 120
+  enemyCost: 60
+  killReward: 80
   damageDealt: 0
   timeAlive: 0
   enemyName: Witch
   enemyDescription: Though slow, the witch is highly resistent, and paired with a
     shield that will regenerate over time if you don't dispatch of the creature quickly.
-  shieldHealth: 30
+  shieldHealth: 40
   shieldDefense: 0
-  shieldRegenStartTime: 10
+  shieldRegenStartTime: 8
   shieldRegenTime: 0.05
   shieldRegenAmount: 1
 --- !u!82 &203460507682484652

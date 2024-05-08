@@ -73,8 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.11012435, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -203,22 +202,21 @@ MonoBehaviour:
   attackLimit: 3
   enemySpeed: 6
   isAerial: 0
-  enemyCost: 30
-  killReward: 20
+  enemyCost: 20
+  killReward: 10
   damageDealt: 0
   timeAlive: 0
   enemyName: Young Slimeling
   enemyDescription: A small slime, probably produced from a forced mitosis imposed
-    on a larger varient. As a result, successful termination for slimes consists of
-    reducing it down to a size thats completely harmless, or hoping that you manage
+    on a larger varient. As a result, successful termination for slimes consists
+    of reducing it down to a size thats completely harmless, or hoping that you manage
     to take out whatever it is that keeps it concious.
   splitCount: 2
   jumpTime: 1.5
   jumpLength: 0.3
   canSplit: 0
   splitSlime: {fileID: 0}
-  gameManager: {fileID: 545888410606766099, guid: 336db1d7d78a17948a7fb8268b5b135f,
-    type: 3}
+  gameManager: {fileID: 545888410606766099, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
 --- !u!82 &-997507325755538494
 AudioSource:
   m_ObjectHideFlags: 0

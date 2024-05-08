@@ -110,15 +110,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3296c4048a98c4594caafca70afb27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 12
+  followedPath: 0
+  enemyHealth: 15
   enemyDefense: 0
-  attackDamage: 5
+  attackDamage: 7
   attackCooldown: 1.2
-  attackLimit: 7
+  attackLimit: 5
   enemySpeed: 3.5
   isAerial: 1
   enemyCost: 30
-  killReward: 30
+  killReward: 25
   damageDealt: 0
   timeAlive: 0
   enemyName: Poltergeist
