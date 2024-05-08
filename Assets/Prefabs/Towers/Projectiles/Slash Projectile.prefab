@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 40226489281643577}
   - component: {fileID: 7086548028703666428}
   - component: {fileID: 4113888993684173673}
-  - component: {fileID: 4598917955168638587}
+  - component: {fileID: 4355433278755940295}
   m_Layer: 7
-  m_Name: Test Slash Proj
+  m_Name: Slash Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,7 +149,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4598917955168638587
+--- !u!114 &4355433278755940295
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,6 +158,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1042632466133253721}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9bbcb2d7b983ea4eb648a982079eb15, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e180ae10efa14946a59ea7859191ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

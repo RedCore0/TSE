@@ -47,7 +47,7 @@ public class NecromancerProjectile : BaseProjectile
                 myNecromancer.StockAdd("GOBLIN");
                 break;
 
-            case "Slime":
+            case "Slime":                     
                 myNecromancer.StockAdd("SLIME");
                 break;
 
@@ -61,6 +61,10 @@ public class NecromancerProjectile : BaseProjectile
 
             case "Witch":
                 myNecromancer.StockAdd("WITCH");
+                break;
+
+            default: // Causes a random projectile to be selected.
+                myNecromancer.StockAdd("DEF");
                 break;
         }
     }
