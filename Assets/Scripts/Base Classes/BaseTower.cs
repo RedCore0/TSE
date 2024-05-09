@@ -7,13 +7,14 @@ using static UnityEngine.GraphicsBuffer;
 
 public class BaseTower : MonoBehaviour
 {
+    private bool hasAudio = false;
     protected Transform targetLocation; // The location of the tower's current target.
     protected GameObject targettedEnemy; // The enemy being targetted by the tower.
     protected List<GameObject> targetsInRange; // A list of targets that are in the tower's range.
     protected string targettingMode; // The targetting mode of the tower.
     protected bool prioritiseAerial; // Whether the tower should prioritise aerial targets.
     protected float nextAttack; // The next time the tower can attack.
-
+    private AudioSource[] audio1;
     [Header("References")]
     [SerializeField] protected LayerMask enemyMask; // The mask enemies are on - where the tower targets.
     [SerializeField] protected GameObject projectilePrefab; // The projectile the tower will shoot with every attack.
@@ -84,10 +85,21 @@ public class BaseTower : MonoBehaviour
         targettingMode = "FIRST"; // Set targetting mode to the initial mode. (FIRST is the default)
         prioritiseAerial = aerialTargetting; // By default, towers with aerial targetting will prioritise aerial units.
         nextAttack = Time.time + attackDelay; // Sets next attack time. (the current time + the delay between attacks)
+        audio1 = GetComponents<AudioSource>();
+        if (GetComponent<AudioSource>() != null)
+        {
+            hasAudio = true;
+            audio1[0].volume = Globals.towerVol;
+        }
     }
 
     protected virtual void Update() // Called every frame.
     {
+
+        if (hasAudio)
+        {
+            audio1[0].volume = Globals.towerVol;
+        }
         targetsInRange = FindTargets(); // Gets the targets (enemies) in the tower's range.
         targettedEnemy = SelectTarget(); // Selects a single target to fire at based on tower priorities.
 
@@ -237,7 +249,7 @@ public class BaseTower : MonoBehaviour
         GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         BaseProjectile projectileScript = projectileObj.GetComponent<BaseProjectile>();
         projectileScript.SetUp(this, target, attackDamage, aerialTargetting, projectileLife, projectileSpeed, projectilePierce);
-        if (GetComponent<AudioSource>() != null) { GetComponent<AudioSource>().Play(); }
+        if (audio1[0] != null) { audio1[0].Play(); }
     }
 
     protected virtual bool CheckTargetIsInRange(Transform target)  // Ensures the tower doesn't attack a target that has left its range.
