@@ -87,13 +87,13 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
         
-        if (timeSinceLastSpawn >= (1f / enemiesPerSecond) && enemiesLeftToSpawn > 0) // Checks to see if another enemy should spawn.
+        if (timeSinceLastSpawn >= (1f / enemiesPerSecond) && currentWave.Count > 0) // Checks to see if another enemy should spawn.
         {
             SpawnNextEnemy(); // Spawns the enemy.
             timeSinceLastSpawn = 0f; // Resets the time since a spawn event occured to 0.
         }
 
-        if (enemiesAlive == 0 && enemiesLeftToSpawn == 0) // Once there are no enemies left alive, or to spawn,
+        if (enemiesAlive == 0 && currentWave.Count == 0) // Once there are no enemies left alive, or to spawn,
         {
             EndWave(); // the wave is over and can be ended.
         }
@@ -125,6 +125,7 @@ public class EnemySpawner : MonoBehaviour
         {
             return 0;
         }
+
         float totalFireRate = 0.0f;
         for (int i = 0; i < placedTowersFireRate.Count; i++)
         {
@@ -140,6 +141,7 @@ public class EnemySpawner : MonoBehaviour
         {
             return 0;
         }
+
         float totalAerialCapability = 0.0f;
         for (int i = 0; i < placedTowersAerialCapability.Count; i++)
         {
@@ -351,13 +353,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnNextEnemy()
     {
-        if (enemiesLeftToSpawn > 0) // Check there are still enemies left to spawn
+        if (currentWave.Count > 0) // Check there are still enemies left to spawn
         {
             GameObject prefabToSpawn = enemyPrefabs[currentWave[0]]; // Select the prefab for the next spawning enemy
             Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawn the enemy
             currentWave.RemoveAt(0); // Remove the enemy that has just spawned from the wave
 
-            enemiesLeftToSpawn--; // Subtracts 1 from the enemies left to spawn as one has just spawned
             enemiesAlive++; // Adds 1 to the enemies alive as one has just spawned.
         }
     }
