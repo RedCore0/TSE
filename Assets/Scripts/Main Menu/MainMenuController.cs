@@ -102,17 +102,20 @@ public class MainMenuController : MonoBehaviour
     public void ApeGarden()
     {
         audio1[0].Play();
+        Globals.curMap = Globals.Maps.ApeGarden;
         SceneManager.LoadSceneAsync(sceneName: "Ape Garden");
     }
-    public void Map2()
+    public void AbyssalCarverns()
     {
         audio1[0].Play();
-        SceneManager.LoadSceneAsync(sceneName: "Ape Garden");//Replace Ape Garden with different map name once maps are created
+        Globals.curMap = Globals.Maps.AbyssalCaverns;
+        SceneManager.LoadSceneAsync(sceneName: "Abyssal Caverns");//Replace Ape Garden with different map name once maps are created
     }
-    public void Map3()
+    public void VolcanicHillside()
     {
         audio1[0].Play();
-        SceneManager.LoadSceneAsync(sceneName: "Ape Garden");//Replace Ape Garden with different map name once maps are created
+        Globals.curMap = Globals.Maps.VolcanicHillside;
+        SceneManager.LoadSceneAsync(sceneName: "Volcanic Hillside");//Replace Ape Garden with different map name once maps are created
     }
     public void Volume()
     {

@@ -92,13 +92,13 @@ public class PauseMenu : MonoBehaviour
         {
             SceneManager.LoadSceneAsync(sceneName: "Ape Garden");
         }
-        else if (Globals.curMap == Globals.Maps.MapTwo)
+        else if (Globals.curMap == Globals.Maps.AbyssalCaverns)
         {
-            SceneManager.LoadSceneAsync(sceneName: "Ape Garden");
+            SceneManager.LoadSceneAsync(sceneName: "Abyssal Caverns");
         }
-        else if (Globals.curMap == Globals.Maps.MapOne)
+        else if (Globals.curMap == Globals.Maps.VolcanicHillside)
         {
-            SceneManager.LoadSceneAsync(sceneName: "Ape Garden");
+            SceneManager.LoadSceneAsync(sceneName: "Volcanic Hillside");
         }
 
     }

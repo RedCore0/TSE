@@ -11,7 +11,7 @@ public class Globals
     public static int difficulty = 1; //1 for easy, 2 for medium, 3 for hard
     public enum Maps //defines an enum so map can be carried across from menu, may or may not be useful
     {
-        ApeGarden, MapOne, MapTwo
+        ApeGarden, AbyssalCaverns, VolcanicHillside
     }
    public static Maps curMap = Maps.ApeGarden; //defines current map
     public static float buttonVol = 100f;
