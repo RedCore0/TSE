@@ -100,9 +100,9 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBetweenWaves); // Wait for the delay between waves.
 
-        isSpawning = true; // Ensures the spawning code will run.
         GenerateWave();
-        enemyCurrency += (baseEnemyCurrency * scaleEnemyCurrency);
+        isSpawning = true; // Ensures the spawning code will run.
+        
         //enemiesLeftToSpawn = currentWave.Count - 1; // Calculates the wave size for this wave.
 
     }
@@ -112,6 +112,7 @@ public class EnemySpawner : MonoBehaviour
         isSpawning = false; // Enemies should no longer be spawning.
         timeSinceLastSpawn = 0f; // Reset last spawn to 0.
         waveNumber++; // Increment the current wave.
+        enemyCurrency += (baseEnemyCurrency * scaleEnemyCurrency);
         StartCoroutine(StartWave()); // Start another wave.
     }    
     
