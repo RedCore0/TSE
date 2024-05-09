@@ -431,9 +431,8 @@ MonoBehaviour:
   projectilePierce: -1
   damageDealt: 0
   lastDamageDealt: 0
-  effectiveDamageRate: 10
   towerName: Heavy Knight
-  towerCost: 150
+  towerCost: 100
   towerDescription: The heavy knight delivers powerful strikes capable of breaching
     all but the greatest defenses with good melee range, though it swings slowly,
     and only at grounded enemies.

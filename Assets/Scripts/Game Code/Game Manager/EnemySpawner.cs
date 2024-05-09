@@ -244,6 +244,10 @@ public class EnemySpawner : MonoBehaviour
                         currentWave.Add(6);
                         enemyCurrency -= enemyCosts[6];
                     }
+                    else
+                    {
+                        enemyCurrency = 2;
+                    }
                 }
             }
             else // Player is mainly using low fire rate towers
@@ -290,6 +294,10 @@ public class EnemySpawner : MonoBehaviour
                     {
                         currentWave.Add(0);
                         enemyCurrency -= enemyCosts[0];
+                    }
+                    else
+                    {
+                        enemyCurrency = 2;
                     }
                 }
                 else

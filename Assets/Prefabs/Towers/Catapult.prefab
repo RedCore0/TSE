@@ -144,7 +144,6 @@ MonoBehaviour:
   projectilePierce: 5
   damageDealt: 0
   lastDamageDealt: 0
-  effectiveDamageRate: 10
   towerName: Catapult
   towerCost: 200
   towerDescription: The catapult fires at long range, with exceptionally high damage
