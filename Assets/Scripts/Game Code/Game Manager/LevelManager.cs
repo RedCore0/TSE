@@ -72,7 +72,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         Globals.playerHealth = structureHealth;
-        playerCurrency = startingCurrency; // Set player currency to the starting value.
+        playerCurrency = startingPlayerCurrency; // Set player currency to the starting value.
         paths = GameObject.FindGameObjectsWithTag("Path").Select(x => x.transform).ToArray(); 
     }
 }
