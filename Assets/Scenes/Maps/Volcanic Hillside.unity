@@ -21474,7 +21474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1638442356
 Transform:
   m_ObjectHideFlags: 0
@@ -26044,7 +26044,7 @@ PrefabInstance:
     - target: {fileID: 4749730062354617334, guid: 00cbd786df21419488637fc2c2c357f4, type: 3}
       propertyPath: cannotAffordText
       value: 
-      objectReference: {fileID: 2088164188}
+      objectReference: {fileID: 0}
     - target: {fileID: 5029900255109129776, guid: 00cbd786df21419488637fc2c2c357f4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -26215,11 +26215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2088164188 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8436180485557428053, guid: 00cbd786df21419488637fc2c2c357f4, type: 3}
-  m_PrefabInstance: {fileID: 2088164185}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2095334913
 PrefabInstance:
   m_ObjectHideFlags: 0
