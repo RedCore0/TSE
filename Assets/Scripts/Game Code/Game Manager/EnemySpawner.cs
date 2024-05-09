@@ -121,7 +121,7 @@ public class EnemySpawner : MonoBehaviour
 
     private float calcAverageFirerate(List<float> placedTowersFireRate)
     {
-        if (placedTowersFireRate.Count == 0)
+        if (placedTowersFireRate.Count == 1)
         {
             return 0;
         }
@@ -137,7 +137,7 @@ public class EnemySpawner : MonoBehaviour
 
     private float calcAverageAerialCapability(List<float> placedTowersAerialCapability)
     {
-        if (placedTowersAerialCapability.Count == 0)
+        if (placedTowersAerialCapability.Count == 1)
         {
             return 0;
         }

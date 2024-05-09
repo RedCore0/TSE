@@ -15919,13 +15919,13 @@ PrefabInstance:
       objectReference: {fileID: 1460440135}
     - target: {fileID: 626822271727678813, guid: 00cbd786df21419488637fc2c2c357f4, type: 3}
       propertyPath: m_text
-      value: 'Heavy Knight - 50
+      value: 'Heavy Knight - 150
 
 '
       objectReference: {fileID: 0}
     - target: {fileID: 626822271727678813, guid: 00cbd786df21419488637fc2c2c357f4, type: 3}
       propertyPath: m_fontSize
-      value: 25.15
+      value: 23.5
       objectReference: {fileID: 0}
     - target: {fileID: 626822271727678813, guid: 00cbd786df21419488637fc2c2c357f4, type: 3}
       propertyPath: m_enableAutoSizing
@@ -16273,6 +16273,10 @@ PrefabInstance:
       propertyPath: startingCurrency
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 121855020047598283, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
+      propertyPath: startingPlayerCurrency
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 545888410606766099, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -16292,6 +16296,10 @@ PrefabInstance:
     - target: {fileID: 2906228155834675079, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: scaleEnemyCurrency
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906228155834675079, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
+      propertyPath: aerialCapabilityPoint
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5596908867593960663, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: m_LocalPosition.x
