@@ -9,7 +9,6 @@ public class LevelManager : MonoBehaviour
     public static LevelManager main; 
     public Transform[] paths; // The start point enemies spawn at.
     private int playerCurrency; // The player's current currency, how much they can spend.
-    
     public int startingCurrency = 100; // How much currency the player should start with. 100 by default.
     public int structureHealth; // The health of the objective the player is defending.
     
@@ -39,8 +38,9 @@ public class LevelManager : MonoBehaviour
 
     public void DamageStructure(int incomingDamage) // Damages the structure the player is defending.
     {
-        structureHealth -= incomingDamage;
-        Debug.Log("Structure remaining health: " + structureHealth); 
+        //structureHealth -= incomingDamage;
+        //Debug.Log("Structure remaining health: " + structureHealth); 
+        Globals.playerHealth -= incomingDamage;
         // Eventually the UI should show how much health the structure has left.
 
         if (structureHealth <= 0)
@@ -57,6 +57,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        Globals.playerHealth = structureHealth;
         playerCurrency = startingCurrency; // Set player currency to the starting value.
         paths = GameObject.FindGameObjectsWithTag("Path").Select(x => x.transform).ToArray(); 
     }
