@@ -228,6 +228,7 @@ MonoBehaviour:
   projectilePierce: 1
   damageDealt: 0
   lastDamageDealt: 0
+  effectiveDamageRate: 5
   towerName: Archer
   towerCost: 50
   towerDescription: The archer swiftly and accurately fires at enemies over a medium

@@ -46,8 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c180a68d4859049bdfac82cc20a783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPoint: {fileID: 0}
   paths: []
-  startingCurrency: 150
+  playerCurrency: 0
+  placedTowersFireRate: []
+  placedTowersAerialCapability: []
+  startingPlayerCurrency: 100
+  startingEnemyCurrency: 100
   structureHealth: 150
 --- !u!114 &7835849635379872702
 MonoBehaviour:
@@ -91,7 +96,15 @@ MonoBehaviour:
   - {fileID: 6096530932571837085, guid: 80ed6e318a3658d4aa73c9f1a0f2b9a1, type: 3}
   testEnemyPrefab: {fileID: 0}
   enemiesPerSecond: 2
+  scaleEnemiesPerSecond: 0
   timeBetweenWaves: 5
+  fireRatePoint: 1.5
+  aerialCapabilityPoint: 0.5
+  baseEnemyCurrency: 100
+  scaleEnemyCurrency: 1
+  enemyCurrency: 0
   baseEnemies: 20
   difficultyScalingFactor: 1
+  currentWave: 
+  waveNumber: 1
   enemyTesting: 0

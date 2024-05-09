@@ -32,8 +32,8 @@ public class BaseTower : MonoBehaviour
     [SerializeField] protected int projectilePierce; // How many enemies the projectile can pass through and damage in its lifespan.
 
     [Header("Statistics")]
-    public int damageDealt; // Total damage dealt by this tower, across its whole lifetime.
-    public int lastDamageDealt; // Damage dealt by this tower in just the previous round.
+    [SerializeField] public int damageDealt; // Total damage dealt by this tower, across its whole lifetime.
+    [SerializeField] public int lastDamageDealt; // Damage dealt by this tower in just the previous round.
 
     [Header("Info")]
     public string towerName; // The tower's name.
@@ -50,6 +50,28 @@ public class BaseTower : MonoBehaviour
     public string GetTowerName() // Getter for tower name
     {
         return towerName;
+    }
+
+    public float GetTowerFireRate() // Getter for tower attack delay
+    {
+        return 1 / attackDelay;
+    }
+
+    public int GetTowerDamage() // Getter for tower damage
+    {
+        return attackDamage;
+    }
+
+    public int GetTowerAerial()
+    {
+        if (aerialTargetting)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     protected virtual void OnDrawGizmosSelected() // Shows the tower's range while selected in the editor.

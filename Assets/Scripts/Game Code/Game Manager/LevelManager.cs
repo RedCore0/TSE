@@ -1,16 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Xml.XPath;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager main; 
-    public Transform[] paths; // The start point enemies spawn at.
-    private int playerCurrency; // The player's current currency, how much they can spend.
-    public int startingCurrency = 100; // How much currency the player should start with. 100 by default.
+    public static LevelManager main;
+    public Transform startPoint; // The start point enemies spawn at.
+    public Transform[] paths; // The array of points that enemies follow.
+    [SerializeField] private int playerCurrency; // The player's current currency, how much they can spend.
+    
+    public List<float> placedTowersFireRate = new List<float>();
+    public List<float> placedTowersAerialCapability = new List<float>();
+
+
+    public int startingPlayerCurrency = 100; // How much currency the player should start with. 100 by default.
     public int structureHealth; // The health of the objective the player is defending.
+
+    public void AddBuiltTowerFireRate(float fireRate)
+    {
+        placedTowersFireRate.Add(fireRate);
+    }
+
+    public void AddBuiltTowerAerialCapability(int aerialCapability)
+    {
+        placedTowersAerialCapability.Add(aerialCapability);
+    }
     
     public int GetCurrency() // Gets the player's currency.
     {
@@ -58,7 +72,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         Globals.playerHealth = structureHealth;
-        playerCurrency = startingCurrency; // Set player currency to the starting value.
+        playerCurrency = startingPlayerCurrency; // Set player currency to the starting value.
         paths = GameObject.FindGameObjectsWithTag("Path").Select(x => x.transform).ToArray(); 
     }
 }

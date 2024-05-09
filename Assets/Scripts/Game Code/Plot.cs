@@ -53,6 +53,10 @@ public class Plot : MonoBehaviour
         Globals.isUnpurchasable = false;
         LevelManager.main.SpendCurrency(towerToBuildScript.towerCost); // Spend the currency for the tower.
         tower = Instantiate(towerToBuild, transform.position, Quaternion.identity); // Build the selected tower.
+
+        LevelManager.main.AddBuiltTowerFireRate(towerToBuildScript.GetTowerFireRate()); // Add the newly built towers firerate to the list
+        LevelManager.main.AddBuiltTowerAerialCapability(towerToBuildScript.GetTowerAerial()); 
+        GetComponent<AudioSource>().Play();
         audio1[0].Play();
     }
 
