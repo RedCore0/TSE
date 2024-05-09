@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 26c6c9705f939ee4da7f4b497493969c
+  - enabled: 1
+    path: Assets/Scenes/Maps/Ape Garden.unity
+    guid: 3d720857d74e5744688013385dec0fe7
+  - enabled: 1
+    path: Assets/Scenes/Maps/Abyssal Caverns.unity
+    guid: f456d0e38a6d55240b594c3ccb85fede
+  - enabled: 1
+    path: Assets/Scenes/Maps/Volcanic Hillside.unity
+    guid: 21ce716d0a3ee5543bf29881b9e87885
   m_configObjects: {}

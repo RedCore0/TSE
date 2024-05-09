@@ -333,7 +333,7 @@ MonoBehaviour:
   enemySpeed: 4.5
   isAerial: 0
   enemyCost: 140
-  killReward: 80
+  killReward: 40
   damageDealt: 0
   timeAlive: 0
   enemyName: Slime

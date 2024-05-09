@@ -29626,11 +29626,15 @@ PrefabInstance:
       objectReference: {fileID: 234429753}
     - target: {fileID: 121855020047598283, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: startingPlayerCurrency
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 545888410606766099, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906228155834675079, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
+      propertyPath: enemiesAlive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2906228155834675079, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: fireRatePoint
@@ -29642,7 +29646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2906228155834675079, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: scaleEnemyCurrency
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2906228155834675079, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: aerialCapabilityPoint

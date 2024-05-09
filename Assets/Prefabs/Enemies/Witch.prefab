@@ -418,7 +418,7 @@ MonoBehaviour:
   enemySpeed: 0.8
   isAerial: 0
   enemyCost: 60
-  killReward: 80
+  killReward: 40
   damageDealt: 0
   timeAlive: 0
   enemyName: Witch

@@ -515,7 +515,7 @@ MonoBehaviour:
   enemySpeed: 4
   isAerial: 0
   enemyCost: 7
-  killReward: 12
+  killReward: 6
   damageDealt: 0
   timeAlive: 0
   enemyName: Goblin

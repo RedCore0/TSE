@@ -337,7 +337,7 @@ MonoBehaviour:
   enemySpeed: 3.5
   isAerial: 1
   enemyCost: 30
-  killReward: 25
+  killReward: 15
   damageDealt: 0
   timeAlive: 0
   enemyName: Poltergeist

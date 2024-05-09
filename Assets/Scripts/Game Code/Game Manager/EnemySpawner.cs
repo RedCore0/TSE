@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float baseEnemyCurrency; // The enemy starting currency
     [SerializeField] private float scaleEnemyCurrency; // Scaling value for enemy currency 
     [SerializeField] private float enemyCurrency; // The enemy's current curreny
-
+    float currentCurrency;
 
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private int waveNumber = 1; // The current wave - initialised as 1. Eventually starting wave may be something we change.
     private float timeSinceLastSpawn; // Checked against timeBetweenWaves to ensure enemies are spawning at the correct speed.
-    private int enemiesAlive; // How many enemies are currently still alive.
+    public int enemiesAlive; // How many enemies are currently still alive.
 
     private bool isSpawning = false; // Determines if the enemies should currently be spawning.
 
@@ -90,7 +90,7 @@ public class EnemySpawner : MonoBehaviour
             timeSinceLastSpawn = 0f; // Resets the time since a spawn event occured to 0.
         }
 
-        else if (enemiesAlive == 0 && currentWave.Count == 0) // Once there are no enemies left alive, or to spawn,
+        else if (enemiesAlive <= 0 && currentWave.Count == 0) // Once there are no enemies left alive, or to spawn,
         {
             EndWave(); // the wave is over and can be ended.
         }
@@ -114,7 +114,9 @@ public class EnemySpawner : MonoBehaviour
         isSpawning = false; // Enemies should no longer be spawning.
         timeSinceLastSpawn = 0f; // Reset last spawn to 0.
         waveNumber++; // Increment the current wave.
-        enemyCurrency += (baseEnemyCurrency * scaleEnemyCurrency);
+        currentCurrency += baseEnemyCurrency * scaleEnemyCurrency;
+        enemyCurrency = currentCurrency;
+        enemiesAlive = 0;
         StartCoroutine(StartWave()); // Start another wave.
     }    
     

@@ -120,7 +120,7 @@ MonoBehaviour:
   enemySpeed: 2
   isAerial: 1
   enemyCost: 35
-  killReward: 40
+  killReward: 20
   damageDealt: 0
   timeAlive: 0
   enemyName: Dragon

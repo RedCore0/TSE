@@ -508,14 +508,14 @@ MonoBehaviour:
   enemySpeed: 1.4
   isAerial: 0
   enemyCost: 90
-  killReward: 50
+  killReward: 25
   damageDealt: 0
   timeAlive: 0
   enemyName: Corrupted Knight
   enemyDescription: An ally knight who's will is no longer their own. They were taken,
     but they can be saved, to an extent. Defeating one will reward you with the same
     amount of money that you would need to place one of your own (subject to change/balancing).
-  shieldHealth: 50
+  shieldHealth: 10
   shieldDefense: 12
   shieldRegenStartTime: 9999
   shieldRegenTime: 9999

@@ -333,7 +333,7 @@ MonoBehaviour:
   enemySpeed: 6
   isAerial: 0
   enemyCost: 20
-  killReward: 10
+  killReward: 5
   damageDealt: 0
   timeAlive: 0
   enemyName: Young Slimeling
