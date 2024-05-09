@@ -19,6 +19,7 @@ public class Globals
     public static float enemyVol = 100f;
     public static float towerVol = 100f;
     public static bool isUnpurchasable = false;
+    public static int playerHealth = 100;
 
 
 }

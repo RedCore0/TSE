@@ -37,8 +37,9 @@ public class LevelManager : MonoBehaviour
 
     public void DamageStructure(int incomingDamage) // Damages the structure the player is defending.
     {
-        structureHealth -= incomingDamage;
-        Debug.Log("Structure remaining health: " + structureHealth); 
+        //structureHealth -= incomingDamage;
+        //Debug.Log("Structure remaining health: " + structureHealth); 
+        Globals.playerHealth -= incomingDamage;
         // Eventually the UI should show how much health the structure has left.
 
         if (structureHealth <= 0)
@@ -55,6 +56,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        Globals.playerHealth = structureHealth;
         playerCurrency = startingCurrency; // Set player currency to the starting value.
         path = GameObject.Find("Path").GetComponentsInChildren<Transform>(); // Get the path points from the path object.
     }

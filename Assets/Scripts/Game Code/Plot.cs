@@ -30,12 +30,6 @@ public class Plot : MonoBehaviour
 
     private void OnMouseDown()
     {
-
-        if(EventSystem.current.IsPointerOverGameObject()) // Stops the player being able to place a tower through the in-game UI.
-        {
-            return;
-        }
-
         if (tower != null) // Checks to see if the plot is empty.
         {
             return; // If it isn't empty do nothing for now.

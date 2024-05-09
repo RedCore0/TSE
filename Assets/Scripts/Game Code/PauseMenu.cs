@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject shop;
+    public GameObject deadPanel;
     public KeyCode pauseKey;
     public GameObject pauseMenu;
     public GameObject pauseButton;
@@ -18,12 +19,22 @@ public class PauseMenu : MonoBehaviour
     public Slider enemySlider;
     public Slider menuSlider;
     public Slider musicSlider;
+    public Slider playerHealth;
     AudioSource[] audio1;
-    
+    IEnumerator WaitForDead()
+    {
+        while (Globals.playerHealth>0)
+        {
+            yield return new WaitForSeconds(1);
+        }
+        deadPanel.SetActive(true);
+        yield return new WaitForSeconds(5);
+        MainMenu();
+    }
     // Start is called before the first frame update
     void Start()
     {
-
+        deadPanel.SetActive(false);
         pauseMenu.SetActive(false);
         controlsPanel.SetActive(false);
         volumePanel.SetActive(false);
@@ -35,10 +46,12 @@ public class PauseMenu : MonoBehaviour
         enemySlider.value = 100f;
         menuSlider.value = 100f;
         musicSlider.value = 100f;
-
+        playerHealth.value = Globals.playerHealth; 
+        StartCoroutine(WaitForDead());
     }
     public void Update()
     {
+        playerHealth.value = Globals.playerHealth;
         if (Input.GetKey(pauseKey) && !paused)
         {
             Pause();
@@ -68,7 +81,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void Restart()
     {
-
+        Globals.playerHealth = 100;
         audio1[0].Play();
         shop.SetActive(true);
         pauseButton.SetActive(true);
@@ -91,6 +104,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void MainMenu()
     {
+        Globals.playerHealth = 100;
         audio1[0].Play();
         shop.SetActive(true);
         pauseButton.SetActive(true);

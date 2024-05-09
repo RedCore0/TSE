@@ -5,6 +5,7 @@ using UnityEngine;
 public class Dragon : BaseEnemy
 {
     [Header("Dragon specific stats")]
+    
     public int shotsPerBurst; // The number of shots the dragon will fire in a single burst.
     public float timeBetweenShots; // The time (seconds) between each shot in a burst.
     public override void DoAttack() // Enenmy attacks structure

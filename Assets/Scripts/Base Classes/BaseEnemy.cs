@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Enemy", order = 1)]
 
 public class BaseEnemy : MonoBehaviour
 {
+ 
     private bool hasAudio = false;
     private Rigidbody2D rb; // The enemy's collision hitbox.
     private bool isDestroyed = false; // Resolves an issue where multiple bullets could collide at once and both would cause the onEnemyDestroy to be called.
@@ -24,7 +26,6 @@ public class BaseEnemy : MonoBehaviour
     [Header("Attributes")]
     public int enemyHealth; // How much health the enemy has, the damage it can take before it dies.
     public int enemyDefense; // The enemy's defense - this value is subtracted from all incoming damage.
-
     public int attackDamage; // The enemy's attack - the damage it deals to the 'objective' the player defends.
     public float attackCooldown; // The delay between each of the enemy's attacks to the objective.
     public int attackLimit; // The limit to the enemy's attacks - how many times it can attack in its lifespan.
@@ -47,7 +48,6 @@ public class BaseEnemy : MonoBehaviour
 
     public virtual void Start()
     {
-        
         if (GetComponent<AudioSource>() != null)
         {
             hasAudio = true;
@@ -64,6 +64,7 @@ public class BaseEnemy : MonoBehaviour
 
     public virtual void Update()
     {
+        //healthbar.transform.position = transform.position + new Vector3(0, 20, 0);
         if (hasAudio)
         {
             audio1[0].volume = Globals.enemyVol;
@@ -103,7 +104,7 @@ public class BaseEnemy : MonoBehaviour
         if (!isAttacking) // If the enemy is not attacking already,
         {
             Vector2 direction = (targetLocation.position - transform.position).normalized; // get the direction of the next target,
-            rb.velocity = direction * enemySpeed; // move towards the target,
+            rb.velocity = direction * enemySpeed; // move towards the target
             distanceTravelled += enemySpeed; // add to the enemy's distance travelled.
         }
 
