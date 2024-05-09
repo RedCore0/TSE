@@ -90,7 +90,7 @@ public class EnemySpawner : MonoBehaviour
             timeSinceLastSpawn = 0f; // Resets the time since a spawn event occured to 0.
         }
 
-        if (enemiesAlive == 0 && currentWave.Count == 0) // Once there are no enemies left alive, or to spawn,
+        else if (enemiesAlive == 0 && currentWave.Count == 0) // Once there are no enemies left alive, or to spawn,
         {
             EndWave(); // the wave is over and can be ended.
         }
@@ -100,7 +100,9 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBetweenWaves); // Wait for the delay between waves.
 
-        GenerateWave();
+        GenerateWave(); // Select enemies to send
+
+
         isSpawning = true; // Ensures the spawning code will run.
         
         //enemiesLeftToSpawn = currentWave.Count - 1; // Calculates the wave size for this wave.
@@ -151,49 +153,49 @@ public class EnemySpawner : MonoBehaviour
 
     private void GenerateWave() // Picking which enemies to send (Always misses the last enemy for some reason <- likely list index error somewhere)
     {
-        while (enemyCurrency > 4) // Loop until no more towers can be afforded (cheeapest tower is 5 (again this isn't great))
+        while (enemyCurrency > 4.0f) // Loop until no more towers can be afforded (cheeapest tower is 5 (again this isn't great))
         {
             if (calcAverageFirerate(LevelManager.main.placedTowersFireRate) > fireRatePoint) // Player is mainly using high fire rate towers
             {// use high hp enemies
                 if (calcAverageAerialCapability(LevelManager.main.placedTowersAerialCapability) > aerialCapabilityPoint)
                 {// use high hp and don't prioritise aerial enemies
-                    if (enemyCurrency > enemyCosts[1])
+                    if (enemyCurrency > enemyCosts[1]) // Corrupted Knight
                     {
                         currentWave.Add(1);
                         enemyCurrency -= enemyCosts[1];
                     }
 
-                    else if (enemyCurrency > enemyCosts[2])
+                    else if (enemyCurrency > enemyCosts[2]) // Witch
                     {
                         currentWave.Add(2);
                         enemyCurrency -= enemyCosts[2];
                     }
 
-                    else if (enemyCurrency > enemyCosts[0])
+                    else if (enemyCurrency > enemyCosts[0]) // Slime
                     {
                         currentWave.Add(0);
                         enemyCurrency -= enemyCosts[0];
                     }
 
-                    else if (enemyCurrency > enemyCosts[4])
+                    else if (enemyCurrency > enemyCosts[4]) // Dragon
                     {
                         currentWave.Add(4);
                         enemyCurrency -= enemyCosts[4];
                     }
 
-                    else if (enemyCurrency > enemyCosts[5])
+                    else if (enemyCurrency > enemyCosts[5]) // Skeleton
                     {
                         currentWave.Add(5);
                         enemyCurrency -= enemyCosts[5];
                     }
 
-                    else if (enemyCurrency > enemyCosts[6])
+                    else if (enemyCurrency > enemyCosts[6]) // Goblin
                     {
                         currentWave.Add(6);
                         enemyCurrency -= enemyCosts[6];
                     }
 
-                    else if (enemyCurrency > enemyCosts[3])
+                    else if (enemyCurrency > enemyCosts[3]) // Poltergeist
                     {
                         currentWave.Add(3);
                         enemyCurrency -= enemyCosts[3];
@@ -201,43 +203,43 @@ public class EnemySpawner : MonoBehaviour
                 }
                 else
                 {// use high hp and prioritise aerial enemies
-                    if (enemyCurrency > enemyCosts[0])
+                    if (enemyCurrency > enemyCosts[0]) // Slime
                     {
                         currentWave.Add(0);
                         enemyCurrency -= enemyCosts[0];
                     }
 
-                    else if (enemyCurrency > enemyCosts[4])
+                    else if (enemyCurrency > enemyCosts[4]) // Dragon
                     {
                         currentWave.Add(4);
                         enemyCurrency -= enemyCosts[4];
                     }
 
-                    else if (enemyCurrency > enemyCosts[1])
+                    else if (enemyCurrency > enemyCosts[1]) // Corrupted Knight
                     {
                         currentWave.Add(1);
                         enemyCurrency -= enemyCosts[1];
                     }
 
-                    else if (enemyCurrency > enemyCosts[2])
+                    else if (enemyCurrency > enemyCosts[2]) // Witch
                     {
                         currentWave.Add(2);
                         enemyCurrency -= enemyCosts[2];
                     }
 
-                    else if (enemyCurrency > enemyCosts[3])
+                    else if (enemyCurrency > enemyCosts[3]) // Poltergeist
                     {
                         currentWave.Add(3);
                         enemyCurrency -= enemyCosts[3];
                     }
 
-                    else if (enemyCurrency > enemyCosts[5])
+                    else if (enemyCurrency > enemyCosts[5]) // Skeleton
                     {
                         currentWave.Add(5);
                         enemyCurrency -= enemyCosts[5];
                     }
 
-                    else if (enemyCurrency > enemyCosts[6])
+                    else if (enemyCurrency > enemyCosts[6]) // Goblin
                     {
                         currentWave.Add(6);
                         enemyCurrency -= enemyCosts[6];
@@ -248,43 +250,43 @@ public class EnemySpawner : MonoBehaviour
             {// use low hp enemies
                 if (calcAverageAerialCapability(LevelManager.main.placedTowersAerialCapability) > aerialCapabilityPoint)
                 {// use low hp and don't prioritise aerial enemies
-                    if (enemyCurrency > enemyCosts[5])
+                    if (enemyCurrency > enemyCosts[5]) // Skeleton
                     {
                         currentWave.Add(5);
                         enemyCurrency -= enemyCosts[5];
                     }
 
-                    else if (enemyCurrency > enemyCosts[6])
+                    else if (enemyCurrency > enemyCosts[6]) // Goblin
                     {
                         currentWave.Add(6);
                         enemyCurrency -= enemyCosts[6];
                     }
 
-                    else if (enemyCurrency > enemyCosts[3])
+                    else if (enemyCurrency > enemyCosts[3]) // Poltergeist
                     {
                         currentWave.Add(3);
                         enemyCurrency -= enemyCosts[3];
                     }
 
-                    else if (enemyCurrency > enemyCosts[1])
+                    else if (enemyCurrency > enemyCosts[1]) // Corrupted Knight
                     {
                         currentWave.Add(1);
                         enemyCurrency -= enemyCosts[1];
                     }
 
-                    else if (enemyCurrency > enemyCosts[2])
+                    else if (enemyCurrency > enemyCosts[2]) // Witch
                     {
                         currentWave.Add(2);
                         enemyCurrency -= enemyCosts[2];
                     }
 
-                    else if (enemyCurrency > enemyCosts[4])
+                    else if (enemyCurrency > enemyCosts[4]) // Dragon
                     {
                         currentWave.Add(4);
                         enemyCurrency -= enemyCosts[4] ;
                     }
 
-                    else if (enemyCurrency > enemyCosts[0])
+                    else if (enemyCurrency > enemyCosts[0]) // Slime
                     {
                         currentWave.Add(0);
                         enemyCurrency -= enemyCosts[0];
@@ -292,43 +294,43 @@ public class EnemySpawner : MonoBehaviour
                 }
                 else
                 {// use low hp and prioritise aerial enemies
-                    if (enemyCurrency > enemyCosts[3])
+                    if (enemyCurrency > enemyCosts[3]) // Poltergeist
                     {
                         currentWave.Add(3);
                         enemyCurrency -= enemyCosts[3];
                     }
 
-                    else if (enemyCurrency > enemyCosts[5])
+                    else if (enemyCurrency > enemyCosts[5]) // Skeleton
                     {
                         currentWave.Add(5);
                         enemyCurrency -= enemyCosts[5];
                     }
 
-                    else if (enemyCurrency > enemyCosts[6])
+                    else if (enemyCurrency > enemyCosts[6]) // Goblin
                     {
                         currentWave.Add(6);
                         enemyCurrency -= enemyCosts[6];
                     }
 
-                    else if (enemyCurrency > enemyCosts[0])
+                    else if (enemyCurrency > enemyCosts[0]) // Slime
                     {
                         currentWave.Add(0);
                         enemyCurrency -= enemyCosts[0];
                     }
 
-                    else if (enemyCurrency > enemyCosts[4])
+                    else if (enemyCurrency > enemyCosts[4]) // Dragon
                     {
                         currentWave.Add(4);
                         enemyCurrency -= enemyCosts[4];
                     }
 
-                    else if (enemyCurrency > enemyCosts[1])
+                    else if (enemyCurrency > enemyCosts[1]) // Corrupted Knight
                     {
                         currentWave.Add(1);
                         enemyCurrency -= enemyCosts[1];
                     }
 
-                    else if (enemyCurrency > enemyCosts[2])
+                    else if (enemyCurrency > enemyCosts[2]) // Witch
                     {
                         currentWave.Add(2);
                         enemyCurrency -= enemyCosts[2];
@@ -336,6 +338,7 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
+        return;
     }
     // High Hp:
     // 0 - Large Slime
