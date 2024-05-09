@@ -40,6 +40,8 @@ public class EnemySpawner : MonoBehaviour
 
     public bool enemyTesting = false; // Changes spawning method for testing.
     
+    [HideInInspector] public int spawnLane = 0;
+    
     public void Start()
     {
         enemyCurrency = baseEnemyCurrency; // Sets the enemy currency to the starting value
@@ -372,7 +374,9 @@ public class EnemySpawner : MonoBehaviour
         if (currentWave.Count > 0) // Check there are still enemies left to spawn
         {
             GameObject prefabToSpawn = enemyPrefabs[currentWave[0]]; // Select the prefab for the next spawning enemy
-            Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawn the enemy
+            prefabToSpawn.GetComponent<BaseEnemy>().followedPath = spawnLane; 
+            Instantiate(prefabToSpawn, LevelManager.main.paths[spawnLane].GetComponentsInChildren<Transform>()[1].position, Quaternion.identity); // Spawns the enemy at the level's start point.
+            spawnLane = spawnLane++ > LevelManager.main.paths.Length-2 ? 0 : spawnLane++;
             currentWave.RemoveAt(0); // Remove the enemy that has just spawned from the wave
 
             enemiesAlive++; // Adds 1 to the enemies alive as one has just spawned.
@@ -388,13 +392,16 @@ public class EnemySpawner : MonoBehaviour
     {
         int toSpawn = UnityEngine.Random.Range(0, enemyPrefabs.Length); // Randomly selects an enemy to spawn until the ai does this in future/a better temporary method is designed.
         GameObject prefabToSpawn = enemyPrefabs[toSpawn]; // Selects the type of enemy to spawn from the available enemy prefabs.
-        Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawns the enemy at the level's start point.
+        prefabToSpawn.GetComponent<BaseEnemy>().followedPath = spawnLane; 
+        Instantiate(prefabToSpawn, LevelManager.main.paths[spawnLane].GetComponentsInChildren<Transform>()[1].position, Quaternion.identity); // Spawns the enemy at the level's start point.
+        spawnLane = spawnLane++ > LevelManager.main.paths.Length-2 ? 0 : spawnLane++;
     }
 
     private void SpawnEnemyDev() // Temporary spawn method for testing new creatures.
     {
         GameObject prefabToSpawn = testEnemyPrefab; // Selects the type of enemy to spawn from the available enemy prefabs.
-        Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity); // Spawns the enemy at the level's start point.
+        prefabToSpawn.GetComponent<BaseEnemy>().followedPath = spawnLane; 
+        Instantiate(prefabToSpawn, LevelManager.main.paths[spawnLane].GetComponentsInChildren<Transform>()[0].position, Quaternion.identity); // Spawn the enemy
     }
 
     public void incrementCount()

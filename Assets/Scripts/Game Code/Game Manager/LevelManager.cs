@@ -6,7 +6,6 @@ using System.Linq;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager main;
-    public Transform startPoint; // The start point enemies spawn at.
     public Transform[] paths; // The array of points that enemies follow.
     [SerializeField] private int playerCurrency; // The player's current currency, how much they can spend.
     
