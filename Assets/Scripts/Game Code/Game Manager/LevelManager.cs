@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager main;
     public Transform startPoint; // The start point enemies spawn at.
-    public Transform[] path; // The array of points that enemies follow.
+    public Transform[] paths; // The array of points that enemies follow.
     [SerializeField] private int playerCurrency; // The player's current currency, how much they can spend.
     
     public List<float> placedTowersFireRate = new List<float>();
@@ -72,6 +72,6 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         playerCurrency = startingPlayerCurrency; // Set player currency to the starting value.
-        path = GameObject.Find("Path").GetComponentsInChildren<Transform>(); // Get the path points from the path object.
+        paths = GameObject.Find("Path").GetComponentsInChildren<Transform>(); // Get the path points from the path object.
     }
 }

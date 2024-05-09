@@ -21759,9 +21759,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 121855020047598283, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
+      propertyPath: startingPlayerCurrency
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 545888410606766099, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906228155834675079, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
+      propertyPath: fireRatePoint
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906228155834675079, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
+      propertyPath: baseEnemyCurrency
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906228155834675079, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
+      propertyPath: scaleEnemyCurrency
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906228155834675079, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
+      propertyPath: aerialCapabilityPoint
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5596908867593960663, guid: 336db1d7d78a17948a7fb8268b5b135f, type: 3}
       propertyPath: m_LocalPosition.x

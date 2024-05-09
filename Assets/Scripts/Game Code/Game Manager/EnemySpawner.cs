@@ -24,9 +24,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float scaleEnemyCurrency; // Scaling value for enemy currency 
     [SerializeField] private float enemyCurrency; // The enemy's current curreny
 
-    //Old
-    [SerializeField] private int baseEnemies; // Controls the amount of enemies in a given wave. (Shouldn't be used)
-    [SerializeField] private float difficultyScalingFactor; // Controls the scaling of enemies between waves. (Shouldn't be used)
 
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
@@ -36,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int waveNumber = 1; // The current wave - initialised as 1. Eventually starting wave may be something we change.
     private float timeSinceLastSpawn; // Checked against timeBetweenWaves to ensure enemies are spawning at the correct speed.
     private int enemiesAlive; // How many enemies are currently still alive.
-    private int enemiesLeftToSpawn; // How many enemies are yet to spawn this wave.
+
     private bool isSpawning = false; // Determines if the enemies should currently be spawning.
 
     List<int> enemyCosts = new List<int>(); // Stores the cost of each enemy (I could not get the enemy cost to be accessible from baseEnemy / the prefabs so this is my fix)
@@ -119,7 +116,7 @@ public class EnemySpawner : MonoBehaviour
     }    
     
 
-    private float calcAverageFirerate(List<float> placedTowersFireRate)
+    private float calcAverageFirerate(List<float> placedTowersFireRate) // Takes a list of floats and returns the average
     {
         if (placedTowersFireRate.Count == 1)
         {
@@ -135,7 +132,7 @@ public class EnemySpawner : MonoBehaviour
         return averageFireRate;
     }
 
-    private float calcAverageAerialCapability(List<float> placedTowersAerialCapability)
+    private float calcAverageAerialCapability(List<float> placedTowersAerialCapability) // Takes a list of floats and returns the average
     {
         if (placedTowersAerialCapability.Count == 1)
         {
@@ -387,13 +384,4 @@ public class EnemySpawner : MonoBehaviour
         Debug.Log("Enemies alive: " + enemiesAlive);
     }
 
-
-//Old Code
-
-
-    private int EnemiesPerWave() // Calculates the enemies to be spawned per wave. (Shouldn't be needed)
-    {
-        return Mathf.RoundToInt(baseEnemies * Mathf.Pow(waveNumber, difficultyScalingFactor));
-        // This could eventually be repurposed to calculate the number of credits the AI gets per wave.
-    }
 }
