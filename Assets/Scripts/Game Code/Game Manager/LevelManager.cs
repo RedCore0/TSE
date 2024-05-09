@@ -14,7 +14,6 @@ public class LevelManager : MonoBehaviour
 
 
     public int startingPlayerCurrency = 100; // How much currency the player should start with. 100 by default.
-    public int startingEnemyCurrency = 100; // How much currency the enemy should start with.
     public int structureHealth; // The health of the objective the player is defending.
 
     public void AddBuiltTowerFireRate(float fireRate)
