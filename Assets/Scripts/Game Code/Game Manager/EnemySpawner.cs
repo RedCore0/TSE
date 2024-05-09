@@ -153,7 +153,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void GenerateWave() // Picking which enemies to send (Always misses the last enemy for some reason <- likely list index error somewhere)
     {
-        while (enemyCurrency > 4.0f) // Loop until no more towers can be afforded (cheeapest tower is 5 (again this isn't great))
+        while (enemyCurrency >= 4.0f) // Loop until no more towers can be afforded (cheeapest tower is 5 (again this isn't great))
         {
             if (calcAverageFirerate(LevelManager.main.placedTowersFireRate) > fireRatePoint) // Player is mainly using high fire rate towers
             {// use high hp enemies
@@ -334,6 +334,11 @@ public class EnemySpawner : MonoBehaviour
                     {
                         currentWave.Add(2);
                         enemyCurrency -= enemyCosts[2];
+                    }
+
+                    else
+                    {
+                        enemyCurrency = 2;
                     }
                 }
             }
