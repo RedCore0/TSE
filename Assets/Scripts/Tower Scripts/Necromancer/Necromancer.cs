@@ -189,5 +189,6 @@ public class Necromancer : BaseTower
         projectilePrefab = summonProjectilePrefab;
         base.DoAttack(target);
         projectilePrefab = temp;
+        if (GetComponent<AudioSource>() != null) { GetComponent<AudioSource>().Play(); }
     }
 }

@@ -1,23 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Enemy", order = 1)]
 
 public class BaseEnemy : MonoBehaviour
 {
- 
-    private bool hasAudio = false;
     private Rigidbody2D rb; // The enemy's collision hitbox.
     private bool isDestroyed = false; // Resolves an issue where multiple bullets could collide at once and both would cause the onEnemyDestroy to be called.
     private bool isAttacking; // Whether or not the enemy has started attacking the objective.
     private float distanceTravelled; // Tracks how far the enemy is along the track - allows for 'first'/'last' targeting.
     private float nextAttack; // The next time the enemy can attack.
-    private AudioSource[] audio1;
-    private Transform targetLocation;
+    
+    protected Transform targetLocation;
     protected int pathIndex;
+    protected Transform[] pathPoints;
+
+    [HideInInspector] public int followedPath = 0;
     // Enemies follow a sequence of points. The index allows traversal of the array of points.
 
     // [Header("References")]
@@ -26,6 +27,7 @@ public class BaseEnemy : MonoBehaviour
     [Header("Attributes")]
     public int enemyHealth; // How much health the enemy has, the damage it can take before it dies.
     public int enemyDefense; // The enemy's defense - this value is subtracted from all incoming damage.
+
     public int attackDamage; // The enemy's attack - the damage it deals to the 'objective' the player defends.
     public float attackCooldown; // The delay between each of the enemy's attacks to the objective.
     public int attackLimit; // The limit to the enemy's attacks - how many times it can attack in its lifespan.
@@ -48,14 +50,10 @@ public class BaseEnemy : MonoBehaviour
 
     public virtual void Start()
     {
-        if (GetComponent<AudioSource>() != null)
-        {
-            hasAudio = true;
-            audio1 = GetComponents<AudioSource>();
-        }
         rb = GetComponent<Rigidbody2D>(); // Gets the enemy's attached rigidbody component.
         pathIndex = 1; // Set the initial index to 1.
-        targetLocation = LevelManager.main.path[pathIndex]; // Set the initial target location to the first point in the path.
+        pathPoints = LevelManager.main.paths[followedPath].GetComponentsInChildren<Transform>(); 
+        targetLocation = pathPoints[pathIndex]; // Set the initial target location to the first point in the path.
         isDestroyed = false; // Initialises isDestroyed to false.
         isAttacking = false; // Initialises isAttacking to false.
         distanceTravelled = 0; // Sets initial distance travelled to 0 .
@@ -64,11 +62,6 @@ public class BaseEnemy : MonoBehaviour
 
     public virtual void Update()
     {
-        //healthbar.transform.position = transform.position + new Vector3(0, 20, 0);
-        if (hasAudio)
-        {
-            audio1[0].volume = Globals.enemyVol;
-        }
         timeAlive += Time.deltaTime; // Increment the time alive by the change in time 
 
         if (isAttacking) // If the enemy is attacking,
@@ -86,7 +79,7 @@ public class BaseEnemy : MonoBehaviour
         {
             pathIndex++; // Increments the path index by one.
 
-            if (pathIndex == LevelManager.main.path.Length) // Checks to see if the enemy has reached the end of the path.
+            if (pathIndex == pathPoints.Length) // Checks to see if the enemy has reached the end of the path.
             {
                 rb.velocity = Vector2.zero; // If it has then stop moving,
                 isAttacking = true; // and start attacking...
@@ -94,7 +87,7 @@ public class BaseEnemy : MonoBehaviour
 
             else // If it is not at the end of the path,
             {
-                targetLocation = LevelManager.main.path[pathIndex]; // set the next target location.    
+                targetLocation = pathPoints[pathIndex]; // set the next target location.    
             }
         }
     }
@@ -104,7 +97,7 @@ public class BaseEnemy : MonoBehaviour
         if (!isAttacking) // If the enemy is not attacking already,
         {
             Vector2 direction = (targetLocation.position - transform.position).normalized; // get the direction of the next target,
-            rb.velocity = direction * enemySpeed; // move towards the target
+            rb.velocity = direction * enemySpeed; // move towards the target,
             distanceTravelled += enemySpeed; // add to the enemy's distance travelled.
         }
 
@@ -172,10 +165,6 @@ public class BaseEnemy : MonoBehaviour
         {
             attackLimit -= 1; // decrease them by one,
             LevelManager.main.DamageStructure(attackDamage); // and damage the structure.
-            if (audio1[0] != null)
-            {
-                audio1[0].Play();
-            }
         }
         else // Otherwise, it has exhausted its attacks,
         {

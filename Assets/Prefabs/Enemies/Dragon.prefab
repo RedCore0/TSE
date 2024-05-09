@@ -111,14 +111,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73bc982b59cae8245b7e263fd1114f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 30
-  enemyDefense: 3
+  followedPath: 0
+  enemyHealth: 40
+  enemyDefense: 4
   attackDamage: 3
-  attackCooldown: 4
-  attackLimit: 3
+  attackCooldown: 3
+  attackLimit: 5
   enemySpeed: 2
   isAerial: 1
-  enemyCost: 20
+  enemyCost: 35
   killReward: 40
   damageDealt: 0
   timeAlive: 0
@@ -290,8 +291,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4846034283120841902}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+--- !u!1 &250157724456461232 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}
+  m_PrefabInstance: {fileID: 333111340389532173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4846034283120841902
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250157724456461232}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4540857626c0fd24c9aaa807532d4db7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1418815254066330579 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 925b7bf63cdfe29409e9344860240f72, type: 3}

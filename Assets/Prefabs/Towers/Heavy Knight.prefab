@@ -29,6 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7489422668671520489}
   - {fileID: 1772815204807549715}
   - {fileID: 1986545653318133778}
   - {fileID: 6236794916013725214}
@@ -59,13 +60,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2202638410875930891}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: 0.8870109, w: -0.46174863}
-  m_LocalPosition: {x: 0.075, y: 0.335, z: 0}
-  m_LocalScale: {x: 0.07, y: 0.07, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.2440381, w: 0.96976566}
+  m_LocalPosition: {x: -0.371, y: 0.523, z: 0}
+  m_LocalScale: {x: 0.14209524, y: 0.14209524, z: 2.0299318}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1772815204807549715}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 235}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -28.25}
 --- !u!212 &3216575102550244045
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -312,11 +313,11 @@ Transform:
   m_GameObject: {fileID: 8221973724970752865}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -0.0011000633, y: 0.31587505, z: 0}
+  m_LocalPosition: {x: -0.0011005402, y: -0.18799973, z: 0}
   m_LocalScale: {x: 0.045, y: 0.045, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1772815204807549715}
+  m_Father: {fileID: 1010203707732266276}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &3051760764296015622
 SpriteRenderer:
@@ -380,6 +381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1772815204807549715}
   - component: {fileID: 838273915137211010}
+  - component: {fileID: 4043582374936896085}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -400,7 +402,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7489422668671520489}
   - {fileID: 758290117866118161}
   m_Father: {fileID: 1010203707732266276}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -422,8 +423,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1042632466133253721, guid: 7f292dfaa9d925449ad4406d710fd83e, type: 3}
   towerUpgrades: []
   attackRange: 1.5
-  attackDelay: 1
-  attackDamage: 10
+  attackDelay: 0.6666667
+  attackDamage: 15
   aerialTargetting: 0
   projectileLife: 0.1
   projectileSpeed: 15
@@ -435,3 +436,99 @@ MonoBehaviour:
   towerDescription: The heavy knight delivers powerful strikes capable of breaching
     all but the greatest defenses with good melee range, though it swings slowly,
     and only at grounded enemies.
+--- !u!82 &4043582374936896085
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982491073213388140}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5e28ee8055714404ab501fe63701c01d, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

@@ -407,6 +407,7 @@ GameObject:
   - component: {fileID: 7583025769689098375}
   - component: {fileID: 8930073215970851729}
   - component: {fileID: 3813105888975439476}
+  - component: {fileID: 6396972135533928972}
   m_Layer: 6
   m_Name: Goblin
   m_TagString: Enemy
@@ -505,12 +506,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34ab14812c0754548b19a3ef40b9cc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 3
+  followedPath: 0
+  enemyHealth: 5
   enemyDefense: 0
   attackDamage: 1
   attackCooldown: 0.5
   attackLimit: 15
-  enemySpeed: 5
+  enemySpeed: 4
   isAerial: 0
   enemyCost: 7
   killReward: 12
@@ -616,6 +618,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &6396972135533928972
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6096530932571837085}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 601359bfab035c44d83732af90a50777, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &7083426290718916349
 PrefabInstance:
   m_ObjectHideFlags: 0
