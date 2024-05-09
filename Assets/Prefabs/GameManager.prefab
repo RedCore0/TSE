@@ -46,9 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c180a68d4859049bdfac82cc20a783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {fileID: 0}
-  path: []
-  startingCurrency: 100
+  paths: []
+  startingCurrency: 150
   structureHealth: 150
 --- !u!114 &7835849635379872702
 MonoBehaviour:
@@ -89,6 +88,7 @@ MonoBehaviour:
   - {fileID: 6096530932571837085, guid: a8b08dc384acda043bcd0538fcfc771f, type: 3}
   - {fileID: 6096530932571837085, guid: 158949f0bbe14094abc812ed9cff2d96, type: 3}
   - {fileID: 6096530932571837085, guid: f83315956fcf52246aadd7fcd9dafbbb, type: 3}
+  - {fileID: 6096530932571837085, guid: 80ed6e318a3658d4aa73c9f1a0f2b9a1, type: 3}
   testEnemyPrefab: {fileID: 0}
   enemiesPerSecond: 2
   timeBetweenWaves: 5
